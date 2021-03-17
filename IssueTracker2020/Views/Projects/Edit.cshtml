@@ -1,0 +1,42 @@
+﻿@model IssueTracker2020.Models.Project
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="page-wrapper">
+
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-md-5 align-self-center">
+                <h4 class="page-title" style="font-size: 1.5rem; border-bottom: 2px solid transparent;">Edit Project - @Model.Name</h4>
+                <nav class="breadcrumb">
+                    <a class="breadcrumb-item" asp-controller="Home" asp-action="Index">Dashboard</a>
+                    <a class="breadcrumb-item" asp-controller="Projects" asp-action="Index">Projects</a>
+                    <span class="breadcrumb-item active">Edit - @Model.Name</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card">
+            <div class="row card-body">
+                <div class="col-10">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label mb-2"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Update Project Name" class="btn btn-block btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

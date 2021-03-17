@@ -1,0 +1,408 @@
+﻿@model IssueTracker2020.Models.Ticket
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Title</label>
+                    <label>Description</label>
+                    <label>Created</label>
+                    <label>Updated</label>
+                    <label>Project</label>
+                    <label>Ticket Type</label>
+                    <label>Ticket Priority</label>
+                    <p>Ticket Status</p>
+                    <p>Created By</p>
+                    <p>Assigned To</p>
+                </div>
+                <div class="col-md-8">
+                    @Html.DisplayFor(model => model.Title)
+                    @Html.DisplayFor(model => model.Description)
+                    @Html.DisplayFor(model => model.Created)
+                    @Html.DisplayFor(model => model.Updated)
+                    @Html.DisplayFor(model => model.Project.Name)
+                    @Html.DisplayFor(model => model.TicketType.Name)
+                    @Html.DisplayFor(model => model.TicketPriority.Name)
+                    @Html.DisplayFor(model => model.TicketStatus.Name)
+                    @Html.DisplayFor(model => model.OwnerUser.FullName)
+                    @Html.DisplayFor(model => model.DeveloperUser.FullName)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th>
+                            P
+                        </th>
+                        <th>
+                            Payment Taken
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            TB - Monthly
+                        </td>
+                        <td>
+                            01/04/2012
+                        </td>
+                        <td>
+                            Default
+                        </td>
+                    </tr>
+                    <tr class="table-active">
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            TB - Monthly
+                        </td>
+                        <td>
+                            01/04/2012
+                        </td>
+                        <td>
+                            Approved
+                        </td>
+                    </tr>
+                    <tr class="table-success">
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            TB - Monthly
+                        </td>
+                        <td>
+                            02/04/2012
+                        </td>
+                        <td>
+                            Declined
+                        </td>
+                    </tr>
+                    <tr class="table-warning">
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            TB - Monthly
+                        </td>
+                        <td>
+                            03/04/2012
+                        </td>
+                        <td>
+                            Pending
+                        </td>
+                    </tr>
+                    <tr class="table-danger">
+                        <td>
+                            4
+                        </td>
+                        <td>
+                            TB - Monthly
+                        </td>
+                        <td>
+                            04/04/2012
+                        </td>
+                        <td>
+                            Call in to confirm
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <h5 class="card-header">
+                    Card title
+                </h5>
+                <div class="card-body">
+                    <p class="card-text">
+                        Card content
+                    </p>
+                </div>
+                <div class="card-footer">
+                    Card footer
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default widget">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h3 class="panel-title">
+                    Recent Comments
+                </h3>
+                <span class="label label-info">
+                    78
+                </span>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
+                            </div>
+                            <div class="col-xs-10 col-md-11">
+                                <div>
+                                    <a href="http://www.jquery2dotnet.com/2013/10/google-style-login-page-desing-usign.html">
+                                        Google Style Login Page Design Using Bootstrap
+                                    </a>
+                                    <div class="mic-info">
+                                        By: <a href="#">Bhaumik Patel</a> on 2 Aug 2013
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    Awesome design
+                                </div>
+                                <div class="action">
+                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-success btn-xs" title="Approved">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" title="Delete">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
+                            </div>
+                            <div class="col-xs-10 col-md-11">
+                                <div>
+                                    <a href="http://bootsnipp.com/BhaumikPatel/snippets/Obgj">Admin Panel Quick Shortcuts</a>
+                                    <div class="mic-info">
+                                        By: <a href="#">Bhaumik Patel</a> on 11 Nov 2013
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+                                </div>
+                                <div class="action">
+                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-success btn-xs" title="Approved">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" title="Delete">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
+                            </div>
+                            <div class="col-xs-10 col-md-11">
+                                <div>
+                                    <a href="http://bootsnipp.com/BhaumikPatel/snippets/4ldn">Cool Sign Up</a>
+                                    <div class="mic-info">
+                                        By: <a href="#">Bhaumik Patel</a> on 11 Nov 2013
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+                                </div>
+                                <div class="action">
+                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-success btn-xs" title="Approved">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" title="Delete">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span> More</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Table-->
+<table class="table">
+    <!--Table head-->
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Project</th>
+            <th>Ticket Type</th>
+            <th>Ticket Priority</th>
+            <th>Ticket Status</th>
+            <th>Creator</th>
+            <th>Assigned To</th>
+            <th>Attachment</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+    <!--Table body-->
+    <tbody>
+        <tr>
+            <td>@Html.DisplayFor(model => model.Title)</td>
+            <td>@Html.DisplayFor(model => model.Description)</td>
+            <td>@Html.DisplayFor(model => model.Created)</td>
+            <td>@Html.DisplayFor(model => model.Updated)</td>
+            <td>@Html.DisplayFor(model => model.Project.Name)</td>
+            <td>@Html.DisplayFor(model => model.TicketType.Name)</td>
+            <td>@Html.DisplayFor(model => model.TicketPriority.Name)</td>
+            <td>@Html.DisplayFor(model => model.TicketStatus.Name)</td>
+            <td>@Html.DisplayFor(model => model.OwnerUser.FullName)</td>
+            <td>@Html.DisplayFor(model => model.DeveloperUser.FullName)</td>
+            <td>
+                @foreach (var attachment in Model.Attachments)
+                {
+                    <img class="img-thumbnail" src="@attachment.FilePath" style="width: 200px" />
+                }
+            </td>
+        </tr>
+    </tbody>
+    <!--Table body-->
+</table>
+<!--Table-->
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Comment</th>
+            <th>Created</th>
+            <th>Ticket</th>
+            <th>User</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Comments)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Comment)</td>
+                <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                <td>@Html.DisplayFor(modelItem => item.Ticket.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.User.FullName)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Old Value</th>
+            <th>New Value</th>
+            <th>Created On</th>
+            <th>Ticket Name</th>
+            <th>User</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Histories)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Property)</td>
+                <td>@Html.DisplayFor(modelItem => item.OldValue)</td>
+                <td>@Html.DisplayFor(modelItem => item.NewValue)</td>
+                <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                <td>@Html.DisplayFor(modelItem => item.Ticket.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.User.FullName)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="TicketComments" asp-action="Create" asp-route-id="@Model.Id">Leave a Comment</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

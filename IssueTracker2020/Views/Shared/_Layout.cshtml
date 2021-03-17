@@ -1,0 +1,374 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IssueTracker2020.Services
+
+@inject UserManager<BTUser> userManager
+@inject IBTAccessService accessService
+
+@{
+    ViewData["Title"] = "Main";
+    var userId = userManager.GetUserId(User);
+    var roleName = (await userManager.GetRolesAsync(await userManager.GetUserAsync(User))).FirstOrDefault();
+}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Browser Responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Kengaroo Issue Tracking 2020">
+
+    <!-- Website Title -->
+    <title>Kengaroo Issue Tracking</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/newfavicon.png">
+
+    <!-- ==============================================================-->
+    <!-- All CSS Files Go Below This Comment -->
+    <!-- ==============================================================-->
+    <link href="~/dist/css/style.css" rel="stylesheet" />
+    <link href="~/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link href="~/assets/extra-libs/c3/c3.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/sp-1.2.1/datatables.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <link href="/dist/charts/c3.css" rel="stylesheet">
+
+    <style>
+        .sharedbody {
+            margin-top: 100px;
+        }
+    </style>
+
+    <!-- ==============================================================-->
+    <!-- All CSS Files Go Above This Comment -->
+    <!-- ==============================================================-->
+
+</head>
+
+<body>
+
+    <!-- Forms for Logout Buttons -->
+    <form class="form-inline" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("LandingPage", "Home", new { area = "" })"></form>
+    <form class="form-inline" id="logoutForm2" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("LandingPage", "Home", new { area = "" })"></form>
+    <!-- End Forms for Logout Buttons -->
+    <!-- ============================================================== -->
+    <!-- Main Navigation Wrapper - Styling is done in pages.scss. -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Top Bar Header - Styling is done in pages.scss. -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <!-- ============================================================== -->
+            <!-- Top Bar Navigation -->
+            <!-- ============================================================== -->
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <!-- ============================================================== -->
+                <!-- Navigation Bar Icon and Text Top Left Corner -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <!-- This is for the Sidebar Toggle which is only visible on Mobile. -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                        <!-- Logo Icon -->
+                        <b class="logo-icon">
+                            <!-- Dark Logo Icon -->
+                            <img src="~/assets/images/mainlayoutlogo.png" alt="homepage" class="dark-logo" style="width: 250px; height: 40px;" />
+                            <!-- Light Logo Icon -->
+                            <img src="~/assets/images/mainlayoutlogo.png" alt="homepage" class="light-logo" style="width: 250px; height: 40px;" />
+                        </b>
+                        <!--End Logo Icon -->
+                        <!-- Logo Text -->
+                        <!--<span class="logo-text">-->
+                        <!-- Dark Logo Text -->
+                        <!--<img src="~/assets/images/kengaroo-logo.png" alt="homepage" class="dark-logo" />-->
+                        <!-- Light Logo Text -->
+                        <!--<img src="~/assets/images/kengaroo-logo.png" class="light-logo" alt="homepage" />
+                        </span>-->
+                        <!-- End Logo Text -->
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle that is only visible on Mobile. -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Navigation Bar Icon and Text Top Left Corner -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Top Bar Navigation Toggle, Search Bar and User Profile Toggle -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+
+                    <!-- ============================================================== -->
+                    <!-- Left Navigation Bar Toggle and Navigation Items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto">
+
+                        <!-- Left Pointing Arrow inside a Circle, that hides the navigation bar. -->
+                        @*<li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="icon-arrow-left-circle"></i></a></li>*@
+
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+                        <!--<li class="nav-item dropdown">-->
+                        @*<a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="ti-email"></i>
+                                <div class="notify"></div>
+                            </a>*@
+                        @*<div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2">
+                                <ul class="list-style-none">
+                                    <li>
+                                        <div class="font-weight-medium border-bottom rounded-top py-3 px-4">Notifications</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center message-body position-relative" style="height:250px;">
+                                            <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+                                                <span class="user-img position-relative d-inline-block"> <img src="../assets/images/users/1.jpg" alt="user" class="rounded-circle w-100"></span>
+                                                <div class="w-75 d-inline-block v-middle pl-2">
+                                                    <h5 class="message-title mb-0 mt-1">Notification One</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Sample notification information.</span>
+                                                </div>
+                                            </a>
+
+                                            <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+                                                <span class="user-img position-relative d-inline-block"> <img src="../assets/images/users/2.jpg" alt="user" class="rounded-circle w-100"></span>
+                                                <div class="w-75 d-inline-block v-middle pl-2">
+                                                    <h5 class="message-title mb-0 mt-1">Notification Two</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Sample notification information.</span>
+                                                </div>
+                                            </a>
+
+                                            <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+                                                <span class="user-img position-relative d-inline-block"> <img src="../assets/images/users/3.jpg" alt="user" class="rounded-circle w-100"></span>
+                                                <div class="w-75 d-inline-block v-middle pl-2">
+                                                    <h5 class="message-title mb-0 mt-1">Notification Three</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Sample notification information.</span>
+                                                </div>
+                                            </a>
+
+                                            <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+                                                <span class="user-img position-relative d-inline-block"> <img src="../assets/images/users/4.jpg" alt="user" class="rounded-circle w-100"></span>
+                                                <div class="w-75 d-inline-block v-middle pl-2">
+                                                    <h5 class="message-title mb-0 mt-1">Notification Four</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Sample notification information.</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link border-top text-center text-dark pt-3" asp-controller="Tickets" asp-action="Index"> <b>See All Notifications</b> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>*@
+                        <!--</li>-->
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- End Left Navigation Bar Toggle and Navigation Items -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Right Side User Profile Toggle and Search Bar -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav">
+
+                        <!-- ============================================================== -->
+                        <!-- Search Bar -->
+                        <!-- ============================================================== -->
+                        <!--<li class="nav-item search-box d-none d-md-block">-->
+                        <!--<form class="app-search mt-3 mr-2">-->
+                        <!-- Search Bar Input -->
+                        <!--<input type="text" class="form-control rounded-pill border-0" placeholder="Search for...">-->
+                        <!-- Hourglass Search Icon in Search Bar -->
+                        <!--<a class="srh-btn"><i class="ti-search"></i></a>
+                        </form>-->
+                        <!--</li>-->
+                        <!-- ============================================================== -->
+                        <!-- End Search Bar -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- User Profile Toggle -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@userManager.GetUserAsync(User).Result.FullName</a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                <div class="d-flex no-block align-items-center p-3 mb-2 border-bottom">
+                                    <div class=""><img src="~/assets/images/users/temporary-profile-placeholder-1.jpg" alt="user" class="rounded" width="80"></div>
+                                    <div class="ml-2">
+                                        <h4 class="mb-2">@userManager.GetUserAsync(User).Result.FullName</h4>
+                                        <p class=" mb-0">@userManager.GetUserAsync(User).Result.Email</p>
+                                        <p>@roleName</p>
+                                    </div>
+                                </div>
+                                @*<a class="dropdown-item" href="javascript:void(0)"><i class="ti-user mr-1 ml-1"></i> My Profile</a>
+                                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email mr-1 ml-1"></i> My Messages</a>*@
+                                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="ti-settings mr-1 ml-1"></i> Account Setting</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="javascript:document.getElementById('logoutForm2').submit()" class="dropdown-item"><i class="ti-settings mr-1 ml-1"></i> Logout</a>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End User Profile Toggle -->
+                        <!-- ============================================================== -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- End Right Side User Profile Toggle and Search Bar -->
+                    <!-- ============================================================== -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- Top Bar Navigation Toggle, Search Bar and User Profile Toggle -->
+                <!-- ============================================================== -->
+            </nav>
+            <!-- ============================================================== -->
+            <!-- End Top Bar Navigation -->
+            <!-- ============================================================== -->
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Top Bar Header -->
+        <!-- ============================================================== -->
+        <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - Styling is done in sidebar.scss.  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar Scroll Bar -->
+            <div class="scroll-sidebar">
+                <!-- Sidebar Navigation -->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <!-- User Profile-->
+                        <!-- Default Application Links -->
+                        <li class="nav-small-cap mt-2"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Main</span></li>
+                        <li class="sidebar-item">
+                            <a asp-controller="Home" asp-action="Index" class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+
+                        <li class="nav-small-cap mt-2"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Projects</span></li>
+                        <li class="sidebar-item"><a asp-controller="Projects" asp-action="Index" class="sidebar-link"><i class="mdi mdi-email-alert"></i><span class="hide-menu"> All Projects </span></a></li>
+
+                        <li class="nav-small-cap mt-2"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Tickets</span></li>
+                        <li class="sidebar-item"><a asp-controller="Tickets" asp-action="Index" class="sidebar-link"><i class="mdi mdi-book-multiple"></i><span class="hide-menu"> All Tickets </span></a></li>
+                        <li class="sidebar-item"><a asp-controller="Tickets" asp-action="MyTickets" class="sidebar-link"><i class="mdi mdi-book-multiple"></i><span class="hide-menu"> My Tickets </span></a></li>
+
+                        @*@if (await accessService.CanInteractTicket(userId, roleName))
+                        {*@
+
+                        <li class="nav-small-cap mt-2"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Admin Tools</span></li>
+                        <li class="sidebar-item"><a asp-controller="TicketTypes" asp-action="Index" class="sidebar-link"><i class="mdi mdi-book-multiple"></i><span class="hide-menu"> Create New Type </span></a></li>
+                        <li class="sidebar-item"><a asp-controller="TicketStatus" asp-action="Index" class="sidebar-link"><i class="mdi mdi-book-multiple"></i><span class="hide-menu"> Create New Status </span></a></li>
+                        <li class="sidebar-item"><a asp-controller="TicketPriorities" asp-action="Index" class="sidebar-link"><i class="mdi mdi-book-multiple"></i><span class="hide-menu"> Create New Priority </span></a></li>
+
+                        @*}*@
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Bottom of Left Nagivation Bar Icons -->
+            <!--<div class="sidebar-footer">-->
+            <!-- Settings Icon -->
+            <!--<a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>-->
+            <!-- Messages Icon -->
+            <!--<a></a>-->
+            <!-- Logout Icon -->
+            <!--<a href="javascript:document.getElementById('logoutForm').submit()" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+            </div>-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - Styling is done in sidebar.scss.  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Main Navigation Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ==============================================================-->
+    <!-- Start of RenderBody -->
+    <!-- ==============================================================-->
+    <div class="container sharedbody">
+        @RenderBody()
+    </div>
+    <!-- ==============================================================-->
+    <!-- End of RenderBody -->
+    <!-- ==============================================================-->
+    <!-- ==============================================================-->
+    <!-- All Scripts Go Below This Comment -->
+    <!-- ==============================================================-->
+    <!-- All JQuery -->
+    <script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Applications -->
+    <script src="~/dist/js/app.min.js"></script>
+    <script src="~/dist/js/app.init.dark.js"></script>
+    <script src="~/dist/js/app-style-switcher.js"></script>
+
+    <!-- Slim Scrollbar JavaScript -->
+    <script src="~/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+    <!--Menu Sidebar -->
+    <script src="~/dist/js/sidebarmenu.js"></script>
+
+    <!--Custom JavaScript -->
+    <script src="~/dist/js/feather.min.js"></script>
+    <script src="~/dist/js/custom.min.js"></script>
+
+    <!-- DataTables -->
+    <script type="text/javascript" src="//cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/sp-1.2.1/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+
+    <!-- TinyMCE -->
+    <script src="//cdn.tiny.cloud/1/r3yicqpzto6c111vzl72nhyeei6n0ryr5rj7kzuqhk0akdkk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            toolbar: 'insertfile undo redo | styleselect | bold italic | bullist numlist outdent indent | link image',
+            skin: "oxide-dark",
+            content_css: "dark"
+        });
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+    <script src="/dist/charts/d3.min.js" charset="utf-8"></script>
+    <script src="/dist/charts/c3.min.js"></script>
+
+    <!-- Modal -->
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+    </script>
+
+    <!-- ==============================================================-->
+    <!-- All Scripts Go Above This Comment -->
+    <!-- ==============================================================-->
+
+    @if (TempData["DemoLockout"] != null)
+    {
+        <script>
+            function alertFn() {
+                alert(@TempData["DemoLockout"]);
+            }
+        </script>
+    }
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+
+</html>

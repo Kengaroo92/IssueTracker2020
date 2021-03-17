@@ -1,0 +1,65 @@
+﻿@page
+@model ErrorModel
+
+@{
+    ViewData["Title"] = "Error";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Browser Responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kengaroo Issue Tracking 2020">
+
+    <!-- Website Title -->
+    <title>Kengaroo Issue Tracking</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/newfavicon.png">
+
+    <!-- ==============================================================-->
+    <!-- All CSS Files Go Below This Comment -->
+    <!-- ==============================================================-->
+    <link href="~/dist/css/style.min.css" rel="stylesheet">
+    <!-- ==============================================================-->
+    <!-- All CSS Files Go Above This Comment -->
+    <!-- ==============================================================-->
+
+    <style>
+        .thispagecenter {
+            margin-top: 20%;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: white;">
+
+            <div class="text-center thispagecenter">
+                <h1 class="text-uppercase error-subtitle">ACCESS DENIED</h1>
+                <h6 class="text-muted mt-3 mb-3">YOU DON'T HAVE PERMISSION TO ACCESS THIS PAGE.</h6>
+                <a asp-controller="Home" asp-action="LandingPage" class="btn btn-danger btn-rounded mb-5">Home</a>
+            </div>
+
+    <!-- ==============================================================-->
+    <!-- All Scripts Go Below This Comment -->
+    <!-- ==============================================================-->
+    <!-- All JQuery -->
+    <script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- ==============================================================-->
+    <!-- All Scripts Go Above This Comment -->
+    <!-- ==============================================================-->
+
+</body>
+
+</html>

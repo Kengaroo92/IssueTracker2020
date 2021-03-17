@@ -1,0 +1,290 @@
+﻿@model IssueTracker2020.Models.Ticket
+@using IssueTracker2020.Services
+@inject IBTFileService BTFileService
+
+@{ViewData["Title"] = "Details";}
+
+<!-- id="main-wrapper" gives the body a background that contains all the cards withing the wrapper div, basically makes it look cleaner. -->
+<div id="main-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Bread Crumb and Title of Page -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-md-5 align-self-center">
+                <!-- border-bottom: 2px solid transparent sets an invisible border under the Ticket Details title, that allow me to customize the space between the title and the breadcrumb. -->
+                <!-- The <br /> tag was to large, so I found a workaround to have a gap, but at a smaller scale. -->
+                <div class="page-title" style="font-size: 1.5rem; border-bottom: 2px solid transparent;">Ticket Details</div>
+                <!-- Breadcrumb navigation. Dashboard > Tickets Index (All Tickets) > Details (Current Page, Ticket Details Page) -->
+                <nav class="breadcrumb">
+                    <a class="breadcrumb-item" asp-controller="Home" asp-action="Index">Dashboard</a>
+                    <a class="breadcrumb-item" asp-action="Index">Tickets</a>
+                    <span class="breadcrumb-item active">Details</span>
+                </nav>
+            </div>
+            <div class="col-md-7 d-flex justify-content-end align-self-center d-none d-md-flex">
+                <div class="d-flex">
+                    <a asp-action="Create" class="btn btn-outline-warning" data-toggle="modal" data-target="#myModal"><i class="mdi mdi-plus-circle"></i> Edit Ticket : @Model.Title</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <!-- ============================================================== -->
+    <!-- End Bread Crumb and Title of Page -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Card Container -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+
+        <!-- ============================================================== -->
+        <!-- Card Content -->
+        <!-- ============================================================== -->
+        <!-- Basic Row Table that organizes all the cards within. -->
+        <div class="row">
+            <div class="col">
+
+                <!-- Name and description of the ticket you are viewing details for. -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">@Model.Title</h4>
+                        @Model.Description
+                    </div>
+                </div>
+
+                <!-- Ticket Comments Section -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Ticket Comments</h4>
+                        @foreach (var item in Model.Comments)
+                        {
+                            <ul class="list-unstyled mt-5">
+                                <li class="media">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 mb-1">@Html.DisplayFor(modelItem => item.User.FullName)</h5>@Html.DisplayFor(modelItem => item.Comment)
+                                        <p>@item.Created.ToString("MM/dd/yyyy hh:mm tt")</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        <hr />
+                    </div>
+                    <div class="card-body">
+                        <a asp-controller="TicketComments" asp-action="Create" asp-route-id="@Model.Id" class="mt-3 btn btn-outline-warning">Leave a Comment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Ticket Info</h4>
+                        <h5 class="mt-4">Status</h5>
+                        @if (Model.TicketStatus.Name == "Open")
+                        {
+                            <span class="badge py-1 badge-primary">@Model.TicketStatus.Name</span>
+                        }
+                        else if (Model.TicketStatus.Name == "In Progress")
+                        {
+                            <span class="badge py-1 badge-info">@Model.TicketStatus.Name</span>
+                        }
+                        else if (Model.TicketStatus.Name == "Pending")
+                        {
+                            <span class="badge py-1 badge-warning">@Model.TicketStatus.Name</span>
+                        }
+                        else if (Model.TicketStatus.Name == "Resolved")
+                        {
+                            <span class="badge py-1 badge-success">@Model.TicketStatus.Name</span>
+                        }
+                        else if (Model.TicketStatus.Name == "Closed")
+                        {
+                            <span class="badge py-1 badge-danger">@Model.TicketStatus.Name</span>
+                        }
+                        <br />
+                        <h5 class="mt-4">Created On</h5>
+                        <span>@Model.Created.ToString("MM/dd/yyyy")</span>
+                        <br />
+                        <h5 class="mt-4">Last Updated On</h5>
+                        <span>@Model.Updated.GetValueOrDefault().ToString("MM/dd/yyyy hh:mm tt")</span>
+                        <br />
+                        <h5 class="mt-4">Creator</h5>
+                        <span>@Model.OwnerUser.FullName</span>
+                        <br />
+                        <h5 class="mt-4">Developers</h5>
+                        <span>@Model.DeveloperUser.FullName</span>
+                        <br />
+                        <h5 class="mt-4">Priority</h5>
+                        <span>@Model.TicketPriority.Name</span>
+                        <br />
+                        <h5 class="mt-4">Type</h5>
+                        <span>@Model.TicketType.Name</span>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Add an Attachment</h4>
+                        <div>
+                            <form asp-action="Create" asp-controller="TicketAttachments" enctype="multipart/form-data" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="@Model.Id" name="TicketId">
+                                <div class="row">
+                                    <div class="col">
+                                        <input asp-for="@Model.Attachments.FirstOrDefault().FormFile" type="file" class="mt-3 btn btn-outline-behance" />
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="mt-3 btn btn-outline-warning">Add A File</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <hr />
+                        <h4 class="card-title mb-4 mt-4">Attachments</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>File Type</th>
+                                    <th>File Name</th>
+                                    <th>File Size</th>
+                                    <th>Created On</th>
+                                    <th>Download</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (TicketAttachment item in Model.Attachments)
+                                {
+                                    <tr>
+                                        <td><img src="@BTFileService.GetFileIcon(item.FileName)" style="height:30px;width:30px" /></td>
+                                        <td>@System.IO.Path.GetFileNameWithoutExtension(item.FileName)</td>
+                                        <td>@BTFileService.FormatFileSize(item.FileData.Length)</td>
+                                        <td>@item.Created.ToString("MMM dd, yyyy")</td>
+                                        <td>
+                                            <a asp-controller="TicketAttachments" asp-action="DownloadFile" asp-route-id="@item.Id" target="_blank" class="btn btn-outline-success hover"><i class="fas fa-download"></i></a>
+                                        </td>
+                                        <td>
+                                            <form method="post" asp-controller="TicketAttachments" asp-action="Delete" asp-route-id="@item.Id" id="delete-@item.Id" hover"><a class="btn btn-outline-danger" href="javascript:document.getElementById('delete-@item.Id').submit()"><i class="fas fa-trash-alt hover"></i></a></form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Old Value</th>
+                                    <th>New Value</th>
+                                    <th>Updated On</th>
+                                    <th>User</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Histories)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Property)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.OldValue)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.NewValue)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Ticket.Updated)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.User.FullName)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ==================== -->
+<!-- == My Fancy Modal == -->
+<!-- ==================== -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex align-items-center text-center">
+                <h4 class="modal-title" id="myCenterModalLabel">Edit Ticket : @Model.Title</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- Edit Form -->
+                <form asp-action="Edit" asp-route-id="@Model.Id" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="Created" />
+                    <input type="hidden" asp-for="ProjectId" />
+                    <input type="hidden" asp-for="OwnerUserId" />
+                    <input type="hidden" asp-for="DeveloperUserId" />
+                    <input type="hidden" asp-for="TicketTypeId" />
+                    <input type="hidden" asp-for="TicketStatusId" />
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TicketPriorityId" class="control-label"></label>
+                        <select asp-for="TicketPriorityId" class="form-control" asp-items="ViewBag.TicketPriorityId"></select>
+                        <span asp-validation-for="TicketPriorityId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-block btn-outline-warning" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== -->
+<!-- == My Create New Comment Modal == -->
+<!-- ==================== -->
+@*<div class="modal fade" id="myCommentModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center text-center">
+                    <h4 class="modal-title" id="myCenterModalLabel">Leave a Comment</h4>
+                    <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                     Create Form
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Model.Comments.FirstOrDefault().UserId" />
+                <input type="hidden" asp-for="Model.Comments.FirstOrDefault().UserId" />
+                <div class="form-group">
+                    <label asp-for="Model.Comments.FirstOrDefault().Comment" class="control-label"></label>
+                    <input asp-for="Model.Comments.FirstOrDefault().Comment" class="form-control" />
+                    <span asp-validation-for="Model.Comments.FirstOrDefault().Comment" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+                </div>
+            </div>
+        </div>
+    </div>*@

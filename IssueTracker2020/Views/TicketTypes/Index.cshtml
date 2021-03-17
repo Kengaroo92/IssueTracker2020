@@ -1,0 +1,112 @@
+﻿@model IEnumerable<IssueTracker2020.Models.TicketType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-md-5 align-self-center">
+                <h4 class="page-title" style="font-size: 1.5rem; border-bottom: 2px solid transparent;">Ticket Types</h4>
+                <nav class="breadcrumb">
+                    <a class="breadcrumb-item" asp-controller="Home" asp-action="Index">Dashboard</a>
+                    <span class="breadcrumb-item active">Ticket Types</span>
+                </nav>
+            </div>
+            <div class="col-md-7 d-flex justify-content-end align-self-center d-none d-md-flex">
+                <div class="d-flex">
+                    <a asp-action="Create" class="btn btn-outline-warning" data-toggle="modal" data-target="#createModal"><i class="mdi mdi-plus-circle"></i> Create New Ticket Type</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        @foreach (var item in Model)
+        {
+            <div class="card">
+                <div class="row card-body">
+                    <div class="col-10">
+                        <a asp-controller="TicketTypes" asp-action="Details" asp-route-id="@item.Id" class="note-title text-truncate w-75 mb-0">@Html.DisplayFor(modelItem => item.Name)</a>
+                    </div>
+                    <div class="col">
+                        <a class="mr-3 link" data-toggle="modal" data-target="#editModal"><i class="far fa-edit favourite-note" data-toggle="tooltip" data-placement="top" title="Edit Type"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="mr-3 link"><i class="far fa-trash-alt remove-note" data-toggle="tooltip" data-placement="top" title="Delete Type"></i></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+<!-- ==================== -->
+<!-- == My Create New Project Modal == -->
+<!-- ==================== -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex align-items-center text-center">
+                <h4 class="modal-title" id="myCenterModalLabel">Create New Ticket Type</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- Create Form -->
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="@Model.FirstOrDefault().Name" class="control-label mb-2"></label>
+                        <input name="Name" class="form-control" />
+                        <span asp-validation-for="@Model.FirstOrDefault().Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create New Ticket Type" class="btn btn-block btn-outline-warning" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================== -->
+<!-- == My Edit Project Modal == -->
+<!-- ==================== -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex align-items-center text-center">
+                <h4 class="modal-title" id="myCenterModalLabel">Edit Ticket Type</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- Edit Form -->
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="@Model.FirstOrDefault().Id" />
+                    <div class="form-group">
+                        <label asp-for="@Model.FirstOrDefault().Name" class="control-label mb-2"></label>
+                        <input name="Name" class="form-control" />
+                        <span asp-validation-for="@Model.FirstOrDefault().Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Update Ticket Type" class="btn btn-block btn-outline-warning" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

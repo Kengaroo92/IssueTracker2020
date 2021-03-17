@@ -1,0 +1,27 @@
+﻿@model IssueTracker2020.Models.ViewModels.ProjectUsersViewModel
+
+<div class="container">
+    <div class="card col-6" style="margin:2px">
+        <div class="card-body">
+            <h2 class="m-t-0 h3"><b>Assign Users to @Model.Project.Name</b></h2>
+            <hr>
+            <form asp-action="AssignUsers" asp-controller="Projects" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="@Model.Project.Id" />
+                <input type="hidden" asp-for="@Model.Project.Name" />
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.Users" class="control-label">Available Users:</label>
+                        <select asp-for="@Model.SelectedUsers" class="form-control" asp-items="@Model.Users" multiple="multiple"></select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group pull-right">
+                        <input type="submit" class="btn btn-info" value="Assign Users" />
+                        <a class="btn btn-info" asp-controller="Projects" asp-action="Index">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

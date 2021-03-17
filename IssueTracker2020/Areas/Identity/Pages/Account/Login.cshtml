@@ -1,0 +1,150 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Browser Responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kengaroo Issue Tracking 2020">
+
+    <!-- Website Title -->
+    <title>Login - Kengaroo IT</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/newfavicon.png">
+
+    <!-- ==============================================================-->
+    <!-- All CSS Files Go Below This Comment -->
+    <!-- ==============================================================-->
+    <link href="~/dist/css/style.min.css" rel="stylesheet" />
+    <!-- ==============================================================-->
+    <!-- All CSS Files Go Above This Comment -->
+    <!-- ==============================================================-->
+    <style>
+        .bg {
+            /* The image used */
+            background-image: url(/assets/images/cover.jpg);
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg">
+            <div class="auth-box on-sidebar p-4 bg-white m-0">
+                <div id="loginform">
+                    <div class="logo text-center">
+                        <span class="db">
+                            <img src="/assets/images/mainlayoutlogo.png" alt="logo" style="width: 300px;" /><br />
+                        </span>
+                    </div>
+                    <!-- Form -->
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="form-horizontal mt-3 form-material" id="loginform" method="post">
+                                <div class="form-group mb-3">
+                                    <input asp-for="Input.Email" class="form-control" type="text" required="" placeholder="Username">
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input asp-for="Input.Password" class="form-control" type="password" required="" placeholder="Password">
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group text-center mt-3">
+                                    <div class="col-12">
+                                        <button class="btn btn-info btn-block text-uppercase waves-effect waves-light" type="submit">Log In</button>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="col-sm-12 text-center">
+                                        <p>Don't have an account? <a asp-area="Identity" asp-page="/Account/Register" class="text-info font-weight-normal ml-1">Sign Up</a></p>
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <p>Want to go back <a asp-controller="Home" asp-action="LandingPage" class="text-info ml-1 ">Home?</a></p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="form-horizontal form-material validation-inner" id="loginform" method="post">
+                                <div class="form-group">
+                                    <div class="col-12 text-center mt-3">
+                                        <p>Interested in testing out Kengaroo Tracking?</p>
+                                        <p>Try one of our Demonstration Users below.</p>
+                                        <p>Each login has different sets of permissions.</p>
+                                    </div>
+                                    <div class="col-12 text-center mb-2">
+                                        <button type="submit" name="demoEmail" value="DemoAdminEmail" class="btn btn-info btn-block text-uppercase waves-effect waves-light">Admin</button>
+                                    </div>
+                                    <div class="col-12 text-center mb-2">
+                                        <button type="submit" name="demoEmail" value="DemoPMEmail" class="btn btn-info btn-block text-uppercase waves-effect waves-light">Project Manager</button>
+                                    </div>
+                                    <div class="col-12 text-center mb-2">
+                                        <button type="submit" name="demoEmail" value="DemoDevEmail" class="btn btn-info btn-block text-uppercase waves-effect waves-light">Developer</button>
+                                    </div>
+                                    <div class="col-12 text-center mb-2">
+                                        <button type="submit" name="demoEmail" value="DemoSubEmail" class="btn btn-info btn-block text-uppercase waves-effect waves-light">Submitter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+</body>
+</html>
