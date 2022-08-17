@@ -33,5 +33,4 @@
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['ko-KR']);
-
 })(jQuery);

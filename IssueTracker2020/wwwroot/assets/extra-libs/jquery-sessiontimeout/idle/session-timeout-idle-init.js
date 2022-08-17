@@ -1,6 +1,6 @@
-var UIIdleTimeout = function() {
+var UIIdleTimeout = function () {
     return {
-        init: function() {
+        init: function () {
             var o;
             $("body").append(""), $.idleTimeout("#idle-timeout-dialog", ".modal-content button:last", {
                 idleAfter: 5,
@@ -8,22 +8,22 @@ var UIIdleTimeout = function() {
                 pollingInterval: 5,
                 keepAliveURL: "/keep-alive",
                 serverResponseEquals: "OK",
-                onTimeout: function() {
+                onTimeout: function () {
                     window.location = "authentication-lockscreen.html"
                 },
-                onIdle: function() {
-                    $("#idle-timeout-dialog").modal("show"), o = $("#idle-timeout-counter"), $("#idle-timeout-dialog-keepalive").on("click", function() {
+                onIdle: function () {
+                    $("#idle-timeout-dialog").modal("show"), o = $("#idle-timeout-counter"), $("#idle-timeout-dialog-keepalive").on("click", function () {
                         $("#idle-timeout-dialog").modal("hide")
                     })
                 },
-                onCountdown: function(e) {
+                onCountdown: function (e) {
                     o.html(e)
                 }
             })
         }
     }
 }();
-jQuery(function() {
+jQuery(function () {
     UIIdleTimeout.init()
 });
 

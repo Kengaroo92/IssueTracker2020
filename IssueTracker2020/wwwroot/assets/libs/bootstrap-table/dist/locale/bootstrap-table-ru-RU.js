@@ -68,5 +68,4 @@
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['ru-RU']);
-
 })(jQuery);

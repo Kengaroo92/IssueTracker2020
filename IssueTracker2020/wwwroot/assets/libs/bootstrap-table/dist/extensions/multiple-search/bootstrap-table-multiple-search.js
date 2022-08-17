@@ -5,12 +5,11 @@
  */
 
 !function ($) {
-
     'use strict';
 
     $.extend($.fn.bootstrapTable.defaults, {
         multipleSearch: false,
-	    delimeter: " "
+        delimeter: " "
     });
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
@@ -67,5 +66,4 @@
             _initSearch.apply(this, Array.prototype.slice.apply(arguments));
         }
     };
-
 }(jQuery);

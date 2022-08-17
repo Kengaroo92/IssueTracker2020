@@ -54,7 +54,7 @@ ChartInternal.prototype.getToggle = function (that, d) {
     if (that.nodeName === 'circle') {
         if ($$.isStepType(d)) {
             // circle is hidden in step chart, so treat as within the click area
-            toggle = function () {}; // TODO: how to select step chart?
+            toggle = function () { }; // TODO: how to select step chart?
         } else {
             toggle = $$.togglePoint;
         }

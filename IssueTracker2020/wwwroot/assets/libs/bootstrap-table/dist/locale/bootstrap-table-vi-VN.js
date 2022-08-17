@@ -24,5 +24,4 @@
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['vi-VN']);
-
 })(jQuery);

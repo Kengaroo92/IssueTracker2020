@@ -7,7 +7,7 @@ Chart.prototype.focus = function (targetIds) {
     targetIds = $$.mapToTargetIds(targetIds);
     candidates = $$.svg.selectAll($$.selectorTargets(targetIds.filter($$.isTargetToShow, $$))),
 
-    this.revert();
+        this.revert();
     this.defocus();
     candidates.classed(CLASS.focused, true).classed(CLASS.defocused, false);
     if ($$.hasArcType()) {
@@ -27,7 +27,7 @@ Chart.prototype.defocus = function (targetIds) {
     targetIds = $$.mapToTargetIds(targetIds);
     candidates = $$.svg.selectAll($$.selectorTargets(targetIds.filter($$.isTargetToShow, $$))),
 
-    candidates.classed(CLASS.focused, false).classed(CLASS.defocused, true);
+        candidates.classed(CLASS.focused, false).classed(CLASS.defocused, true);
     if ($$.hasArcType()) {
         $$.unexpandArc(targetIds);
     }

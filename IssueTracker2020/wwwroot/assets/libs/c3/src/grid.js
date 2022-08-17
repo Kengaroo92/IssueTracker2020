@@ -169,14 +169,14 @@ ChartInternal.prototype.updateGrid = function (duration) {
     // update
     $$.ygridLines = ygridLineEnter.merge(ygridLine);
     $$.ygridLines.select('line')
-      .transition().duration(duration)
+        .transition().duration(duration)
         .attr("x1", config.axis_rotated ? yv : 0)
         .attr("x2", config.axis_rotated ? yv : $$.width)
         .attr("y1", config.axis_rotated ? 0 : yv)
         .attr("y2", config.axis_rotated ? $$.height : yv)
         .style("opacity", 1);
     $$.ygridLines.select('text')
-      .transition().duration(duration)
+        .transition().duration(duration)
         .attr("x", config.axis_rotated ? $$.xGridTextX.bind($$) : $$.yGridTextX.bind($$))
         .attr("y", yv)
         .text(function (d) { return d.text; })
@@ -209,7 +209,7 @@ ChartInternal.prototype.showXGridFocus = function (selectedData) {
         dataToShow = selectedData.filter(function (d) { return d && isValue(d.value); }),
         focusEl = $$.main.selectAll('line.' + CLASS.xgridFocus),
         xx = $$.xx.bind($$);
-    if (! config.tooltip_show) { return; }
+    if (!config.tooltip_show) { return; }
     // Hide when stanford plot exists
     if ($$.hasType('stanford') || $$.hasArcType()) { return; }
     focusEl

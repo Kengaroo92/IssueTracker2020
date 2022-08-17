@@ -22,18 +22,17 @@
     $.extend($.fn.bootstrapTable.defaults, {
         showPrint: false,
         printAsFilteredAndSortedOnUI: true, //boolean, when true - print table as sorted and filtered on UI.
-                                            //Please note that if true is set, along with explicit predefined print options for filtering and sorting (printFilter, printSortOrder, printSortColumn)- then they will be applied on data already filtered and sorted by UI controls.
-                                            //For printing data as filtered and sorted on UI - do not set these 3 options:printFilter, printSortOrder, printSortColumn
+        //Please note that if true is set, along with explicit predefined print options for filtering and sorting (printFilter, printSortOrder, printSortColumn)- then they will be applied on data already filtered and sorted by UI controls.
+        //For printing data as filtered and sorted on UI - do not set these 3 options:printFilter, printSortOrder, printSortColumn
 
-        printSortColumn: undefined  , //String, set column field name to be sorted by
+        printSortColumn: undefined, //String, set column field name to be sorted by
         printSortOrder: 'asc', //String: 'asc' , 'desc'  - relevant only if printSortColumn is set
-        printPageBuilder: function(table){return printPageBuilderDefault(table)} // function, receive html <table> element as string, returns html string for printing. by default delegates to function printPageBuilderDefault(table). used for styling and adding header or footer
+        printPageBuilder: function (table) { return printPageBuilderDefault(table) } // function, receive html <table> element as string, returns html string for printing. by default delegates to function printPageBuilderDefault(table). used for styling and adding header or footer
     });
     $.extend($.fn.bootstrapTable.COLUMN_DEFAULTS, {
         printFilter: undefined, //set value to filter by in print page
         printIgnore: false, //boolean, set true to ignore this column in the print page
-        printFormatter:undefined //function(value, row, index), formats the cell value for this column in the printed table. Function behaviour is similar to the 'formatter' column option
-
+        printFormatter: undefined //function(value, row, index), formats the cell value for this column in the printed table. Function behaviour is similar to the 'formatter' column option
     });
     $.extend($.fn.bootstrapTable.defaults.icons, {
         print: 'glyphicon-print icon-share'
@@ -59,13 +58,13 @@
                     '</button>'].join('')).appendTo($btnGroup);
 
                 $print.click(function () {
-                    function formatValue(row, i, column ) {
+                    function formatValue(row, i, column) {
                         var value = row[column.field];
                         if (typeof column.printFormatter === 'function') {
-                            return  column.printFormatter.apply(column, [value, row, i]);
+                            return column.printFormatter.apply(column, [value, row, i]);
                         }
                         else {
-                            return  typeof value === 'undefined' ? "-" : value;
+                            return typeof value === 'undefined' ? "-" : value;
                         }
                     }
 
@@ -89,9 +88,9 @@
                         html.push('</thead><tbody>');
                         for (var i = 0; i < data.length; i++) {
                             html.push('<tr>');
-                            for(var l = 0; l < columnsArray.length; l++) {
+                            for (var l = 0; l < columnsArray.length; l++) {
                                 var columns = columnsArray[l];
-                                for(var j = 0; j < columns.length; j++) {
+                                for (var j = 0; j < columns.length; j++) {
                                     if (!columns[j].printIgnore && columns[j].field) {
                                         html.push('<td>', formatValue(data[i], i, columns[j]), '</td>');
                                     }
@@ -102,46 +101,46 @@
                         html.push('</tbody></table>');
                         return html.join('');
                     }
-                    function sortRows(data,colName,sortOrder) {
-                        if(!colName){
+                    function sortRows(data, colName, sortOrder) {
+                        if (!colName) {
                             return data;
                         }
                         var reverse = sortOrder != 'asc';
                         reverse = -((+reverse) || -1);
-                        return  data.sort(function (a, b) {
+                        return data.sort(function (a, b) {
                             return reverse * (a[colName].localeCompare(b[colName]));
                         });
                     }
-                    function filterRow(row,filters) {
+                    function filterRow(row, filters) {
                         for (var index = 0; index < filters.length; ++index) {
-                            if(row[filters[index].colName]!=filters[index].value) {
+                            if (row[filters[index].colName] != filters[index].value) {
                                 return false;
                             }
                         }
                         return true;
                     }
-                    function filterRows(data,filters) {
+                    function filterRows(data, filters) {
                         return data.filter(function (row) {
-                            return filterRow(row,filters)
+                            return filterRow(row, filters)
                         });
                     }
                     function getColumnFilters(columns) {
                         return !columns || !columns[0] ? [] : columns[0].filter(function (col) {
                             return col.printFilter;
                         }).map(function (col) {
-                            return {colName:col.field, value:col.printFilter};
+                            return { colName: col.field, value: col.printFilter };
                         });
                     }
                     var doPrint = function (data) {
-                        data=filterRows(data,getColumnFilters(that.options.columns));
-                        data=sortRows(data,that.options.printSortColumn,that.options.printSortOrder);
-                        var table=buildTable(data,that.options.columns);
+                        data = filterRows(data, getColumnFilters(that.options.columns));
+                        data = sortRows(data, that.options.printSortColumn, that.options.printSortOrder);
+                        var table = buildTable(data, that.options.columns);
                         var newWin = window.open("");
                         newWin.document.write(that.options.printPageBuilder.call(this, table));
                         newWin.print();
                         newWin.close();
                     };
-                    doPrint(that.options.printAsFilteredAndSortedOnUI? that.getData() : that.options.data.slice(0));
+                    doPrint(that.options.printAsFilteredAndSortedOnUI ? that.getData() : that.options.data.slice(0));
                 });
             }
         }

@@ -12,7 +12,7 @@ Chart.prototype.zoom = function (domain) {
         }
         else {
             $$.updateXDomain(null, true, false, false, domain);
-            $$.redraw({withY: $$.config.zoom_rescale, withSubchart: false});
+            $$.redraw({ withY: $$.config.zoom_rescale, withSubchart: false });
         }
         $$.config.zoom_onzoom.call(this, $$.x.orgDomain());
         return domain;
@@ -32,7 +32,7 @@ Chart.prototype.unzoom = function () {
     }
     else {
         $$.updateXDomain(null, true, false, false, $$.subX.domain());
-        $$.redraw({withY: $$.config.zoom_rescale, withSubchart: false});
+        $$.redraw({ withY: $$.config.zoom_rescale, withSubchart: false });
     }
 };
 

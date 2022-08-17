@@ -24,7 +24,7 @@ ChartInternal.prototype.convertUrlToData = function (url, mimeType, headers, key
 ChartInternal.prototype.convertXsvToData = function (xsv) {
     var keys = xsv.columns, rows = xsv;
     if (rows.length === 0) {
-        return { keys, rows: [ keys.reduce((row, key) => Object.assign(row, { [key]: null }), {}) ] };
+        return { keys, rows: [keys.reduce((row, key) => Object.assign(row, { [key]: null }), {})] };
     } else {
         // [].concat() is to convert result into a plain array otherwise
         // test is not happy because rows have properties.
@@ -139,7 +139,7 @@ ChartInternal.prototype.convertDataToTargets = function (data, appendXs) {
 
     // handles format where keys are not orderly provided
     if (isArray(data)) {
-        keys = Object.keys(data[ 0 ]);
+        keys = Object.keys(data[0]);
     } else {
         keys = data.keys;
         data = data.rows;
@@ -147,13 +147,13 @@ ChartInternal.prototype.convertDataToTargets = function (data, appendXs) {
 
     xs = keys.filter($$.isX, $$);
 
-    if(!$$.isStanfordGraphType()) {
+    if (!$$.isStanfordGraphType()) {
         ids = keys.filter($$.isNotX, $$);
     } else {
         epochs = keys.filter($$.isEpochs, $$);
         ids = keys.filter($$.isNotXAndNotEpochs, $$);
 
-        if(xs.length !== 1 || epochs.length !== 1 || ids.length !== 1) {
+        if (xs.length !== 1 || epochs.length !== 1 || ids.length !== 1) {
             throw new Error('You must define the \'x\' key name and the \'epochs\' for Stanford Diagrams');
         }
     }
@@ -212,16 +212,16 @@ ChartInternal.prototype.convertDataToTargets = function (data, appendXs) {
                         config.axis_x_categories.push(rawX);
                     }
                 } else {
-                    x  = $$.generateTargetX(rawX, id, i);
+                    x = $$.generateTargetX(rawX, id, i);
                 }
                 // mark as x = undefined if value is undefined and filter to remove after mapped
                 if (isUndefined(d[id]) || $$.data.xs[id].length <= i) {
                     x = undefined;
                 }
 
-                returnData = {x: x, value: value, id: convertedId};
+                returnData = { x: x, value: value, id: convertedId };
 
-                if($$.isStanfordGraphType()) {
+                if ($$.isStanfordGraphType()) {
                     returnData.epochs = d[epochs];
                 }
 
@@ -258,7 +258,7 @@ ChartInternal.prototype.convertDataToTargets = function (data, appendXs) {
 
     // set target types
     if (config.data_type) {
-        $$.setTargetType($$.mapToIds(targets).filter(function (id) { return ! (id in config.data_types); }), config.data_type);
+        $$.setTargetType($$.mapToIds(targets).filter(function (id) { return !(id in config.data_types); }), config.data_type);
     }
 
     // cache as original id keyed

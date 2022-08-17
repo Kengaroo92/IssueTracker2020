@@ -1,7 +1,6 @@
 ﻿using IssueTracker2020.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +9,6 @@ namespace IssueTracker2020.Services
 {
     public class BTRolesService : IBTRolesService
     {
-
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<BTUser> _userManager;
 
@@ -35,7 +33,6 @@ namespace IssueTracker2020.Services
         {
             return await _userManager.GetRolesAsync(user);
         }
-
 
         public async Task<bool> RemoveUserFromRole(BTUser user, string roleName)
         {

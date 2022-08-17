@@ -23,7 +23,6 @@ ChartInternal.prototype.updateTargetsForBar = function (targets) {
     mainBarEnter.append('g')
         .attr("class", classBars)
         .style("cursor", function (d) { return config.data_selection_isselectable(d) ? "pointer" : null; });
-
 };
 ChartInternal.prototype.updateBar = function (durationForExit) {
     var $$ = this,
@@ -83,10 +82,10 @@ ChartInternal.prototype.generateDrawBar = function (barIndices, isSub) {
         var indexY = config.axis_rotated ? 0 : 1;
 
         var path = 'M ' + points[0][indexX] + ',' + points[0][indexY] + ' ' +
-                'L' + points[1][indexX] + ',' + points[1][indexY] + ' ' +
-                'L' + points[2][indexX] + ',' + points[2][indexY] + ' ' +
-                'L' + points[3][indexX] + ',' + points[3][indexY] + ' ' +
-                'z';
+            'L' + points[1][indexX] + ',' + points[1][indexY] + ' ' +
+            'L' + points[2][indexX] + ',' + points[2][indexY] + ' ' +
+            'L' + points[3][indexX] + ',' + points[3][indexY] + ' ' +
+            'z';
 
         return path;
     };

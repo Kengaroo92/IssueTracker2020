@@ -1,17 +1,15 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using IssueTracker2020.Data;
+using IssueTracker2020.Models;
+using IssueTracker2020.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using IssueTracker2020.Data;
-using IssueTracker2020.Models;
-using Microsoft.AspNetCore.Http;
-using IssueTracker2020.Utilities;
-using IssueTracker2020.Services;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
-using System.Collections.Generic;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IssueTracker2020.Controllers
 {
@@ -77,7 +75,6 @@ namespace IssueTracker2020.Controllers
             return View(await ticket.ToListAsync());
         }
 
-
         public async Task<IActionResult> MyTickets()
         {
             var model = await _ticketService.ListUserTickets();
@@ -90,9 +87,9 @@ namespace IssueTracker2020.Controllers
                 .Include(t => t.TicketStatus)
                 .Include(t => t.TicketType);
 
-
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> MyTickets(int id)
         {
@@ -164,7 +161,7 @@ namespace IssueTracker2020.Controllers
         }
 
         // POST: Tickets/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Admin, ProjectManager")]
         [HttpPost]
@@ -173,7 +170,6 @@ namespace IssueTracker2020.Controllers
         {
             if (!User.IsInRole("Demo"))
             {
-
                 if (ModelState.IsValid)
                 {
                     ticket.Created = DateTime.Now;
@@ -219,7 +215,7 @@ namespace IssueTracker2020.Controllers
         }
 
         // POST: Tickets/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -348,6 +344,5 @@ namespace IssueTracker2020.Controllers
 
             return View(await ticket.ToListAsync());
         }
-
     }
 }

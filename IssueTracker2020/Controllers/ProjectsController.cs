@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using IssueTracker2020.Data;
+﻿using IssueTracker2020.Data;
 using IssueTracker2020.Models;
 using IssueTracker2020.Models.ViewModels;
 using IssueTracker2020.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IssueTracker2020.Controllers
 {
@@ -54,7 +53,6 @@ namespace IssueTracker2020.Controllers
                 .Include(t => t.TicketType)
                 .ToListAsync();
 
-
             if (project == null)
             {
                 return NotFound();
@@ -71,7 +69,7 @@ namespace IssueTracker2020.Controllers
         }
 
         // POST: Projects/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Admin, ProjectManager")]
         [HttpPost]
@@ -105,7 +103,7 @@ namespace IssueTracker2020.Controllers
         }
 
         // POST: Projects/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Admin, ProjectManager")]
         [HttpPost]
@@ -200,7 +198,6 @@ namespace IssueTracker2020.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 if (model.SelectedUsers != null)
                 {
                     var currentMembers = await _context.Projects.Include(p => p.ProjectUsers).FirstOrDefaultAsync(p => p.Id == model.Project.Id);

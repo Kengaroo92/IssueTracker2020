@@ -67,7 +67,6 @@ ChartInternal.prototype.getTooltipSortFunction = function () {
                 return valueOf(b) - valueOf(a);
             };
         } else if (isFunction(order)) {
-
             // if the function is from data_order we need
             // to wrap the returned function in order to format
             // the sorted value to the expected format
@@ -87,7 +86,6 @@ ChartInternal.prototype.getTooltipSortFunction = function () {
             }
 
             return sortFunction;
-
         } else if (isArray(order)) {
             return function (a, b) {
                 return order.indexOf(a.id) - order.indexOf(b.id);
@@ -134,7 +132,7 @@ ChartInternal.prototype.getTooltipContent = function (d, defaultTitleFormat, def
             continue;
         }
 
-        if($$.isStanfordGraphType()) {
+        if ($$.isStanfordGraphType()) {
             // Custom tooltip for stanford plots
             if (!text) {
                 title = $$.getStanfordTooltipTitle(d[i]);
@@ -163,7 +161,7 @@ ChartInternal.prototype.getTooltipContent = function (d, defaultTitleFormat, def
             }
         }
 
-        if(value !== undefined) {
+        if (value !== undefined) {
             text += "<tr class='" + $$.CLASS.tooltipName + "-" + $$.getTargetSelectorSuffix(d[i].id) + "'>";
             text += "<td class='name'><span style='background-color:" + bgcolor + "'></span>" + name + "</td>";
             text += "<td class='value'>" + value + "</td>";

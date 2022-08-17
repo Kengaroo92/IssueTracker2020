@@ -1,5 +1,4 @@
-$(function() {
-
+$(function () {
     $.fn.raty.defaults.path = '../assets/images/rating/';
 
     // Default
@@ -87,5 +86,4 @@ $(function() {
         ],
         starType: 'i'
     });
-
 });

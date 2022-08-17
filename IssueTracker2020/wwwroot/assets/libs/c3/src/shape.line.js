@@ -122,7 +122,6 @@ ChartInternal.prototype.generateGetLinePoints = function (lineIndices, isSub) { 
     };
 };
 
-
 ChartInternal.prototype.lineWithRegions = function (d, x, y, _regions) {
     var $$ = this, config = $$.config,
         prev = -1, i, j,
@@ -192,9 +191,8 @@ ChartInternal.prototype.lineWithRegions = function (d, x, y, _regions) {
 
     // Generate
     for (i = 0; i < d.length; i++) {
-
         // Draw as normal
-        if (isUndefined(regions) || ! isWithinRegions(d[i].x, regions)) {
+        if (isUndefined(regions) || !isWithinRegions(d[i].x, regions)) {
             s += " " + xValue(d[i]) + " " + yValue(d[i]);
         }
         // Draw with region // TODO: Fix for horizotal charts
@@ -217,7 +215,6 @@ ChartInternal.prototype.lineWithRegions = function (d, x, y, _regions) {
 
     return s;
 };
-
 
 ChartInternal.prototype.updateArea = function (durationForExit) {
     var $$ = this, d3 = $$.d3;
@@ -301,7 +298,6 @@ ChartInternal.prototype.generateGetAreaPoints = function (areaIndices, isSub) { 
     };
 };
 
-
 ChartInternal.prototype.updateCircle = function (cx, cy) {
     var $$ = this;
     var mainCircle = $$.main.selectAll('.' + CLASS.circles).selectAll('.' + CLASS.circle)
@@ -342,7 +338,7 @@ ChartInternal.prototype.updateCircleY = function () {
     var $$ = this, lineIndices, getPoints;
     if ($$.config.data_groups.length > 0) {
         lineIndices = $$.getShapeIndices($$.isLineType),
-        getPoints = $$.generateGetLinePoints(lineIndices);
+            getPoints = $$.generateGetLinePoints(lineIndices);
         $$.circleY = function (d, i) {
             return getPoints(d, i)[0][1];
         };

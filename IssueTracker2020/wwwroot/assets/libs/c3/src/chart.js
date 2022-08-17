@@ -1,4 +1,4 @@
-import {ChartInternal} from './chart-internal';
+import { ChartInternal } from './chart-internal';
 
 /**
  * The Chart class

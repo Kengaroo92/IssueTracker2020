@@ -106,12 +106,12 @@ Axis.prototype.getYAxis = function getYAxis(axisId, scale, orient, tickValues, w
     }
 
     const axis = new this.internal(this, {
-            withOuterTick: withOuterTick,
-            withoutTransition: withoutTransition,
-            tickTextRotate: withoutRotateTickText ? 0 : config.axis_y_tick_rotate
-        }).axis
-            .scale(scale)
-            .orient(orient);
+        withOuterTick: withOuterTick,
+        withoutTransition: withoutTransition,
+        tickTextRotate: withoutRotateTickText ? 0 : config.axis_y_tick_rotate
+    }).axis
+        .scale(scale)
+        .orient(orient);
 
     if (tickFormat) {
         axis.tickFormat(tickFormat);
@@ -352,17 +352,17 @@ Axis.prototype.updateLabels = function updateLabels(withTransition) {
         axisYLabel = $$.main.select('.' + CLASS.axisY + ' .' + CLASS.axisYLabel),
         axisY2Label = $$.main.select('.' + CLASS.axisY2 + ' .' + CLASS.axisY2Label);
     (withTransition ? axisXLabel.transition() : axisXLabel)
-    .attr("x", this.xForXAxisLabel.bind(this))
+        .attr("x", this.xForXAxisLabel.bind(this))
         .attr("dx", this.dxForXAxisLabel.bind(this))
         .attr("dy", this.dyForXAxisLabel.bind(this))
         .text(this.textForXAxisLabel.bind(this));
     (withTransition ? axisYLabel.transition() : axisYLabel)
-    .attr("x", this.xForYAxisLabel.bind(this))
+        .attr("x", this.xForYAxisLabel.bind(this))
         .attr("dx", this.dxForYAxisLabel.bind(this))
         .attr("dy", this.dyForYAxisLabel.bind(this))
         .text(this.textForYAxisLabel.bind(this));
     (withTransition ? axisY2Label.transition() : axisY2Label)
-    .attr("x", this.xForY2AxisLabel.bind(this))
+        .attr("x", this.xForY2AxisLabel.bind(this))
         .attr("dx", this.dxForY2AxisLabel.bind(this))
         .attr("dy", this.dyForY2AxisLabel.bind(this))
         .text(this.textForY2AxisLabel.bind(this));

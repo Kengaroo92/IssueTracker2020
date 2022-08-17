@@ -18,19 +18,19 @@ ChartInternal.prototype.getDefaultConfig = function () {
         zoom_disableDefaultBehavior: false,
         zoom_privileged: false,
         zoom_rescale: false,
-        zoom_onzoom: function () {},
-        zoom_onzoomstart: function () {},
-        zoom_onzoomend: function () {},
+        zoom_onzoom: function () { },
+        zoom_onzoomstart: function () { },
+        zoom_onzoomend: function () { },
         zoom_x_min: undefined,
         zoom_x_max: undefined,
         interaction_brighten: true,
         interaction_enabled: true,
-        onmouseover: function () {},
-        onmouseout: function () {},
-        onresize: function () {},
-        onresized: function () {},
-        oninit: function () {},
-        onrendered: function () {},
+        onmouseover: function () { },
+        onmouseout: function () { },
+        onresize: function () { },
+        onresized: function () { },
+        oninit: function () { },
+        onrendered: function () { },
         transition_duration: 350,
         data_epochs: 'epochs',
         data_x: undefined,
@@ -58,11 +58,11 @@ ChartInternal.prototype.getDefaultConfig = function () {
         data_selection_multiple: true,
         data_selection_draggable: false,
         data_stack_normalize: false,
-        data_onclick: function () {},
-        data_onmouseover: function () {},
-        data_onmouseout: function () {},
-        data_onselected: function () {},
-        data_onunselected: function () {},
+        data_onclick: function () { },
+        data_onmouseover: function () { },
+        data_onmouseout: function () { },
+        data_onselected: function () { },
+        data_onunselected: function () { },
         data_url: undefined,
         data_headers: undefined,
         data_json: undefined,
@@ -76,7 +76,7 @@ ChartInternal.prototype.getDefaultConfig = function () {
         subchart_show: false,
         subchart_size_height: 60,
         subchart_axis_x_show: true,
-        subchart_onbrush: function () {},
+        subchart_onbrush: function () { },
         // color
         color_pattern: [],
         color_threshold: {},
@@ -196,7 +196,7 @@ ChartInternal.prototype.getDefaultConfig = function () {
         gauge_label_format: undefined,
         gauge_min: 0,
         gauge_max: 100,
-        gauge_startingAngle: -1 * Math.PI/2,
+        gauge_startingAngle: -1 * Math.PI / 2,
         gauge_label_extents: undefined,
         gauge_units: undefined,
         gauge_width: undefined,
@@ -247,9 +247,9 @@ ChartInternal.prototype.getDefaultConfig = function () {
         },
         tooltip_init_show: false,
         tooltip_init_x: 0,
-        tooltip_init_position: {top: '0px', left: '50px'},
-        tooltip_onshow: function () {},
-        tooltip_onhide: function () {},
+        tooltip_init_position: { top: '0px', left: '50px' },
+        tooltip_onshow: function () { },
+        tooltip_onhide: function () { },
         // title
         title_text: undefined,
         title_padding: {
@@ -273,7 +273,7 @@ ChartInternal.prototype.loadConfig = function (config) {
     var this_config = this.config, target, keys, read;
     function find() {
         var key = keys.shift();
-//        console.log("key =>", key, ", target =>", target);
+        //        console.log("key =>", key, ", target =>", target);
         if (key && target && typeof target === 'object' && key in target) {
             target = target[key];
             return find();
@@ -289,7 +289,7 @@ ChartInternal.prototype.loadConfig = function (config) {
         target = config;
         keys = key.split('_');
         read = find();
-//        console.log("CONFIG : ", key, read);
+        //        console.log("CONFIG : ", key, read);
         if (isDefined(read)) {
             this_config[key] = read;
         }

@@ -1,6 +1,6 @@
 /**
  * Bootstrap Table Spanish (México) translation (Obtenido de traducción de Argentina)
- * Author: Felix Vera (felix.vera@gmail.com) 
+ * Author: Felix Vera (felix.vera@gmail.com)
  * Copiado: Mauricio Vera (mauricioa.vera@gmail.com)
  * Revisión: J Manuel Corona (jmcg92@gmail.com) (13/Feb/2018).
  */
@@ -47,5 +47,4 @@
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['es-MX']);
-
 })(jQuery);

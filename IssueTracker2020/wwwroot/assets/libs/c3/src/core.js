@@ -33,7 +33,7 @@ var c3 = {
             }
         }
     },
-    generate: function(config) {
+    generate: function (config) {
         return new Chart(config);
     }
 };
@@ -42,13 +42,13 @@ export {
     c3
 };
 
-ChartInternal.prototype.beforeInit = function() {
+ChartInternal.prototype.beforeInit = function () {
     // can do something
 };
-ChartInternal.prototype.afterInit = function() {
+ChartInternal.prototype.afterInit = function () {
     // can do something
 };
-ChartInternal.prototype.init = function() {
+ChartInternal.prototype.init = function () {
     var $$ = this,
         config = $$.config;
 
@@ -67,7 +67,7 @@ ChartInternal.prototype.init = function() {
     }
 };
 
-ChartInternal.prototype.initParams = function() {
+ChartInternal.prototype.initParams = function () {
     var $$ = this,
         d3 = $$.d3,
         config = $$.config;
@@ -96,7 +96,7 @@ ChartInternal.prototype.initParams = function() {
 
     $$.dataTimeParse = (config.data_xLocaltime ? d3.timeParse : d3.utcParse)($$.config.data_xFormat);
     $$.axisTimeFormat = config.axis_x_localtime ? d3.timeFormat : d3.utcFormat;
-    $$.defaultAxisTimeFormat = function(date) {
+    $$.defaultAxisTimeFormat = function (date) {
         if (date.getMilliseconds()) {
             return d3.timeFormat(".%L")(date);
         }
@@ -155,7 +155,7 @@ ChartInternal.prototype.initParams = function() {
     $$.axes.subx = d3.selectAll([]); // needs when excluding subchart.js
 };
 
-ChartInternal.prototype.initChartElements = function() {
+ChartInternal.prototype.initChartElements = function () {
     if (this.initBar) {
         this.initBar();
     }
@@ -173,7 +173,7 @@ ChartInternal.prototype.initChartElements = function() {
     }
 };
 
-ChartInternal.prototype.initWithData = function(data) {
+ChartInternal.prototype.initWithData = function (data) {
     var $$ = this,
         d3 = $$.d3,
         config = $$.config;
@@ -211,7 +211,7 @@ ChartInternal.prototype.initWithData = function(data) {
         $$.addHiddenLegendIds(config.legend_hide === true ? $$.mapToIds($$.data.targets) : config.legend_hide);
     }
 
-    if($$.isStanfordGraphType()) {
+    if ($$.isStanfordGraphType()) {
         $$.initStanfordData();
     }
 
@@ -235,10 +235,10 @@ ChartInternal.prototype.initWithData = function(data) {
     // Define svgs
     $$.svg = $$.selectChart.append("svg")
         .style("overflow", "hidden")
-        .on('mouseenter', function() {
+        .on('mouseenter', function () {
             return config.onmouseover.call($$);
         })
-        .on('mouseleave', function() {
+        .on('mouseleave', function () {
             return config.onmouseout.call($$);
         });
 
@@ -279,7 +279,7 @@ ChartInternal.prototype.initWithData = function(data) {
     if ($$.initZoom) {
         $$.initZoom();
     }
-    if($$.isStanfordGraphType()) {
+    if ($$.isStanfordGraphType()) {
         $$.drawColorScale();
     }
 
@@ -355,10 +355,10 @@ ChartInternal.prototype.initWithData = function(data) {
     $$.api.element = $$.selectChart.node();
 };
 
-ChartInternal.prototype.smoothLines = function(el, type) {
+ChartInternal.prototype.smoothLines = function (el, type) {
     var $$ = this;
     if (type === 'grid') {
-        el.each(function() {
+        el.each(function () {
             var g = $$.d3.select(this),
                 x1 = g.attr('x1'),
                 x2 = g.attr('x2'),
@@ -374,7 +374,7 @@ ChartInternal.prototype.smoothLines = function(el, type) {
     }
 };
 
-ChartInternal.prototype.updateSizes = function() {
+ChartInternal.prototype.updateSizes = function () {
     var $$ = this,
         config = $$.config;
     var legendHeight = $$.legend ? $$.getLegendHeight() : 0,
@@ -457,7 +457,7 @@ ChartInternal.prototype.updateSizes = function() {
     }
 };
 
-ChartInternal.prototype.updateTargets = function(targets) {
+ChartInternal.prototype.updateTargets = function (targets) {
     var $$ = this;
 
     /*-- Main --*/
@@ -485,16 +485,16 @@ ChartInternal.prototype.updateTargets = function(targets) {
     // Fade-in each chart
     $$.showTargets();
 };
-ChartInternal.prototype.showTargets = function() {
+ChartInternal.prototype.showTargets = function () {
     var $$ = this;
-    $$.svg.selectAll('.' + CLASS.target).filter(function(d) {
-            return $$.isTargetToShow(d.id);
-        })
+    $$.svg.selectAll('.' + CLASS.target).filter(function (d) {
+        return $$.isTargetToShow(d.id);
+    })
         .transition().duration($$.config.transition_duration)
         .style("opacity", 1);
 };
 
-ChartInternal.prototype.redraw = function(options, transitions) {
+ChartInternal.prototype.redraw = function (options, transitions) {
     var $$ = this,
         main = $$.main,
         d3 = $$.d3,
@@ -588,7 +588,7 @@ ChartInternal.prototype.redraw = function(options, transitions) {
                     break;
                 }
             }
-            $$.svg.selectAll('.' + CLASS.axisX + ' .tick text').each(function(e) {
+            $$.svg.selectAll('.' + CLASS.axisX + ' .tick text').each(function (e) {
                 var index = tickValues.indexOf(e);
                 if (index >= 0) {
                     d3.select(this).style('display', index % intervalForCulling ? 'none' : 'block');
@@ -708,17 +708,17 @@ ChartInternal.prototype.redraw = function(options, transitions) {
             $$.redrawText(xForText, yForText, options.flow, true, transition),
             $$.redrawRegion(true, transition),
             $$.redrawGrid(true, transition),
-        ].forEach(function(transitions) {
-            transitions.forEach(function(transition) {
+        ].forEach(function (transitions) {
+            transitions.forEach(function (transition) {
                 transitionsToWait.push(transition);
             });
         });
         // Wait for end of transitions to call flow and onrendered callback
         waitForDraw = $$.generateWait();
-        transitionsToWait.forEach(function(t) {
+        transitionsToWait.forEach(function (t) {
             waitForDraw.add(t);
         });
-        waitForDraw(function() {
+        waitForDraw(function () {
             if (flow) {
                 flow();
             }
@@ -743,12 +743,12 @@ ChartInternal.prototype.redraw = function(options, transitions) {
     }
 
     // update fadein condition
-    $$.mapToIds($$.data.targets).forEach(function(id) {
+    $$.mapToIds($$.data.targets).forEach(function (id) {
         $$.withoutFadeIn[id] = true;
     });
 };
 
-ChartInternal.prototype.updateAndRedraw = function(options) {
+ChartInternal.prototype.updateAndRedraw = function (options) {
     var $$ = this,
         config = $$.config,
         transitions;
@@ -776,7 +776,7 @@ ChartInternal.prototype.updateAndRedraw = function(options) {
     // Draw with new sizes & scales
     $$.redraw(options, transitions);
 };
-ChartInternal.prototype.redrawWithoutRescale = function() {
+ChartInternal.prototype.redrawWithoutRescale = function () {
     this.redraw({
         withY: false,
         withSubchart: false,
@@ -785,23 +785,23 @@ ChartInternal.prototype.redrawWithoutRescale = function() {
     });
 };
 
-ChartInternal.prototype.isTimeSeries = function() {
+ChartInternal.prototype.isTimeSeries = function () {
     return this.config.axis_x_type === 'timeseries';
 };
-ChartInternal.prototype.isCategorized = function() {
+ChartInternal.prototype.isCategorized = function () {
     return this.config.axis_x_type.indexOf('categor') >= 0;
 };
-ChartInternal.prototype.isCustomX = function() {
+ChartInternal.prototype.isCustomX = function () {
     var $$ = this,
         config = $$.config;
     return !$$.isTimeSeries() && (config.data_x || notEmpty(config.data_xs));
 };
 
-ChartInternal.prototype.isTimeSeriesY = function() {
+ChartInternal.prototype.isTimeSeriesY = function () {
     return this.config.axis_y_type === 'timeseries';
 };
 
-ChartInternal.prototype.getTranslate = function(target) {
+ChartInternal.prototype.getTranslate = function (target) {
     var $$ = this,
         config = $$.config,
         x, y;
@@ -832,24 +832,24 @@ ChartInternal.prototype.getTranslate = function(target) {
     }
     return "translate(" + x + "," + y + ")";
 };
-ChartInternal.prototype.initialOpacity = function(d) {
+ChartInternal.prototype.initialOpacity = function (d) {
     return d.value !== null && this.withoutFadeIn[d.id] ? 1 : 0;
 };
-ChartInternal.prototype.initialOpacityForCircle = function(d) {
+ChartInternal.prototype.initialOpacityForCircle = function (d) {
     return d.value !== null && this.withoutFadeIn[d.id] ? this.opacityForCircle(d) : 0;
 };
-ChartInternal.prototype.opacityForCircle = function(d) {
+ChartInternal.prototype.opacityForCircle = function (d) {
     var isPointShouldBeShown = isFunction(this.config.point_show) ? this.config.point_show(d) : this.config.point_show;
     var opacity = isPointShouldBeShown || this.isStanfordType(d) ? 1 : 0;
     return isValue(d.value) ? (this.isScatterType(d) ? 0.5 : opacity) : 0;
 };
-ChartInternal.prototype.opacityForText = function() {
+ChartInternal.prototype.opacityForText = function () {
     return this.hasDataLabel() ? 1 : 0;
 };
-ChartInternal.prototype.xx = function(d) {
+ChartInternal.prototype.xx = function (d) {
     return d ? this.x(d.x) : null;
 };
-ChartInternal.prototype.xvCustom = function(d, xyValue) {
+ChartInternal.prototype.xvCustom = function (d, xyValue) {
     var $$ = this,
         value = xyValue ? d[xyValue] : d.value;
     if ($$.isTimeSeries()) {
@@ -859,13 +859,13 @@ ChartInternal.prototype.xvCustom = function(d, xyValue) {
     }
     return Math.ceil($$.x(value));
 };
-ChartInternal.prototype.yvCustom = function(d, xyValue) {
+ChartInternal.prototype.yvCustom = function (d, xyValue) {
     var $$ = this,
         yScale = d.axis && d.axis === 'y2' ? $$.y2 : $$.y,
         value = xyValue ? d[xyValue] : d.value;
     return Math.ceil(yScale(value));
 };
-ChartInternal.prototype.xv = function(d) {
+ChartInternal.prototype.xv = function (d) {
     var $$ = this,
         value = d.value;
     if ($$.isTimeSeries()) {
@@ -875,16 +875,16 @@ ChartInternal.prototype.xv = function(d) {
     }
     return Math.ceil($$.x(value));
 };
-ChartInternal.prototype.yv = function(d) {
+ChartInternal.prototype.yv = function (d) {
     var $$ = this,
         yScale = d.axis && d.axis === 'y2' ? $$.y2 : $$.y;
     return Math.ceil(yScale(d.value));
 };
-ChartInternal.prototype.subxx = function(d) {
+ChartInternal.prototype.subxx = function (d) {
     return d ? this.subX(d.x) : null;
 };
 
-ChartInternal.prototype.transformMain = function(withTransition, transitions) {
+ChartInternal.prototype.transformMain = function (withTransition, transitions) {
     var $$ = this,
         xAxis, yAxis, y2Axis;
     if (transitions && transitions.axisX) {
@@ -917,7 +917,7 @@ ChartInternal.prototype.transformMain = function(withTransition, transitions) {
     y2Axis.attr("transform", $$.getTranslate('y2'));
     $$.main.select('.' + CLASS.chartArcs).attr("transform", $$.getTranslate('arc'));
 };
-ChartInternal.prototype.transformAll = function(withTransition, transitions) {
+ChartInternal.prototype.transformAll = function (withTransition, transitions) {
     var $$ = this;
     $$.transformMain(withTransition, transitions);
     if ($$.config.subchart_show) {
@@ -928,7 +928,7 @@ ChartInternal.prototype.transformAll = function(withTransition, transitions) {
     }
 };
 
-ChartInternal.prototype.updateSvgSize = function() {
+ChartInternal.prototype.updateSvgSize = function () {
     var $$ = this,
         brush = $$.svg.select(".c3-brush .overlay");
     $$.svg.attr('width', $$.currentWidth).attr('height', $$.currentHeight);
@@ -952,7 +952,7 @@ ChartInternal.prototype.updateSvgSize = function() {
     $$.selectChart.style('max-height', $$.currentHeight + "px");
 };
 
-ChartInternal.prototype.updateDimension = function(withoutAxis) {
+ChartInternal.prototype.updateDimension = function (withoutAxis) {
     var $$ = this;
     if (!withoutAxis) {
         if ($$.config.axis_rotated) {
@@ -969,19 +969,19 @@ ChartInternal.prototype.updateDimension = function(withoutAxis) {
     $$.transformAll(false);
 };
 
-ChartInternal.prototype.observeInserted = function(selection) {
+ChartInternal.prototype.observeInserted = function (selection) {
     var $$ = this,
         observer;
     if (typeof MutationObserver === 'undefined') {
         window.console.error("MutationObserver not defined.");
         return;
     }
-    observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
+    observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
             if (mutation.type === 'childList' && mutation.previousSibling) {
                 observer.disconnect();
                 // need to wait for completion of load because size calculation requires the actual sizes determined after that completion
-                $$.intervalForObserveInserted = window.setInterval(function() {
+                $$.intervalForObserveInserted = window.setInterval(function () {
                     // parentNode will NOT be null when completed
                     if (selection.node().parentNode) {
                         window.clearInterval($$.intervalForObserveInserted);
@@ -1014,21 +1014,21 @@ ChartInternal.prototype.observeInserted = function(selection) {
 /**
  * Binds handlers to the window resize event.
  */
-ChartInternal.prototype.bindResize = function() {
+ChartInternal.prototype.bindResize = function () {
     var $$ = this,
         config = $$.config;
 
     $$.resizeFunction = $$.generateResize(); // need to call .remove
 
-    $$.resizeFunction.add(function() {
+    $$.resizeFunction.add(function () {
         config.onresize.call($$);
     });
     if (config.resize_auto) {
-        $$.resizeFunction.add(function() {
+        $$.resizeFunction.add(function () {
             if ($$.resizeTimeout !== undefined) {
                 window.clearTimeout($$.resizeTimeout);
             }
-            $$.resizeTimeout = window.setTimeout(function() {
+            $$.resizeTimeout = window.setTimeout(function () {
                 delete $$.resizeTimeout;
                 $$.updateAndRedraw({
                     withUpdateXDomain: false,
@@ -1043,11 +1043,11 @@ ChartInternal.prototype.bindResize = function() {
             }, 100);
         });
     }
-    $$.resizeFunction.add(function() {
+    $$.resizeFunction.add(function () {
         config.onresized.call($$);
     });
 
-    $$.resizeIfElementDisplayed = function() {
+    $$.resizeIfElementDisplayed = function () {
         // if element not displayed skip it
         if ($$.api == null || !$$.api.element.offsetParent) {
             return;
@@ -1073,7 +1073,7 @@ ChartInternal.prototype.bindResize = function() {
         }
         // add this graph to the wrapper, we will be removed if the user calls destroy
         wrapper.add($$.resizeFunction);
-        window.onresize = function() {
+        window.onresize = function () {
             // if element not displayed skip it
             if (!$$.api.element.offsetParent) {
                 return;
@@ -1087,7 +1087,7 @@ ChartInternal.prototype.bindResize = function() {
 /**
  * Binds handlers to the window focus event.
  */
-ChartInternal.prototype.bindWindowFocus = function() {
+ChartInternal.prototype.bindWindowFocus = function () {
     if (this.windowFocusHandler) {
         // The handler is already set
         return;
@@ -1106,18 +1106,18 @@ ChartInternal.prototype.unbindWindowFocus = function () {
     delete this.windowFocusHandler;
 };
 
-ChartInternal.prototype.generateResize = function() {
+ChartInternal.prototype.generateResize = function () {
     var resizeFunctions = [];
 
     function callResizeFunctions() {
-        resizeFunctions.forEach(function(f) {
+        resizeFunctions.forEach(function (f) {
             f();
         });
     }
-    callResizeFunctions.add = function(f) {
+    callResizeFunctions.add = function (f) {
         resizeFunctions.push(f);
     };
-    callResizeFunctions.remove = function(f) {
+    callResizeFunctions.remove = function (f) {
         for (var i = 0; i < resizeFunctions.length; i++) {
             if (resizeFunctions[i] === f) {
                 resizeFunctions.splice(i, 1);
@@ -1128,29 +1128,29 @@ ChartInternal.prototype.generateResize = function() {
     return callResizeFunctions;
 };
 
-ChartInternal.prototype.endall = function(transition, callback) {
+ChartInternal.prototype.endall = function (transition, callback) {
     var n = 0;
     transition
-        .each(function() {
+        .each(function () {
             ++n;
         })
-        .on("end", function() {
+        .on("end", function () {
             if (!--n) {
                 callback.apply(this, arguments);
             }
         });
 };
-ChartInternal.prototype.generateWait = function() {
+ChartInternal.prototype.generateWait = function () {
     var $$ = this;
     var transitionsToWait = [],
-        f = function(callback) {
-            var timer = setInterval(function() {
+        f = function (callback) {
+            var timer = setInterval(function () {
                 if (!$$.isTabVisible()) {
-                  return;
+                    return;
                 }
-  
+
                 var done = 0;
-                transitionsToWait.forEach(function(t) {
+                transitionsToWait.forEach(function (t) {
                     if (t.empty()) {
                         done += 1;
                         return;
@@ -1169,13 +1169,13 @@ ChartInternal.prototype.generateWait = function() {
                 }
             }, 50);
         };
-    f.add = function(transition) {
+    f.add = function (transition) {
         transitionsToWait.push(transition);
     };
     return f;
 };
 
-ChartInternal.prototype.parseDate = function(date) {
+ChartInternal.prototype.parseDate = function (date) {
     var $$ = this,
         parsedDate;
     if (date instanceof Date) {
@@ -1193,7 +1193,7 @@ ChartInternal.prototype.parseDate = function(date) {
     return parsedDate;
 };
 
-ChartInternal.prototype.isTabVisible = function() {
+ChartInternal.prototype.isTabVisible = function () {
     return !document.hidden;
 };
 

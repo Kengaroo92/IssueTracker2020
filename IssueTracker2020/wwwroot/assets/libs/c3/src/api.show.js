@@ -20,7 +20,7 @@ Chart.prototype.show = function (targetIds, options) {
         $$.showLegend(targetIds);
     }
 
-    $$.redraw({withUpdateOrgXDomain: true, withUpdateXDomain: true, withLegend: true});
+    $$.redraw({ withUpdateOrgXDomain: true, withUpdateXDomain: true, withLegend: true });
 };
 
 Chart.prototype.hide = function (targetIds, options) {
@@ -43,7 +43,7 @@ Chart.prototype.hide = function (targetIds, options) {
         $$.hideLegend(targetIds);
     }
 
-    $$.redraw({withUpdateOrgXDomain: true, withUpdateXDomain: true, withLegend: true});
+    $$.redraw({ withUpdateOrgXDomain: true, withUpdateXDomain: true, withLegend: true });
 };
 
 Chart.prototype.toggle = function (targetIds, options) {

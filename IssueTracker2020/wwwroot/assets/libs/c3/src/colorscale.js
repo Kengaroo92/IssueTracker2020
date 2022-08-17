@@ -1,6 +1,6 @@
-import {ChartInternal} from './core';
+import { ChartInternal } from './core';
 import CLASS from "./class";
-import {isFunction, getBBox} from './util';
+import { isFunction, getBBox } from './util';
 
 function powerOfTen(d) {
     return d / Math.pow(10, Math.ceil(Math.log(d) / Math.LN10 - 1e-12)) === 1;
@@ -17,7 +17,7 @@ ChartInternal.prototype.drawColorScale = function () {
     barWidth = !isNaN(config.stanford_scaleWidth) ? config.stanford_scaleWidth : 20;
     barHeight = 5;
 
-    if(barHeight < 0 || barWidth < 0) {
+    if (barHeight < 0 || barWidth < 0) {
         throw Error("Colorscale's barheight and barwidth must be greater than 0.");
     }
 
@@ -28,7 +28,7 @@ ChartInternal.prototype.drawColorScale = function () {
     inverseScale = d3.scaleSequential(target.colors)
         .domain([points[points.length - 1], points[0]]);
 
-    if($$.colorScale) {
+    if ($$.colorScale) {
         $$.colorScale.remove();
     }
 
@@ -61,15 +61,15 @@ ChartInternal.prototype.drawColorScale = function () {
 
     legendAxis = d3.axisRight(axisScale);
 
-    if(config.stanford_scaleFormat === 'pow10') {
+    if (config.stanford_scaleFormat === 'pow10') {
         legendAxis.tickValues([1, 10, 100, 1000, 10000, 100000, 1000000, 10000000]);
-    } else if(isFunction(config.stanford_scaleFormat)) {
+    } else if (isFunction(config.stanford_scaleFormat)) {
         legendAxis.tickFormat(config.stanford_scaleFormat);
     } else {
         legendAxis.tickFormat(d3.format("d"));
     }
 
-    if(isFunction(config.stanford_scaleValues)) {
+    if (isFunction(config.stanford_scaleValues)) {
         legendAxis.tickValues(config.stanford_scaleValues(target.minEpochs, target.maxEpochs));
     }
 
@@ -79,14 +79,14 @@ ChartInternal.prototype.drawColorScale = function () {
         .attr("transform", `translate(${barWidth},0)`)
         .call(legendAxis);
 
-    if(config.stanford_scaleFormat === 'pow10') {
+    if (config.stanford_scaleFormat === 'pow10') {
         axis.selectAll(".tick text")
             .text(null)
             .filter(powerOfTen)
             .text(10)
             .append("tspan")
             .attr("dy", "-.7em") // https://bl.ocks.org/mbostock/6738229
-            .text(function(d) {
+            .text(function (d) {
                 return Math.round(Math.log(d) / Math.LN10);
             });
     }

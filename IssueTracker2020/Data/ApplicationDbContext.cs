@@ -37,6 +37,5 @@ namespace IssueTracker2020.Data
         public DbSet<TicketStatus> TicketStatuses { get; set; }
 
         public DbSet<TicketPriority> TicketPriorities { get; set; }
-
     }
 }

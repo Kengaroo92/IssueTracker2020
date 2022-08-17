@@ -12,22 +12,27 @@
         width: @lobilist-wrapper-width;
         margin-right: @lobilist-margin-right;
     }
-    .lobilist{
+
+    .lobilist {
         max-height: 100%;
         overflow: auto;
         background-color: @lobilist-bg;
         .box-shadow(@lobilist-box-shadow);
+
         &:last-child {
             margin-right: 0;
         }
+
         &.ui-sortable-helper {
             .rotate(2deg);
         }
+
         &:hover {
             .lobilist-actions {
                 opacity: 1;
             }
         }
+
         &.lobilist-default {
             .lobilist-variant(@lobilist-default-header-bg, @lobilist-default-title-color);
         }
@@ -35,37 +40,47 @@
         &.lobilist-danger {
             .lobilist-variant(@lobilist-danger-header-bg, @lobilist-danger-title-color);
         }
+
         &.lobilist-success {
             .lobilist-variant(@lobilist-success-header-bg, @lobilist-success-title-color);
         }
+
         &.lobilist-warning {
             .lobilist-variant(@lobilist-warning-header-bg, @lobilist-warning-title-color);
         }
+
         &.lobilist-info {
             .lobilist-variant(@lobilist-info-header-bg, @lobilist-info-title-color);
         }
+
         &.lobilist-primary {
             .lobilist-variant(@lobilist-primary-header-bg, @lobilist-primary-title-color);
         }
     }
+
     .btn-finish-title-editing,
     .btn-cancel-title-editing {
         display: none;
     }
+
     .lobilist-header {
         position: relative;
         min-height: @lobilist-header-min-height;
         padding: @lobilist-header-padding-vertical @lobilist-header-padding-horizontal;
+
         input {
             background-color: transparent;
             height: @lobilist-title-edit-input-height;
         }
+
         &.title-editing {
             .lobilist-actions {
                 opacity: 1;
+
                 .btn {
                     display: none;
                 }
+
                 .btn-finish-title-editing,
                 .btn-cancel-title-editing {
                     display: inline-block;
@@ -75,16 +90,20 @@
                 }
             }
         }
+
         .clearfix();
     }
+
     .lobilist-actions {
         position: absolute;
         top: @lobilist-header-padding-vertical;
         right: @lobilist-header-padding-horizontal;
         opacity: 0;
+
         > .dropdown {
             display: inline-block;
         }
+
         .dropdown-menu {
             height: 70px;
             width: 100px;
@@ -92,6 +111,7 @@
             min-width: 0;
             padding: 0;
             margin: 0;
+
             .lobilist-default,
             .lobilist-danger,
             .lobilist-success,
@@ -102,63 +122,79 @@
                 cursor: pointer;
                 margin: @lobilist-actions-list-style-picker-item-margin;
                 .square(@lobilist-actions-list-style-picker-item-size);
-
             }
+
             .lobilist-default {
                 background-color: @lobilist-default-header-bg;
+
                 &:hover {
                     background-color: darken(@lobilist-default-header-bg, 5%);
                 }
             }
+
             .lobilist-danger {
                 background-color: @lobilist-danger-header-bg;
+
                 &:hover {
                     background-color: darken(@lobilist-danger-header-bg, 5%);
                 }
             }
+
             .lobilist-success {
                 background-color: @lobilist-success-header-bg;
+
                 &:hover {
                     background-color: darken(@lobilist-success-header-bg, 5%);
                 }
             }
+
             .lobilist-warning {
                 background-color: @lobilist-warning-header-bg;
+
                 &:hover {
                     background-color: darken(@lobilist-warning-header-bg, 5%);
                 }
             }
+
             .lobilist-info {
                 background-color: @lobilist-info-header-bg;
+
                 &:hover {
                     background-color: darken(@lobilist-info-header-bg, 5%);
                 }
             }
+
             .lobilist-primary {
                 background-color: @lobilist-primary-header-bg;
+
                 &:hover {
                     background-color: darken(@lobilist-primary-header-bg, 5%);
                 }
             }
         }
+
         .btn.btn-default {
             background-color: transparent;
             border-color: transparent;
             .square(@lobilist-actions-btn-size);
+
             &:hover {
                 background-color: @lobilist-actions-btn-bg;
             }
         }
     }
+
     .lobilist-title {
         padding-left: @lobilist-title-padding-left;
         font-size: @lobilist-title-font-size;
     }
+
     .lobilist-items {
         list-style: none;
         margin-bottom: 0;
         padding: @lobilist-items-padding;
     }
+
     .lobilist-item {
         border: 1px solid transparent;
         margin-bottom: @lobilist-item-margin-bottom;
@@ -176,6 +212,7 @@
             width: @lobilist-item-drag-handler-width;
             border-left: @lobilist-item-drag-handler-border;
             border-right: @lobilist-item-drag-handler-border;
+
             &:hover {
                 cursor: move;
             }
@@ -190,27 +227,32 @@
             font-size: @lobilist-item-edit-btn-font-size;
             color: @lobilist-item-edit-btn-color;
             line-height: @lobilist-item-edit-btn-size;
-
         }
+
         .todo-action {
             display: inline-block;
             .square(@lobilist-item-edit-btn-size);
+
             &:hover {
                 cursor: pointer;
                 color: darken(@lobilist-item-edit-btn-color, 25%);
             }
         }
+
         &:hover {
             background-color: @lobilist-item-hover-bg;
         }
     }
+
     .lobilist-item-title {
         font-weight: 600;
         font-size: @lobilist-item-title-font-size;
     }
+
     .lobilist-item-description {
         font-style: italic;
     }
+
     .lobilist-item-duedate {
         position: absolute;
         top: 2px;
@@ -219,65 +261,81 @@
         color: @gray-light;
         font-size: 85%;
     }
+
     .lobilist-check {
         position: absolute;
         left: @lobilist-item-drag-handler-width + @lobilist-item-check-left-offset;
         top: @lobilist-item-padding-top;
+
         &.lobicheck {
             margin-top: 3px;
         }
     }
+
     .lobilist-item {
         position: relative;
+
         &.item-done {
             text-decoration: line-through;
         }
     }
+
     .btn-show-form {
         outline: 0;
     }
+
     .lobilist-footer,
     .lobilist-form-footer {
         padding: @lobilist-footer-padding-vertical @lobilist-footer-padding-horizontal;
     }
+
     .lobilist-form-footer {
         margin-left: -@lobilist-form-padding;
         margin-right: -@lobilist-form-padding;
         margin-bottom: -@lobilist-form-padding;
     }
+
     .lobilist-add-todo-form {
         padding: @lobilist-form-padding;
+
         .form-group {
             margin-bottom: 5px;
         }
+
         .btn-add-todo {
             margin-right: 5px;
         }
+
         .btn-add-todo,
         .btn-discard-todo {
             height: 30px;
         }
     }
+
     .lobilist-placeholder {
         &:extend(.lobilists .lobilist-wrapper);
         background-color: #f9f5d1;
         border: 1px dashed @gray-light;
     }
+
     .lobilist-item-placeholder {
         &:extend(.lobilists .lobilist-item);
         background-color: rgba(0, 0, 0, 0.03);
         border: 1px dashed darken(@gray-lighter, 7%);
     }
+
     @media (max-width: @screen-xs-min) {
         .lobilist {
             width: @lobilist-xxs-width;
         }
     }
+
     &.single-line {
         overflow-x: auto;
         overflow-y: hidden;
         white-space: nowrap;
         height: 400px;
+
         .lobilist-wrapper,
         .lobilist-placeholder {
             float: none;
@@ -286,12 +344,14 @@
             height: 100%;
         }
     }
-    &.no-sortable{
-        .lobilist-item{
-            .drag-handler{
+
+    &.no-sortable {
+        .lobilist-item {
+            .drag-handler {
                 display: none;
             }
         }
     }
+
     .clearfix();
 }

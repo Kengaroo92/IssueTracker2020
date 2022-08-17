@@ -32,7 +32,7 @@ ChartInternal.prototype.load = function (targets, args) {
     $$.updateTargets($$.data.targets);
 
     // Redraw with new targets
-    $$.redraw({withUpdateOrgXDomain: true, withUpdateXDomain: true, withLegend: true});
+    $$.redraw({ withUpdateOrgXDomain: true, withUpdateXDomain: true, withLegend: true });
 
     if (args.done) { args.done(); }
 };
@@ -68,7 +68,7 @@ ChartInternal.prototype.unload = function (targetIds, done) {
     $$.resetCache();
 
     if (!done) {
-        done = function () {};
+        done = function () { };
     }
     // filter existing target
     targetIds = targetIds.filter(function (id) { return $$.hasTarget($$.data.targets, id); });

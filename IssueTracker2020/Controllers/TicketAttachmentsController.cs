@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using IssueTracker2020.Data;
+using IssueTracker2020.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using IssueTracker2020.Data;
-using IssueTracker2020.Models;
-using Microsoft.AspNetCore.Authorization;
+using System;
 using System.IO;
-using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IssueTracker2020.Controllers
 {
@@ -53,7 +52,7 @@ namespace IssueTracker2020.Controllers
         }
 
         // POST: TicketAttachments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -72,7 +71,6 @@ namespace IssueTracker2020.Controllers
 
                 try
                 {
-
                     _context.TicketAttachments.Add(ticketAttachment);
                     await _context.SaveChangesAsync();
                 }
@@ -81,7 +79,7 @@ namespace IssueTracker2020.Controllers
                     TempData["Error"] = ex.Message;
                 }
 
-            return RedirectToAction("Details", "Tickets", new { id = ticketAttachment.TicketId });
+                return RedirectToAction("Details", "Tickets", new { id = ticketAttachment.TicketId });
             }
 
             ViewData["TicketId"] = new SelectList(_context.Tickets, "Id", "Description", ticketAttachment.TicketId);
@@ -108,7 +106,7 @@ namespace IssueTracker2020.Controllers
         }
 
         // POST: TicketAttachments/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace IssueTracker2020.Services
@@ -10,6 +8,7 @@ namespace IssueTracker2020.Services
     public class BTFileService : IBTFileService
     {
         private readonly string[] suffixes = { "Bytes", "KB", "MB", "GB", "TB", "PB" };
+
         public async Task<byte[]> ConvertFileToByteArrayAsync(IFormFile file)
         {
             MemoryStream memoryStream = new MemoryStream();
@@ -19,14 +18,12 @@ namespace IssueTracker2020.Services
             memoryStream.Dispose();
 
             return byteFile;
-
         }
 
         public string ConvertByteArrayToFile(byte[] fileData, string extension)
         {
             string imageBase64Data = Convert.ToBase64String(fileData);
             return string.Format($"data:image/{extension};base64,{imageBase64Data}");
-
         }
 
         public string GetFileIcon(string file)
@@ -46,6 +43,5 @@ namespace IssueTracker2020.Services
             }
             return string.Format("{0:n1}{1}", number, suffixes[counter]);
         }
-
     }
 }

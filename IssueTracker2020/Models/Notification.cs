@@ -3,11 +3,9 @@
 namespace IssueTracker2020.Models
 
 {
-
     public class Notification
 
     {
-
         public int Id { get; set; }
 
         public int TicketId { get; set; }
@@ -27,7 +25,5 @@ namespace IssueTracker2020.Models
         public virtual BTUser Recipient { get; set; }
 
         public virtual BTUser Sender { get; set; }
-
     }
-
 }

@@ -6,8 +6,7 @@
  * @version 1.0.0
  * @licence MIT
  */
-$(function() {
-
+$(function () {
     var LIST_COUNTER = 0;
     /**
      * List class
@@ -17,7 +16,7 @@ $(function() {
      * @param {Object} options - Options for <code>List</code> 'class'
      * @constructor
      */
-    var List = function($lobiList, options) {
+    var List = function ($lobiList, options) {
         this.$lobiList = $lobiList;
         this.$options = options;
         this.$globalOptions = $lobiList.$options;
@@ -46,7 +45,7 @@ $(function() {
          *
          * @private
          */
-        _init: function() {
+        _init: function () {
             var me = this;
             me.suppressEvents();
             if (!me.$options.id) {
@@ -88,7 +87,7 @@ $(function() {
          * <code>response.success=false</code>
          * @returns {List}
          */
-        addItem: function(item, errorCallback) {
+        addItem: function (item, errorCallback) {
             var me = this;
             if (me._triggerEvent('beforeItemAdd', [me, item]) === false) {
                 return me;
@@ -97,11 +96,11 @@ $(function() {
             item = me._processItemData(item);
             if (me.$globalOptions.actions.insert) {
                 $.ajax(me.$globalOptions.actions.insert, {
-                        data: item,
-                        method: 'POST'
-                    })
+                    data: item,
+                    method: 'POST'
+                })
                     //res is JSON object of format {"success": Boolean, "id": Number, "msg": String}
-                    .done(function(res) {
+                    .done(function (res) {
                         if (res.success) {
                             item.id = res.id;
                             me._addItemToList(item);
@@ -130,18 +129,18 @@ $(function() {
          * <code>response.success=false</code>
          * @returns {List}
          */
-        updateItem: function(item, errorCallback) {
+        updateItem: function (item, errorCallback) {
             var me = this;
             if (me._triggerEvent('beforeItemUpdate', [me, item]) === false) {
                 return me
             }
             if (me.$globalOptions.actions.update) {
                 $.ajax(me.$globalOptions.actions.update, {
-                        data: item,
-                        method: 'POST'
-                    })
+                    data: item,
+                    method: 'POST'
+                })
                     //res is JSON object of format {"id": Number, "success": Boolean, "msg": String}
-                    .done(function(res) {
+                    .done(function (res) {
                         if (res.success) {
                             me._updateItemInList(item);
                         } else {
@@ -168,18 +167,18 @@ $(function() {
          * <code>response.success=false</code>
          * @returns {List}
          */
-        deleteItem: function(item, errorCallback) {
+        deleteItem: function (item, errorCallback) {
             var me = this;
             if (me._triggerEvent('beforeItemDelete', [me, item]) === false) {
                 return me
             }
             if (me.$globalOptions.actions.delete) {
                 return me._sendAjax(me.$globalOptions.actions.delete, {
-                        data: item,
-                        method: 'POST'
-                    })
+                    data: item,
+                    method: 'POST'
+                })
                     //res is JSON object of format
-                    .done(function(res) {
+                    .done(function (res) {
                         if (res.success) {
                             me._removeItemFromList(item);
                         } else {
@@ -204,7 +203,7 @@ $(function() {
          * <code>response.success=false</code>
          * @returns {List}
          */
-        saveOrUpdateItem: function(item, errorCallback) {
+        saveOrUpdateItem: function (item, errorCallback) {
             var me = this;
             if (item.id) {
                 me.updateItem(item, errorCallback);
@@ -220,7 +219,7 @@ $(function() {
          * @method startTitleEditing
          * @returns {List}
          */
-        startTitleEditing: function() {
+        startTitleEditing: function () {
             var me = this;
             var input = me._createInput();
             me.$title.attr('data-old-title', me.$title.html());
@@ -239,7 +238,7 @@ $(function() {
          * @method finishTitleEditing
          * @returns {List}
          */
-        finishTitleEditing: function() {
+        finishTitleEditing: function () {
             var me = this;
             var $input = me.$header.find('input');
             var oldTitle = me.$title.attr('data-old-title');
@@ -257,7 +256,7 @@ $(function() {
          * @method cancelTitleEditing
          * @returns {List}
          */
-        cancelTitleEditing: function() {
+        cancelTitleEditing: function () {
             var me = this;
             var $input = me.$header.find('input');
             if ($input.length === 0) {
@@ -275,7 +274,7 @@ $(function() {
          * @method remove
          * @returns {List} - Just removed <code>List</code> instance
          */
-        remove: function() {
+        remove: function () {
             var me = this;
             me.$lobiList.$lists.splice(me.$el.index(), 1);
             me.$elWrapper.remove();
@@ -290,7 +289,7 @@ $(function() {
          * @param {String} id - The id of the item to start updating
          * @returns {List}
          */
-        editItem: function(id) {
+        editItem: function (id) {
             var me = this;
             var $item = me.$lobiList.$el.find('li[data-id=' + id + ']');
             var $form = $item.closest('.lobilist').find('.lobilist-add-todo-form');
@@ -309,7 +308,7 @@ $(function() {
          * Suppress events. None of the events will be triggered until you call <code>resumeEvents</code>
          * @returns {List}
          */
-        suppressEvents: function() {
+        suppressEvents: function () {
             this.eventsSuppressed = true;
             return this;
         },
@@ -318,17 +317,17 @@ $(function() {
          * Resume all events.
          * @returns {List}
          */
-        resumeEvents: function() {
+        resumeEvents: function () {
             this.eventsSuppressed = false;
             return this;
         },
 
-        _processItemData: function(item) {
+        _processItemData: function (item) {
             var me = this;
             return $.extend({}, me.$globalOptions.itemOptions, item);
         },
 
-        _createHeader: function() {
+        _createHeader: function () {
             var me = this;
             var $header = $('<div>', {
                 'class': 'lobilist-header'
@@ -357,29 +356,28 @@ $(function() {
             return $header;
         },
 
-        _createTitle: function() {
+        _createTitle: function () {
             var me = this;
             var $title = $('<div>', {
                 'class': 'lobilist-title',
                 html: me.$options.title
             }).appendTo(me.$header);
             if (me.$options.controls && me.$options.controls.indexOf('edit') > -1) {
-                $title.on('dblclick', function() {
+                $title.on('dblclick', function () {
                     me.startTitleEditing();
                 });
             }
             return $title;
         },
 
-        _createBody: function() {
+        _createBody: function () {
             var me = this;
             return $('<div>', {
                 'class': 'lobilist-body'
             }).appendTo(me.$el);
-
         },
 
-        _createForm: function() {
+        _createForm: function () {
             var me = this;
             var $form = $('<form>', {
                 'class': 'lobilist-add-todo-form hide'
@@ -418,7 +416,7 @@ $(function() {
                 type: 'button',
                 'class': 'btn btn-danger btn-sm btn-discard-todo',
                 html: 'Cancel'
-            }).click(function() {
+            }).click(function () {
                 $form.addClass('hide');
                 me.$footer.removeClass('hide');
             }).appendTo($ft);
@@ -430,15 +428,15 @@ $(function() {
             return $form;
         },
 
-        _formHandler: function($form) {
+        _formHandler: function ($form) {
             var me = this;
-            $form.on('submit', function(ev) {
+            $form.on('submit', function (ev) {
                 ev.preventDefault();
                 me._submitForm();
             });
         },
 
-        _submitForm: function() {
+        _submitForm: function () {
             var me = this;
             if (!me.$form[0].title.value) {
                 me._showFormError('title', 'Title can not be empty');
@@ -454,7 +452,7 @@ $(function() {
             me.$footer.removeClass('hide');
         },
 
-        _createFooter: function() {
+        _createFooter: function () {
             var me = this;
             var $footer = $('<div>', {
                 'class': 'lobilist-footer'
@@ -463,7 +461,7 @@ $(function() {
                 type: 'button',
                 'class': 'btn-link btn-show-form',
                 'html': 'Add new'
-            }).click(function() {
+            }).click(function () {
                 me._resetForm();
                 me.$form.removeClass('hide');
                 $footer.addClass('hide');
@@ -472,7 +470,7 @@ $(function() {
             return $footer;
         },
 
-        _createList: function() {
+        _createList: function () {
             var me = this;
             var $list = $('<ul>', {
                 'class': 'lobilist-items'
@@ -481,7 +479,7 @@ $(function() {
             return $list;
         },
 
-        _createItems: function(items) {
+        _createItems: function (items) {
             var me = this;
             for (var i = 0; i < items.length; i++) {
                 me._addItem(items[i]);
@@ -494,7 +492,7 @@ $(function() {
          *
          * @type Object
          */
-        _addItem: function(item) {
+        _addItem: function (item) {
             var me = this;
             if (!item.id) {
                 item.id = me.$lobiList.getNextId();
@@ -505,13 +503,13 @@ $(function() {
             }
         },
 
-        _createCheckbox: function() {
+        _createCheckbox: function () {
             var me = this;
             var $item = $('<input>', {
                 'type': 'checkbox'
             });
 
-            $item.change(function() {
+            $item.change(function () {
                 me._onCheckboxChange(this);
             });
             return $('<label>', {
@@ -519,7 +517,7 @@ $(function() {
             }).append($item);
         },
 
-        _onCheckboxChange: function(checkbox) {
+        _onCheckboxChange: function (checkbox) {
             var me = this;
             var $this = $(checkbox);
             if ($this.prop('checked')) {
@@ -531,7 +529,7 @@ $(function() {
             $this.closest('.lobilist-item').toggleClass('item-done');
         },
 
-        _createDropdownForStyleChange: function() {
+        _createDropdownForStyleChange: function () {
             var me = this;
             var $dropdown = $('<div>', {
                 'class': 'dropdown'
@@ -550,10 +548,10 @@ $(function() {
             for (var i = 0; i < me.$globalOptions.listStyles.length; i++) {
                 var st = me.$globalOptions.listStyles[i];
                 $('<div class="' + st + '"></div>')
-                    .on('mousedown', function(ev) {
+                    .on('mousedown', function (ev) {
                         ev.stopPropagation()
                     })
-                    .click(function() {
+                    .click(function () {
                         var classes = me.$el[0].className.split(' ');
                         var oldClass = null;
                         for (var i = 0; i < classes.length; i++) {
@@ -565,40 +563,39 @@ $(function() {
                             .addClass(this.className);
 
                         me._triggerEvent('styleChange', [me, oldClass, this.className]);
-
                     })
                     .appendTo($menu);
             }
             return $dropdown;
         },
 
-        _createEditTitleButton: function() {
+        _createEditTitleButton: function () {
             var me = this;
             var $btn = $('<button>', {
                 'class': 'btn btn-xs',
                 html: '<i class="ti-pencil"></i>'
             });
-            $btn.click(function() {
+            $btn.click(function () {
                 me.startTitleEditing();
             });
 
             return $btn;
         },
 
-        _createAddNewButton: function() {
+        _createAddNewButton: function () {
             var me = this;
             var $btn = $('<button>', {
                 'class': 'btn btn-xs',
                 html: '<i class="ti-plus"></i>'
             });
-            $btn.click(function() {
+            $btn.click(function () {
                 var list = me.$lobiList.addList();
                 list.startTitleEditing();
             });
             return $btn;
         },
 
-        _createCloseButton: function() {
+        _createCloseButton: function () {
             var me = this;
             var $btn = $('<button>', {
                 'class': 'btn btn-xs',
@@ -608,7 +605,7 @@ $(function() {
             return $btn;
         },
 
-        _onRemoveListClick: function() {
+        _onRemoveListClick: function () {
             var me = this;
             me._triggerEvent('beforeListRemove', [me]);
             me.remove();
@@ -616,34 +613,34 @@ $(function() {
             return me;
         },
 
-        _createFinishTitleEditing: function() {
+        _createFinishTitleEditing: function () {
             var me = this;
             var $btn = $('<button>', {
                 'class': 'btn btn-xs btn-finish-title-editing',
                 html: '<i class="ti-check-box"></i>'
             });
-            $btn.click(function() {
+            $btn.click(function () {
                 me.finishTitleEditing();
             });
             return $btn;
         },
 
-        _createCancelTitleEditing: function() {
+        _createCancelTitleEditing: function () {
             var me = this;
             var $btn = $('<button>', {
                 'class': 'btn btn-xs btn-cancel-title-editing',
                 html: '<i class="ti-close"></i>'
             });
-            $btn.click(function() {
+            $btn.click(function () {
                 me.cancelTitleEditing();
             });
             return $btn;
         },
 
-        _createInput: function() {
+        _createInput: function () {
             var me = this;
             var input = $('<input type="text" class="form-control">');
-            input.on('keyup', function(ev) {
+            input.on('keyup', function (ev) {
                 if (ev.which === 13) {
                     me.finishTitleEditing();
                 }
@@ -651,7 +648,7 @@ $(function() {
             return input;
         },
 
-        _showFormError: function(field, error) {
+        _showFormError: function (field, error) {
             var $fGroup = this.$form.find('[name="' + field + '"]').closest('.form-group')
                 .addClass('has-error');
             $fGroup.find('.help-block').remove();
@@ -660,14 +657,14 @@ $(function() {
             );
         },
 
-        _resetForm: function() {
+        _resetForm: function () {
             var me = this;
             me.$form[0].reset();
             me.$form[0].id.value = "";
             me.$form.find('.form-group').removeClass('has-error').find('.help-block').remove();
         },
 
-        _enableSorting: function() {
+        _enableSorting: function () {
             var me = this;
             me.$el.find('.lobilist-items').sortable({
                 connectWith: '.lobilist .lobilist-items',
@@ -678,13 +675,13 @@ $(function() {
                 forcePlaceholderSize: true,
                 opacity: 0.9,
                 revert: 70,
-                update: function(event, ui) {
+                update: function (event, ui) {
                     me._triggerEvent('afterItemReorder', [me, ui.item]);
                 }
             });
         },
 
-        _addItemToList: function(item) {
+        _addItemToList: function (item) {
             var me = this;
             var $li = $('<li>', {
                 'data-id': item.id,
@@ -719,7 +716,7 @@ $(function() {
             return $li;
         },
 
-        _addItemControls: function($li) {
+        _addItemControls: function ($li) {
             var me = this;
             if (me.$options.useCheckboxes) {
                 $li.append(me._createCheckbox());
@@ -732,7 +729,7 @@ $(function() {
                 $itemControlsDiv.append($('<div>', {
                     'class': 'edit-todo todo-action',
                     html: '<i class="ti-pencil"></i>'
-                }).click(function() {
+                }).click(function () {
                     me.editItem($(this).closest('li').data('id'));
                 }));
             }
@@ -741,7 +738,7 @@ $(function() {
                 $itemControlsDiv.append($('<div>', {
                     'class': 'delete-todo todo-action',
                     html: '<i class="ti-close"></i>'
-                }).click(function() {
+                }).click(function () {
                     me._onDeleteItemClick($(this).closest('li').data('lobiListItem'));
                 }));
             }
@@ -752,11 +749,11 @@ $(function() {
             return $li;
         },
 
-        _onDeleteItemClick: function(item) {
+        _onDeleteItemClick: function (item) {
             this.deleteItem(item);
         },
 
-        _updateItemInList: function(item) {
+        _updateItemInList: function (item) {
             var me = this;
             var $li = me.$lobiList.$el.find('li[data-id="' + item.id + '"]');
             $li.find('input[type=checkbox]').prop('checked', item.done);
@@ -775,7 +772,7 @@ $(function() {
             me._triggerEvent('afterItemUpdate', [me, item]);
         },
 
-        _triggerEvent: function(type, data) {
+        _triggerEvent: function (type, data) {
             var me = this;
             if (me.eventsSuppressed) {
                 return;
@@ -787,18 +784,18 @@ $(function() {
             }
         },
 
-        _removeItemFromList: function(item) {
+        _removeItemFromList: function (item) {
             var me = this;
             me.$lobiList.$el.find('li[data-id=' + item.id + ']').remove();
             me._triggerEvent('afterItemDelete', [me, item]);
         },
 
-        _sendAjax: function(url, params) {
+        _sendAjax: function (url, params) {
             var me = this;
             return $.ajax(url, me._beforeAjaxSent(params))
         },
 
-        _beforeAjaxSent: function(params) {
+        _beforeAjaxSent: function (params) {
             var me = this;
             var eventParams = me._triggerEvent('beforeAjaxSent', [me, params]);
             return $.extend({}, params, eventParams || {});
@@ -813,7 +810,7 @@ $(function() {
      * @param {Object} options - Options for <code>LobiList</code> 'class'
      * @constructor
      */
-    var LobiList = function($el, options) {
+    var LobiList = function ($el, options) {
         this.$el = $el;
         this.init(options);
     };
@@ -826,7 +823,7 @@ $(function() {
 
         eventsSuppressed: false,
 
-        init: function(options) {
+        init: function (options) {
             var me = this;
             me.suppressEvents();
 
@@ -848,12 +845,12 @@ $(function() {
          * @returns {*}
          * @private
          */
-        _processInput: function(options) {
+        _processInput: function (options) {
             options = $.extend({}, $.fn.lobiList.DEFAULT_OPTIONS, options);
             if (options.actions.load) {
                 $.ajax(options.actions.load, {
                     async: false
-                }).done(function(res) {
+                }).done(function (res) {
                     options.lists = res.lists;
                 });
             }
@@ -863,7 +860,7 @@ $(function() {
         /**
          * @private
          */
-        _createLists: function() {
+        _createLists: function () {
             var me = this;
             for (var i = 0; i < me.$options.lists.length; i++) {
                 me.addList(me.$options.lists[i]);
@@ -875,7 +872,7 @@ $(function() {
          * @private
          * @returns {LobiList}
          */
-        _handleSortable: function() {
+        _handleSortable: function () {
             var me = this;
             if (me.$options.sortable) {
                 me.$el.sortable({
@@ -886,7 +883,7 @@ $(function() {
                     forcePlaceholderSize: true,
                     opacity: 0.9,
                     revert: 70,
-                    update: function(event, ui) {
+                    update: function (event, ui) {
                         me._triggerEvent('afterListReorder', [me, ui.item.find('.lobilist').data('lobiList')]);
                     }
                 });
@@ -904,7 +901,7 @@ $(function() {
          * @param {List|Object} list - The <code>List</code> instance or <code>Object</code>
          * @returns {List} Just added <code>List</code> instance
          */
-        addList: function(list) {
+        addList: function (list) {
             var me = this;
             if (!(list instanceof List)) {
                 list = new List(me, me._processListOptions(list));
@@ -925,7 +922,7 @@ $(function() {
          * @method destroy
          * @returns {LobiList}
          */
-        destroy: function() {
+        destroy: function () {
             var me = this;
             if (me._triggerEvent('beforeDestroy', [me]) !== false) {
                 for (var i = 0; i < me.$lists.length; i++) {
@@ -952,7 +949,7 @@ $(function() {
          * @method getNextId
          * @returns {Number}
          */
-        getNextId: function() {
+        getNextId: function () {
             return this._nextId++;
         },
 
@@ -962,7 +959,7 @@ $(function() {
          * @returns {*}
          * @private
          */
-        _processListOptions: function(listOptions) {
+        _processListOptions: function (listOptions) {
             var me = this;
             listOptions = $.extend({}, me.$options.listsOptions, listOptions);
 
@@ -974,12 +971,12 @@ $(function() {
             return listOptions;
         },
 
-        suppressEvents: function() {
+        suppressEvents: function () {
             this.eventsSuppressed = true;
             return this;
         },
 
-        resumeEvents: function() {
+        resumeEvents: function () {
             this.eventsSuppressed = false;
             return this;
         },
@@ -990,7 +987,7 @@ $(function() {
          * @returns {*}
          * @private
          */
-        _triggerEvent: function(type, data) {
+        _triggerEvent: function (type, data) {
             var me = this;
             if (me.eventsSuppressed) {
                 return;
@@ -1003,10 +1000,10 @@ $(function() {
         }
     };
 
-    $.fn.lobiList = function(option) {
+    $.fn.lobiList = function (option) {
         var args = arguments;
         var ret;
-        return this.each(function() {
+        return this.each(function () {
             var $this = $(this);
             var data = $this.data('lobiList');
             var options = typeof option === 'object' && option;

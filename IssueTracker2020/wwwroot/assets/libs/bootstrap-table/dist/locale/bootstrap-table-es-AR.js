@@ -27,5 +27,4 @@
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['es-AR']);
-
 })(jQuery);

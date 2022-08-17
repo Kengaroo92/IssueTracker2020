@@ -61,11 +61,11 @@ ChartInternal.prototype.getTextRect = function (text, cls, element) {
         rect;
     svg.selectAll('.dummy')
         .data([text])
-      .enter().append('text')
+        .enter().append('text')
         .classed(cls ? cls : "", true)
         .style('font', font)
         .text(text)
-      .each(function () { rect = getBBox(this); });
+        .each(function () { rect = getBBox(this); });
     dummy.remove();
     return rect;
 };
@@ -107,7 +107,7 @@ ChartInternal.prototype.getYForText = function (points, d, textElement) {
         yPos = (points[0][0] + points[2][0] + box.height * 0.6) / 2;
     } else {
         yPos = points[2][1];
-        if (d.value < 0  || (d.value === 0 && !$$.hasPositiveValue)) {
+        if (d.value < 0 || (d.value === 0 && !$$.hasPositiveValue)) {
             yPos += box.height;
             if ($$.isBarType(d) && $$.isSafari()) {
                 yPos -= 3;

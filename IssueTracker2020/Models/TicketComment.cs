@@ -3,11 +3,9 @@
 namespace IssueTracker2020.Models
 
 {
-
     public class TicketComment
 
     {
-
         public int Id { get; set; }
 
         public string Comment { get; set; }
@@ -21,7 +19,5 @@ namespace IssueTracker2020.Models
         public virtual Ticket Ticket { get; set; }
 
         public virtual BTUser User { get; set; }
-
     }
-
 }

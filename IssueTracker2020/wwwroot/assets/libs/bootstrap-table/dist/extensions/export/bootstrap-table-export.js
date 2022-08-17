@@ -56,17 +56,17 @@
             if (!$export.length) {
                 $export = $([
                     '<div class="export btn-group">',
-                        '<button class="btn' +
-                            sprintf(' btn-%s', this.options.buttonsClass) +
-                            sprintf(' btn-%s', this.options.iconSize) +
-                            ' dropdown-toggle" aria-label="export type" ' +
-                            'title="' + this.options.formatExport() + '" ' +
-                            'data-toggle="dropdown" type="button">',
-                            sprintf('<i class="%s %s"></i> ', this.options.iconsPrefix, this.options.icons.export),
-                            '<span class="caret"></span>',
-                        '</button>',
-                        '<ul class="dropdown-menu" role="menu">',
-                        '</ul>',
+                    '<button class="btn' +
+                    sprintf(' btn-%s', this.options.buttonsClass) +
+                    sprintf(' btn-%s', this.options.iconSize) +
+                    ' dropdown-toggle" aria-label="export type" ' +
+                    'title="' + this.options.formatExport() + '" ' +
+                    'data-toggle="dropdown" type="button">',
+                    sprintf('<i class="%s %s"></i> ', this.options.iconsPrefix, this.options.icons.export),
+                    '<span class="caret"></span>',
+                    '</button>',
+                    '<ul class="dropdown-menu" role="menu">',
+                    '</ul>',
                     '</div>'].join('')).appendTo($btnGroup);
 
                 var $menu = $export.find('.dropdown-menu'),
@@ -83,9 +83,9 @@
                 $.each(exportTypes, function (i, type) {
                     if (TYPE_NAME.hasOwnProperty(type)) {
                         $menu.append(['<li role="menuitem" data-type="' + type + '">',
-                                '<a href="javascript:void(0)">',
-                                    TYPE_NAME[type],
-                                '</a>',
+                            '<a href="javascript:void(0)">',
+                        TYPE_NAME[type],
+                            '</a>',
                             '</li>'].join(''));
                     }
                 });
@@ -93,16 +93,14 @@
                 $menu.find('li').click(function () {
                     var type = $(this).data('type'),
                         doExport = function () {
-
                             if (!!that.options.exportFooter) {
                                 var data = that.getData();
                                 var $footerRow = that.$tableFooter.find("tr").first();
 
-                                var footerData = { };
+                                var footerData = {};
                                 var footerHtml = [];
 
                                 $.each($footerRow.children(), function (index, footerCell) {
-
                                     var footerCellHtml = $(footerCell).children(".th-inner").first().html();
                                     footerData[that.columns[index].field] = footerCellHtml == '&nbsp;' ? null : footerCellHtml;
 
@@ -115,7 +113,6 @@
                                 var $lastTableRow = that.$body.children().last();
 
                                 $.each($lastTableRow.children(), function (index, lastTableRowCell) {
-
                                     $(lastTableRowCell).html(footerHtml[index]);
                                 });
                             }
@@ -149,10 +146,10 @@
                         }
 
                         if (that.options.sidePagination === 'server') {
-                            var dataServer = {total: that.options.totalRows};
+                            var dataServer = { total: that.options.totalRows };
                             dataServer[that.options.dataField] = data;
                             data = dataServer;
-                            var selectedDataServer = {total: selectedData.length};
+                            var selectedDataServer = { total: selectedData.length };
                             selectedDataServer[that.options.dataField] = selectedData;
                             selectedData = selectedDataServer;
                         }

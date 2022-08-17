@@ -43,53 +43,52 @@
         formatClearFilters: function () {
             return 'Vider les filtres';
         },
-        formatMultipleSort: function() {
+        formatMultipleSort: function () {
             return 'Tri avancé';
         },
-        formatAddLevel: function() {
+        formatAddLevel: function () {
             return 'Ajouter un niveau';
         },
-        formatDeleteLevel: function() {
+        formatDeleteLevel: function () {
             return 'Supprimer un niveau';
         },
-        formatColumn: function() {
+        formatColumn: function () {
             return 'Colonne';
         },
-        formatOrder: function() {
+        formatOrder: function () {
             return 'Ordre';
         },
-        formatSortBy: function() {
+        formatSortBy: function () {
             return 'Trier par';
         },
-        formatThenBy: function() {
+        formatThenBy: function () {
             return 'Puis par';
         },
-        formatSort: function() {
+        formatSort: function () {
             return 'Trier';
         },
-        formatCancel: function() {
+        formatCancel: function () {
             return 'Annuler';
         },
-        formatDuplicateAlertTitle: function() {
+        formatDuplicateAlertTitle: function () {
             return 'Doublon(s) détecté(s)!';
         },
-        formatDuplicateAlertDescription: function() {
+        formatDuplicateAlertDescription: function () {
             return 'Supprimez ou changez les colonnes dupliquées.';
         },
-        formatSortOrders: function() {
+        formatSortOrders: function () {
             return {
                 asc: 'Croissant',
                 desc: 'Décroissant'
             };
         },
-        formatAdvancedSearch: function() {
+        formatAdvancedSearch: function () {
             return 'Recherche avancée';
         },
-        formatAdvancedCloseButton: function() {
+        formatAdvancedCloseButton: function () {
             return "Fermer";
         }
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['fr-FR']);
-
 })(jQuery);

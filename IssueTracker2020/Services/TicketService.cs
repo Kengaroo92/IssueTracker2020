@@ -1,11 +1,11 @@
 ﻿using IssueTracker2020.Data;
 using IssueTracker2020.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 
 namespace IssueTracker2020.Services
 {
@@ -25,6 +25,7 @@ namespace IssueTracker2020.Services
             _projectService = projectService;
             _user = _context.Users.Find(_userManager.GetUserId(_contextAccessor.HttpContext.User));
         }
+
         public int StatusFilter(string statusName)
         {
             return _context.TicketStatuses.Where(t => t.Name == statusName).FirstOrDefault().Id;
@@ -66,7 +67,6 @@ namespace IssueTracker2020.Services
                     .Include(t => t.TicketPriority)
                     .Include(t => t.TicketStatus)
                     .Include(t => t.TicketType);
-
 
                 return tickets;
             }

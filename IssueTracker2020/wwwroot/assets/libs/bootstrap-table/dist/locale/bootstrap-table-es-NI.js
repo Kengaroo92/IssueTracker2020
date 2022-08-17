@@ -36,5 +36,4 @@
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['es-NI']);
-
 })(jQuery);

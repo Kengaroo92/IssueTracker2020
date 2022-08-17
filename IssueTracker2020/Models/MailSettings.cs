@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace IssueTracker2020.Models
+﻿namespace IssueTracker2020.Models
 {
     public class MailSettings
     {

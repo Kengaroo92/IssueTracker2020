@@ -2,7 +2,7 @@ import { Chart } from './core';
 
 Chart.prototype.xgrids = function (grids) {
     var $$ = this.internal, config = $$.config;
-    if (! grids) { return config.grid_x_lines; }
+    if (!grids) { return config.grid_x_lines; }
     config.grid_x_lines = grids;
     $$.redrawWithoutRescale();
     return config.grid_x_lines;
@@ -18,7 +18,7 @@ Chart.prototype.xgrids.remove = function (params) { // TODO: multiple
 
 Chart.prototype.ygrids = function (grids) {
     var $$ = this.internal, config = $$.config;
-    if (! grids) { return config.grid_y_lines; }
+    if (!grids) { return config.grid_y_lines; }
     config.grid_y_lines = grids;
     $$.redrawWithoutRescale();
     return config.grid_y_lines;

@@ -7,7 +7,6 @@
  */
 
 !function ($) {
-
     'use strict';
 
     $.extend($.fn.bootstrapTable.defaults, {
@@ -32,7 +31,7 @@
                     $toggle = that.$toolbar.find('button[name="toggle"]'),
                     $paginationSwitch = that.$toolbar.find('button[name="paginationSwitch"]');
 
-                if (document.activeElement === $search.get(0) || !$.contains(document.activeElement ,that.$toolbar.get(0))) {
+                if (document.activeElement === $search.get(0) || !$.contains(document.activeElement, that.$toolbar.get(0))) {
                     return true;
                 }
 

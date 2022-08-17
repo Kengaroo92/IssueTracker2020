@@ -37,8 +37,8 @@ ChartInternal.prototype.isNotXAndNotEpochs = function (key) {
  *
  * @return {boolean}
  */
-ChartInternal.prototype.isStackNormalized = function() {
-  return this.config.data_stack_normalize && this.config.data_groups.length > 0;
+ChartInternal.prototype.isStackNormalized = function () {
+    return this.config.data_stack_normalize && this.config.data_groups.length > 0;
 };
 
 /**
@@ -50,7 +50,7 @@ ChartInternal.prototype.isStackNormalized = function() {
  * @param axisId Axis ID (y or y2)
  * @return {Boolean}
  */
-ChartInternal.prototype.isAxisNormalized = function(axisId) {
+ChartInternal.prototype.isAxisNormalized = function (axisId) {
     const $$ = this;
 
     if (!$$.isStackNormalized()) { // shortcut
@@ -71,7 +71,7 @@ ChartInternal.prototype.isAxisNormalized = function(axisId) {
  * @param targetId ID of the target
  * @return {Boolean} True if the target is normalized, false otherwise.
  */
-ChartInternal.prototype.isTargetNormalized = function(targetId) {
+ChartInternal.prototype.isTargetNormalized = function (targetId) {
     const $$ = this;
 
     return $$.isStackNormalized() && $$.config.data_groups.some((group) => group.includes(targetId));
@@ -92,7 +92,7 @@ ChartInternal.prototype.getXKey = function (id) {
  * @param axisId Compute sum for data associated to given axis.
  * @return {Array}
  */
-ChartInternal.prototype.getTotalPerIndex = function(axisId) {
+ChartInternal.prototype.getTotalPerIndex = function (axisId) {
     const $$ = this;
 
     if (!$$.isStackNormalized()) {
@@ -139,7 +139,7 @@ ChartInternal.prototype.getTotalPerIndex = function(axisId) {
  * @private
  * @return {Number}
  */
-ChartInternal.prototype.getTotalDataSum = function() {
+ChartInternal.prototype.getTotalDataSum = function () {
     const $$ = this;
 
     const cached = $$.getFromCache('getTotalDataSum');
@@ -284,7 +284,7 @@ ChartInternal.prototype.isLegendToShow = function (targetId) {
  *
  * @return {Array}
  */
-ChartInternal.prototype.getTargetsToShow = function() {
+ChartInternal.prototype.getTargetsToShow = function () {
     const $$ = this;
     return $$.filterTargetsToShow($$.data.targets);
 };
@@ -591,7 +591,7 @@ ChartInternal.prototype.dist = function (data, pos) {
         x = $$.x(data.x);
     return Math.sqrt(Math.pow(x - pos[xIndex], 2) + Math.pow(y - pos[yIndex], 2));
 };
-ChartInternal.prototype.horizontalDistance = function(data, pos) {
+ChartInternal.prototype.horizontalDistance = function (data, pos) {
     var $$ = this,
         config = $$.config,
         xIndex = config.axis_rotated ? 1 : 0,
@@ -634,7 +634,7 @@ ChartInternal.prototype.convertValuesToStep = function (values) {
  * @return {Number} Ratio value
  * @private
  */
-ChartInternal.prototype.getRatio = function(type, d, asPercent = false) {
+ChartInternal.prototype.getRatio = function (type, d, asPercent = false) {
     const $$ = this;
     const api = $$.api;
     let ratio = 0;

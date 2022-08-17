@@ -1,5 +1,4 @@
-$(function() {
-
+$(function () {
     // Handles
     var handlesSlider = document.getElementById('slider-handles');
 
@@ -10,7 +9,6 @@ $(function() {
             'max': [10000]
         }
     });
-
 
     // Range
     var rangeSlider = document.getElementById('slider-range');
@@ -23,7 +21,6 @@ $(function() {
         }
     });
 
-
     // Stepping and snapping to values
     var stepSlider = document.getElementById('slider-step');
 
@@ -35,7 +32,6 @@ $(function() {
             'max': [10000]
         }
     });
-
 
     // Non-linear sliders
     var nonLinearSlider = document.getElementById('slider-non-linear');
@@ -50,7 +46,6 @@ $(function() {
         }
     });
 
-
     // Stepping in non-linear sliders
     var nonLinearStepSlider = document.getElementById('slider-non-linear-step');
 
@@ -63,7 +58,6 @@ $(function() {
             'max': [10000]
         }
     });
-
 
     // Snapping between steps
     var snapSlider = document.getElementById('slider-snap');
@@ -96,7 +90,6 @@ $(function() {
         }
     });
 
-
     // Drag
     var dragSlider = document.getElementById('drag');
 
@@ -109,7 +102,6 @@ $(function() {
             'max': 80
         }
     });
-
 
     // Fixed dragging
     dragFixedSlider = document.getElementById('drag-fixed');
@@ -124,7 +116,6 @@ $(function() {
         }
     });
 
-
     // Snap
     snapSlider = document.getElementById('snap');
 
@@ -137,7 +128,6 @@ $(function() {
             'max': 80
         }
     });
-
 
     // Hover
     var hoverSlider = document.getElementById('hover'),
@@ -152,10 +142,9 @@ $(function() {
         }
     });
 
-    hoverSlider.noUiSlider.on('hover', function(value) {
+    hoverSlider.noUiSlider.on('hover', function (value) {
         field.innerHTML = value;
     });
-
 
     // Combined options
     dragTapSlider = document.getElementById('combined');
@@ -169,7 +158,6 @@ $(function() {
             'max': 80
         }
     });
-
 
     var range_all_sliders = {
         'min': [0],
@@ -200,7 +188,6 @@ $(function() {
             density: 3
         }
     });
-
 
     // Steps
 
@@ -237,7 +224,6 @@ $(function() {
         }
     });
 
-
     // Success
     var successColorSlider = document.getElementById('success-color-slider');
 
@@ -250,7 +236,6 @@ $(function() {
             'max': 80
         }
     });
-
 
     // Info
     var infoColorSlider = document.getElementById('info-color-slider');
@@ -265,7 +250,6 @@ $(function() {
         }
     });
 
-
     // Warning
     var warningColorSlider = document.getElementById('warning-color-slider');
 
@@ -278,7 +262,6 @@ $(function() {
             'max': 80
         }
     });
-
 
     // Danger
     var dangerColorSlider = document.getElementById('danger-color-slider');
@@ -293,7 +276,6 @@ $(function() {
         }
     });
 
-
     // Custom Color
     var customColorSlider = document.getElementById('custom-color-slider');
 
@@ -306,7 +288,6 @@ $(function() {
             'max': 80
         }
     });
-
 
     // Extra large options
     var xl_options = {
@@ -404,7 +385,6 @@ $(function() {
     noUiSlider.create(circleExtraSmallSlider, xs_options);
     noUiSlider.create(squareExtraSmallSlider, xs_options);
 
-
     // Default
     var vertical_slider_1 = document.getElementById('slider-vertical-1');
 
@@ -460,7 +440,6 @@ $(function() {
             'max': 100
         }
     });
-
 
     // Connect to lower
     var connectLowerSlider1 = document.getElementById('connect-lower-1');
@@ -523,7 +502,6 @@ $(function() {
         }
     });
 
-
     // Connect to upper
     var connectUpperSlider1 = document.getElementById('connect-upper-1');
 
@@ -584,7 +562,6 @@ $(function() {
             'max': 100
         }
     });
-
 
     // Tooltips
     var tooltipSlider1 = document.getElementById('slider-tooltips-1');
@@ -669,7 +646,6 @@ $(function() {
         }
     });
 
-
     // Direction bottom to top
     var directionBottomTop1 = document.getElementById('slider-direction-bottom-top-1');
 
@@ -712,8 +688,6 @@ $(function() {
             density: 5
         }
     });
-
-
 
     // Margin
     var verticalMarginSlider1 = document.getElementById('vertical-margin-1');
@@ -872,7 +846,6 @@ $(function() {
 
     var verticalStepSlider5 = document.getElementById('vertical-steps-5');
     noUiSlider.create(verticalStepSlider5, stepsOptions);
-
 
     // Extra large options
     var vertical_xl_options = {

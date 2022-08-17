@@ -39,7 +39,6 @@ namespace IssueTracker2020.Services
             await smtp.SendAsync(email);
 
             smtp.Disconnect(true);
-
         }
     }
 }

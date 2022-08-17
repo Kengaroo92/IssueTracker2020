@@ -13,6 +13,7 @@ namespace IssueTracker2020.Services
         {
             _context = context;
         }
+
         public async Task<bool> CanInteractProject(string userId, int projectId, string roleName)
         {
             switch (roleName)

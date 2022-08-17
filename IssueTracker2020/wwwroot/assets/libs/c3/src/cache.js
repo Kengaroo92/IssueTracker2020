@@ -23,7 +23,7 @@ ChartInternal.prototype.getFromCache = function (key) {
 /**
  * Reset cached data
  */
-ChartInternal.prototype.resetCache = function() {
+ChartInternal.prototype.resetCache = function () {
     Object.keys(this.cache)
         .filter((key) => /^\$/.test(key))
         .forEach((key) => {
@@ -35,7 +35,7 @@ ChartInternal.prototype.resetCache = function() {
 
 ChartInternal.prototype.hasCaches = function (ids) {
     for (var i = 0; i < ids.length; i++) {
-        if (! (ids[i] in this.cache)) { return false; }
+        if (!(ids[i] in this.cache)) { return false; }
     }
     return true;
 };

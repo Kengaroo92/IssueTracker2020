@@ -44,9 +44,7 @@
         formatClearFilters: function () {
             return 'Pulisci filtri';
         }
-        
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['it-IT']);
-
 })(jQuery);

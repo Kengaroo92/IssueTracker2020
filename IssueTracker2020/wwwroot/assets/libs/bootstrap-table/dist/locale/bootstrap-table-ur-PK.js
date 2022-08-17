@@ -13,7 +13,7 @@
             return pageNumber + ' ریکارڈز فی صفہ ';
         },
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
-            return 'دیکھیں ' + pageFrom + ' سے ' + pageTo + ' کے ' +  totalRows + 'ریکارڈز';
+            return 'دیکھیں ' + pageFrom + ' سے ' + pageTo + ' کے ' + totalRows + 'ریکارڈز';
         },
         formatSearch: function () {
             return 'تلاش';
@@ -33,5 +33,4 @@
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['ur-PK']);
-
 })(jQuery);

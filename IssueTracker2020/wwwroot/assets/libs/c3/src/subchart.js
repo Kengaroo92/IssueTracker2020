@@ -50,7 +50,7 @@ ChartInternal.prototype.initBrush = function (scale) {
             }
             return [];
         }
-        selection = $$.brush.selection() || [0,0];
+        selection = $$.brush.selection() || [0, 0];
         return [this.scale.invert(selection[0]), this.scale.invert(selection[1])];
     };
     $$.brush.empty = function () {
@@ -241,8 +241,8 @@ ChartInternal.prototype.redrawForBrush = function () {
     // update zoom transation binded to event rect
     s = d3.event.selection || $$.brush.scale.range();
     $$.main.select('.' + CLASS.eventRect).call($$.zoom.transform, d3.zoomIdentity
-                                               .scale($$.width / (s[1] - s[0]))
-                                               .translate(-s[0], 0));
+        .scale($$.width / (s[1] - s[0]))
+        .translate(-s[0], 0));
     $$.config.subchart_onbrush.call($$.api, x.orgDomain());
 };
 ChartInternal.prototype.transformContext = function (withTransition, transitions) {

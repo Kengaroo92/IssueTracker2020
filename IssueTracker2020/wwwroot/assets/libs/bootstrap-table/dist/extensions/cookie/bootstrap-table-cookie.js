@@ -65,7 +65,7 @@
 
         cookieName = that.options.cookieIdTable + '.' + cookieName;
 
-        switch(that.options.cookieStorage) {
+        switch (that.options.cookieStorage) {
             case 'cookieStorage':
                 document.cookie = [
                     cookieName, '=', cookieValue,
@@ -98,7 +98,7 @@
 
         cookieName = tableName + '.' + cookieName;
 
-        switch(that.options.cookieStorage) {
+        switch (that.options.cookieStorage) {
             case 'cookieStorage':
                 var value = '; ' + document.cookie;
                 var parts = value.split('; ' + cookieName + '=');
@@ -115,7 +115,7 @@
     var deleteCookie = function (that, tableName, cookieName) {
         cookieName = tableName + '.' + cookieName;
 
-        switch(that.options.cookieStorage) {
+        switch (that.options.cookieStorage) {
             case 'cookieStorage':
                 document.cookie = [
                     encodeURIComponent(cookieName), '=',
@@ -130,12 +130,11 @@
             case 'sessionStorage':
                 sessionStorage.removeItem(cookieName);
                 break;
-
         }
         return true;
     };
 
-    var calculateExpiration = function(cookieExpire) {
+    var calculateExpiration = function (cookieExpire) {
         var time = cookieExpire.replace(/[0-9]*/, ''); //s,mi,h,d,m,y
         cookieExpire = cookieExpire.replace(/[A-Za-z]{1,2}/, ''); //number
 
@@ -175,7 +174,6 @@
             var parsedCookieFilters = JSON.parse(getCookie(bootstrapTable, bootstrapTable.options.cookieIdTable, cookieIds.filterControl));
 
             if (!bootstrapTable.options.filterControlValuesLoaded && parsedCookieFilters) {
-
                 var cachedFilters = {},
                     header = getCurrentHeader(bootstrapTable),
                     searchControls = getCurrentSearchControls(bootstrapTable),
@@ -289,7 +287,6 @@
         _initServer.apply(this, Array.prototype.slice.apply(arguments));
     };
 
-
     BootstrapTable.prototype.initTable = function () {
         _initTable.apply(this, Array.prototype.slice.apply(arguments));
         this.initCookie();
@@ -394,7 +391,7 @@
     BootstrapTable.prototype.getCookies = function () {
         var bootstrapTable = this;
         var cookies = {};
-        $.each(cookieIds, function(key, value) {
+        $.each(cookieIds, function (key, value) {
             cookies[key] = getCookie(bootstrapTable, bootstrapTable.options.cookieIdTable, value);
             if (key === 'columns') {
                 cookies[key] = JSON.parse(cookies[key]);

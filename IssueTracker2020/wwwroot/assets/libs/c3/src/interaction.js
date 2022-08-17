@@ -47,12 +47,12 @@ ChartInternal.prototype.redrawEventRect = function () {
         .attr('y', 0)
         .attr('width', $$.width)
         .attr('height', $$.height)
-        .on('mouseout',  config.interaction_enabled ? function () {
+        .on('mouseout', config.interaction_enabled ? function () {
             if (!config) { return; } // chart is destroyed
             if ($$.hasArcType()) { return; }
-            if ($$.mouseover){
-              config.data_onmouseout.call($$.api, $$.mouseover);
-              $$.mouseover = undefined;
+            if ($$.mouseover) {
+                config.data_onmouseout.call($$.api, $$.mouseover);
+                $$.mouseover = undefined;
             }
             mouseout();
         } : null)
@@ -84,7 +84,7 @@ ChartInternal.prototype.redrawEventRect = function () {
             }
 
             // show cursor as pointer if we're hovering a data point close enough
-            $$.svg.select('.' + CLASS.eventRect).style('cursor', isMouseCloseToDataPoint ? 'pointer' :  null);
+            $$.svg.select('.' + CLASS.eventRect).style('cursor', isMouseCloseToDataPoint ? 'pointer' : null);
 
             // if tooltip not grouped, we want to display only data from closest data point
             const showSingleDataPoint = !config.tooltip_grouped || $$.hasType('stanford', targetsToShow);
@@ -93,7 +93,7 @@ ChartInternal.prototype.redrawEventRect = function () {
             let selectedData;
             if (showSingleDataPoint) {
                 if (closest) {
-                    selectedData = [ closest ];
+                    selectedData = [closest];
                 }
             } else {
                 let closestByX;
@@ -176,7 +176,6 @@ ChartInternal.prototype.redrawEventRect = function () {
                 const shape = $$.main.selectAll('.' + CLASS.shapes + $$.getTargetSelectorSuffix(closest.id)).select('.' + CLASS.shape + '-' + closest.index);
                 config.data_onclick.call($$.api, closest, shape.node());
             }
-
         } : null)
         .call(
             config.interaction_enabled && config.data_selection_draggable && $$.drag ? (
@@ -184,7 +183,7 @@ ChartInternal.prototype.redrawEventRect = function () {
                     .on('drag', function () { $$.drag(d3.mouse(this)); })
                     .on('start', function () { $$.dragstart(d3.mouse(this)); })
                     .on('end', function () { $$.dragend(); })
-            ) : function () {}
+            ) : function () { }
         );
 };
 ChartInternal.prototype.getMousePosition = function (data) {
@@ -201,6 +200,6 @@ ChartInternal.prototype.dispatchEvent = function (type, mouse) {
         event = document.createEvent("MouseEvents");
 
     event.initMouseEvent(type, true, true, window, 0, x, y, x, y,
-                         false, false, false, false, 0, null);
+        false, false, false, false, 0, null);
     eventRect.dispatchEvent(event);
 };

@@ -9,7 +9,7 @@ Chart.prototype.resize = function (size) {
 
 Chart.prototype.flush = function () {
     var $$ = this.internal;
-    $$.updateAndRedraw({withLegend: true, withTransition: false, withTransitionForTransform: false});
+    $$.updateAndRedraw({ withLegend: true, withTransition: false, withTransitionForTransform: false });
 };
 
 Chart.prototype.destroy = function () {

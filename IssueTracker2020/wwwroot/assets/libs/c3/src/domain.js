@@ -21,7 +21,7 @@ ChartInternal.prototype.getYDomainMin = function (targets) {
             // Compute min
             for (k = 1; k < idsInGroup.length; k++) {
                 id = idsInGroup[k];
-                if (! ys[id]) { continue; }
+                if (!ys[id]) { continue; }
                 ys[id].forEach(function (v, i) {
                     if ($$.axis.getId(id) === $$.axis.getId(baseId) && ys[baseId] && !(hasNegativeValue && +v > 0)) {
                         ys[baseId][i] += +v;
@@ -52,7 +52,7 @@ ChartInternal.prototype.getYDomainMax = function (targets) {
             // Compute max
             for (k = 1; k < idsInGroup.length; k++) {
                 id = idsInGroup[k];
-                if (! ys[id]) { continue; }
+                if (!ys[id]) { continue; }
                 ys[id].forEach(function (v, i) {
                     if ($$.axis.getId(id) === $$.axis.getId(baseId) && ys[baseId] && !(hasPositiveValue && +v < 0)) {
                         ys[baseId][i] += +v;
@@ -135,9 +135,9 @@ ChartInternal.prototype.getYDomain = function (targets, axisId, xDomain) {
         const pixelsToAxisPadding = $$.getY(
             config[`axis_${axisId}_type`],
             // input domain as pixels
-            [0, config.axis_rotated ? $$.width : $$.height ],
+            [0, config.axis_rotated ? $$.width : $$.height],
             // output range as axis padding
-            [ 0, domainLength ]
+            [0, domainLength]
         );
 
         padding_top += pixelsToAxisPadding(lengths[1]);
@@ -163,13 +163,13 @@ ChartInternal.prototype.getXDomainMin = function (targets) {
     var $$ = this, config = $$.config;
     return isDefined(config.axis_x_min) ?
         ($$.isTimeSeries() ? this.parseDate(config.axis_x_min) : config.axis_x_min) :
-    $$.d3.min(targets, function (t) { return $$.d3.min(t.values, function (v) { return v.x; }); });
+        $$.d3.min(targets, function (t) { return $$.d3.min(t.values, function (v) { return v.x; }); });
 };
 ChartInternal.prototype.getXDomainMax = function (targets) {
     var $$ = this, config = $$.config;
     return isDefined(config.axis_x_max) ?
         ($$.isTimeSeries() ? this.parseDate(config.axis_x_max) : config.axis_x_max) :
-    $$.d3.max(targets, function (t) { return $$.d3.max(t.values, function (v) { return v.x; }); });
+        $$.d3.max(targets, function (t) { return $$.d3.max(t.values, function (v) { return v.x; }); });
 };
 ChartInternal.prototype.getXDomainPadding = function (domain) {
     var $$ = this, config = $$.config,
@@ -191,7 +191,7 @@ ChartInternal.prototype.getXDomainPadding = function (domain) {
     } else {
         paddingLeft = paddingRight = padding;
     }
-    return {left: paddingLeft, right: paddingRight};
+    return { left: paddingLeft, right: paddingRight };
 };
 ChartInternal.prototype.getXDomain = function (targets) {
     var $$ = this,

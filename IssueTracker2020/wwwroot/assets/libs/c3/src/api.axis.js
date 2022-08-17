@@ -1,7 +1,7 @@
 import { Chart } from './core';
 import { isValue, isDefined } from './util';
 
-Chart.prototype.axis = function () {};
+Chart.prototype.axis = function () { };
 Chart.prototype.axis.labels = function (labels) {
     var $$ = this.internal;
     if (arguments.length) {
@@ -22,7 +22,7 @@ Chart.prototype.axis.max = function (max) {
         } else {
             config.axis_y_max = config.axis_y2_max = max;
         }
-        $$.redraw({withUpdateOrgXDomain: true, withUpdateXDomain: true});
+        $$.redraw({ withUpdateOrgXDomain: true, withUpdateXDomain: true });
     } else {
         return {
             x: config.axis_x_max,
@@ -41,7 +41,7 @@ Chart.prototype.axis.min = function (min) {
         } else {
             config.axis_y_min = config.axis_y2_min = min;
         }
-        $$.redraw({withUpdateOrgXDomain: true, withUpdateXDomain: true});
+        $$.redraw({ withUpdateOrgXDomain: true, withUpdateXDomain: true });
     } else {
         return {
             x: config.axis_x_min,

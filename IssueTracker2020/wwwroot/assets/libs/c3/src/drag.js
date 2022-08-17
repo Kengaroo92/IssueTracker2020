@@ -62,7 +62,7 @@ ChartInternal.prototype.drag = function (mouse) {
 ChartInternal.prototype.dragstart = function (mouse) {
     var $$ = this, config = $$.config;
     if ($$.hasArcType()) { return; }
-    if (! config.data_selection_enabled) { return; } // do nothing if not selectable
+    if (!config.data_selection_enabled) { return; } // do nothing if not selectable
     $$.dragStart = mouse;
     $$.main.select('.' + CLASS.chart).append('rect')
         .attr('class', CLASS.dragarea)
@@ -73,7 +73,7 @@ ChartInternal.prototype.dragstart = function (mouse) {
 ChartInternal.prototype.dragend = function () {
     var $$ = this, config = $$.config;
     if ($$.hasArcType()) { return; }
-    if (! config.data_selection_enabled) { return; } // do nothing if not selectable
+    if (!config.data_selection_enabled) { return; } // do nothing if not selectable
     $$.main.select('.' + CLASS.dragarea)
         .transition().duration(100)
         .style('opacity', 0)

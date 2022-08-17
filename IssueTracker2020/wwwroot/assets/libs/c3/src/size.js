@@ -62,7 +62,7 @@ ChartInternal.prototype.getParentRectValue = function (key) {
     while (parent && parent.tagName !== 'BODY') {
         try {
             v = parent.getBoundingClientRect()[key];
-        } catch(e) {
+        } catch (e) {
             if (key === 'width') {
                 // In IE in certain cases getBoundingClientRect
                 // will cause an "unspecified error"
@@ -84,19 +84,17 @@ ChartInternal.prototype.getParentHeight = function () {
     return h.indexOf('px') > 0 ? +h.replace('px', '') : 0;
 };
 
-
 ChartInternal.prototype.getSvgLeft = function (withoutRecompute) {
     var $$ = this, config = $$.config,
         hasLeftAxisRect = config.axis_rotated || (!config.axis_rotated && !config.axis_y_inner),
         leftAxisClass = config.axis_rotated ? CLASS.axisX : CLASS.axisY,
         leftAxis = $$.main.select('.' + leftAxisClass).node(),
-        svgRect = leftAxis && hasLeftAxisRect ? leftAxis.getBoundingClientRect() : {right: 0},
+        svgRect = leftAxis && hasLeftAxisRect ? leftAxis.getBoundingClientRect() : { right: 0 },
         chartRect = $$.selectChart.node().getBoundingClientRect(),
         hasArc = $$.hasArcType(),
         svgLeft = svgRect.right - chartRect.left - (hasArc ? 0 : $$.getCurrentPaddingLeft(withoutRecompute));
     return svgLeft > 0 ? svgLeft : 0;
 };
-
 
 ChartInternal.prototype.getAxisWidthByAxisId = function (id, withoutRecompute) {
     var $$ = this, position = $$.axis.getLabelPositionById(id);
@@ -120,4 +118,3 @@ ChartInternal.prototype.getHorizontalAxisHeight = function (axisId) {
     }
     return h + ($$.axis.getLabelPositionById(axisId).isInner ? 0 : 10) + (axisId === 'y2' ? -10 : 0);
 };
-

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace IssueTracker2020.Services
 {
-    interface INotificationService
+    internal interface INotificationService
     {
         public List<Notification> NotificationList();
     }

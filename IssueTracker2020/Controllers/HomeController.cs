@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using IssueTracker2020.Data;
+using IssueTracker2020.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using IssueTracker2020.Models;
-using Microsoft.AspNetCore.Authorization;
-using IssueTracker2020.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace IssueTracker2020.Controllers
 {
@@ -72,7 +70,6 @@ namespace IssueTracker2020.Controllers
 
             return View(await ticket.ToListAsync());
         }
-
 
         [AllowAnonymous]
         public IActionResult LandingPage()

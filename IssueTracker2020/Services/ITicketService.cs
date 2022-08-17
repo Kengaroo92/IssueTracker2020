@@ -1,8 +1,5 @@
-﻿using IssueTracker2020.Data;
-using IssueTracker2020.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using IssueTracker2020.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace IssueTracker2020.Services
@@ -14,6 +11,5 @@ namespace IssueTracker2020.Services
         public int StatusCount(string statusName);
 
         public Task<IEnumerable<Ticket>> ListUserTickets();
-
     }
 }

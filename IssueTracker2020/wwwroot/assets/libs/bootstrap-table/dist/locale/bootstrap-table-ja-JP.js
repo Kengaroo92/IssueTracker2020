@@ -13,7 +13,7 @@
             return 'ページ当たり最大' + pageNumber + '件';
         },
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
-            return '全' + totalRows + '件から、'+ pageFrom + 'から' + pageTo + '件目まで表示しています';
+            return '全' + totalRows + '件から、' + pageFrom + 'から' + pageTo + '件目まで表示しています';
         },
         formatSearch: function () {
             return '検索';
@@ -39,5 +39,4 @@
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['ja-JP']);
-
 })(jQuery);

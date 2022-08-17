@@ -8,26 +8,26 @@ const uglify = require('gulp-uglify');
 
 // Clean
 gulp.task('clean', 'Clean up!', () => {
-  return del('jquery.minicolors.min.js');
+    return del('jquery.minicolors.min.js');
 });
 
 // Minify
 gulp.task('minify', 'Minify it!', ['clean'], () => {
-  return gulp.src('jquery.minicolors.js')
-    .pipe(uglify({
-      preserveComments: 'license'
-    }))
-    .on('error', (err) => {
-      console.error(err);
-      this.emit('end');
-    })
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(__dirname));
+    return gulp.src('jquery.minicolors.js')
+        .pipe(uglify({
+            preserveComments: 'license'
+        }))
+        .on('error', (err) => {
+            console.error(err);
+            this.emit('end');
+        })
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest(__dirname));
 });
 
 // Watch for changes
 gulp.task('watch', 'Watch for changes!', () => {
-  gulp.watch('jquery.minicolors.js', ['minify']);
+    gulp.watch('jquery.minicolors.js', ['minify']);
 });
 
 // Default

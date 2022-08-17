@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IssueTracker2020.Data;
+﻿using IssueTracker2020.Data;
 using IssueTracker2020.Models;
 using IssueTracker2020.Models.ViewModels;
 using IssueTracker2020.Services;
@@ -10,6 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IssueTracker2020.Controllers
 {
@@ -42,7 +42,6 @@ namespace IssueTracker2020.Controllers
             }
 
             return View(BTUser);
-
         }
 
         [HttpPost]
@@ -62,7 +61,6 @@ namespace IssueTracker2020.Controllers
             }
 
             return RedirectToAction("ManagerUserRoles");
-
         }
     }
 }

@@ -1,6 +1,6 @@
 import { Chart } from './core';
 
-Chart.prototype.tooltip = function () {};
+Chart.prototype.tooltip = function () { };
 Chart.prototype.tooltip.show = function (args) {
     var $$ = this.internal, targets, data, mouse = {};
 
@@ -15,11 +15,11 @@ Chart.prototype.tooltip.show = function (args) {
         }
         else if (typeof args.x !== 'undefined') {
             if (args.id) {
-                targets = $$.data.targets.filter(function(t){ return t.id === args.id; });
+                targets = $$.data.targets.filter(function (t) { return t.id === args.id; });
             } else {
                 targets = $$.data.targets;
             }
-            data = $$.filterByX(targets, args.x).slice(0,1)[0];
+            data = $$.filterByX(targets, args.x).slice(0, 1)[0];
         }
         mouse = data ? $$.getMousePosition(data) : null;
     }

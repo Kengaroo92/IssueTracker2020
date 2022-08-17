@@ -1,6 +1,5 @@
 ﻿using IssueTracker2020.Data;
 using IssueTracker2020.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -89,7 +88,6 @@ namespace IssueTracker2020.Services
             return projectusers;
 
             //return await _context.Users.Where(u => IsUserOnProject(u.Id, projectId)).ToListAsync();
-
         }
 
         public async Task<ICollection<BTUser>> UsersNotOnProject(int projectId)

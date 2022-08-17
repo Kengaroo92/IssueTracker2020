@@ -9,7 +9,7 @@
 
     var initResizable = function (that) {
         //Deletes the plugin to re-create it
-        that.$el.colResizable({disable: true});
+        that.$el.colResizable({ disable: true });
 
         //Creates the plugin
         that.$el.colResizable({
@@ -50,7 +50,7 @@
 
         if (this.options.resizable && this.options.cardView) {
             //Deletes the plugin
-            $(this.$el).colResizable({disable: true});
+            $(this.$el).colResizable({ disable: true });
         }
     };
 

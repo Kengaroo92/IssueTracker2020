@@ -85,7 +85,6 @@ ChartInternal.prototype.isWithinShape = function (that, d) {
     return isWithin;
 };
 
-
 ChartInternal.prototype.getInterpolate = function (d) {
     var $$ = this, d3 = $$.d3,
         types = {

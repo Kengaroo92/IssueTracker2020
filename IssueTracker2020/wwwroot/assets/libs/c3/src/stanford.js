@@ -1,5 +1,5 @@
-import {ChartInternal} from './core';
-import {isFunction, sanitise} from "./util";
+import { ChartInternal } from './core';
+import { isFunction, sanitise } from "./util";
 
 ChartInternal.prototype.isStanfordGraphType = function () {
     var $$ = this;
@@ -92,7 +92,7 @@ ChartInternal.prototype.countEpochsInRegion = function (region) {
     total = target.values.reduce((accumulator, currentValue) => accumulator + Number(currentValue.epochs), 0);
 
     count = target.values.reduce((accumulator, currentValue) => {
-        if(pointInRegion(currentValue, region)) {
+        if (pointInRegion(currentValue, region)) {
             return accumulator + Number(currentValue.epochs);
         }
 
@@ -105,7 +105,7 @@ ChartInternal.prototype.countEpochsInRegion = function (region) {
     };
 };
 
-export var getRegionArea = function(points) { // thanks to: https://stackoverflow.com/questions/16282330/find-centerpoint-of-polygon-in-javascript
+export var getRegionArea = function (points) { // thanks to: https://stackoverflow.com/questions/16282330/find-centerpoint-of-polygon-in-javascript
     var area = 0,
         i,
         j,
@@ -124,7 +124,7 @@ export var getRegionArea = function(points) { // thanks to: https://stackoverflo
     return area;
 };
 
-export var pointInRegion = function(point, region) { // thanks to: http://bl.ocks.org/bycoffe/5575904
+export var pointInRegion = function (point, region) { // thanks to: http://bl.ocks.org/bycoffe/5575904
     // ray-casting algorithm based on
     // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
     let xi, yi, yj, xj, intersect,
@@ -133,7 +133,6 @@ export var pointInRegion = function(point, region) { // thanks to: http://bl.ock
         inside = false;
 
     for (let i = 0, j = region.length - 1; i < region.length; j = i++) {
-
         xi = region[i].x;
         yi = region[i].y;
 
@@ -150,7 +149,7 @@ export var pointInRegion = function(point, region) { // thanks to: http://bl.ock
     return inside;
 };
 
-export var compareEpochs = function(a, b) {
+export var compareEpochs = function (a, b) {
     if (a.epochs < b.epochs) {
         return -1;
     }

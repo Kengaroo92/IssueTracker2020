@@ -168,7 +168,7 @@ ChartInternal.prototype.generateFlow = function (args) {
             flowEnd = $$.getValueOnIndex($$.data.targets[0].values, flowIndex + flowLength),
             orgDomain = $$.x.domain(), domain,
             durationForFlow = flow.duration || duration,
-            done = flow.done || function () {},
+            done = flow.done || function () { },
             wait = $$.generateWait();
 
         var xgrid,

@@ -1,4 +1,4 @@
-import {ChartInternal} from "./chart-internal";
+import { ChartInternal } from "./chart-internal";
 import CLASS from "./class";
 
 ChartInternal.prototype.initStanfordElements = function () {
@@ -115,10 +115,10 @@ ChartInternal.prototype.updateStanfordElements = function (duration) {
         .attr("x", (d) => config.axis_rotated ? yvCustom($$.getCentroid(d.points), 'y') : xvCustom($$.getCentroid(d.points), 'x'))
         .attr("y", (d) => config.axis_rotated ? xvCustom($$.getCentroid(d.points), 'x') : yvCustom($$.getCentroid(d.points), 'y'))
         .text(function (d) {
-            if(d.text) {
+            if (d.text) {
                 var value, percentage, temp;
 
-                if($$.isStanfordGraphType()) {
+                if ($$.isStanfordGraphType()) {
                     temp = countPointsInRegion(d.points);
                     value = temp.value;
                     percentage = temp.percentage;

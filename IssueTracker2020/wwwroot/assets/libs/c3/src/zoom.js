@@ -99,7 +99,7 @@ ChartInternal.prototype.initDragZoom = function () {
             const zoomedDomain = getZoomedDomain(d3.event.selection);
 
             if (!config.zoom_disableDefaultBehavior) {
-              $$.api.zoom(zoomedDomain);
+                $$.api.zoom(zoomedDomain);
             }
 
             $$.svg

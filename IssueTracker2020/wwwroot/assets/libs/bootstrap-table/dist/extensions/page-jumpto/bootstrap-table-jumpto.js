@@ -32,13 +32,13 @@
             if (!$jumpto.length) {
                 $jumpto = $([
                     '<li class="jumpto">',
-                        '<input type="text" class="form-control">',
-                        '<button class="btn' +
-                            sprintf(' btn-%s', this.options.buttonsClass) +
-                            sprintf(' btn-%s', this.options.iconSize) +
-                            '" title="' + this.options.formatJumpto() + '" ' +
-                            ' type="button">'+this.options.formatJumpto(),
-                        '</button>',
+                    '<input type="text" class="form-control">',
+                    '<button class="btn' +
+                    sprintf(' btn-%s', this.options.buttonsClass) +
+                    sprintf(' btn-%s', this.options.iconSize) +
+                    '" title="' + this.options.formatJumpto() + '" ' +
+                    ' type="button">' + this.options.formatJumpto(),
+                    '</button>',
                     '</li>'].join('')).appendTo($pageGroup);
 
                 $jumpto.find('button').click(function () {

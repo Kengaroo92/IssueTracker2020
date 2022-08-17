@@ -18,7 +18,7 @@ ChartInternal.prototype.initLegend = function () {
 };
 ChartInternal.prototype.updateLegendWithDefaults = function () {
     var $$ = this;
-    $$.updateLegend($$.mapToIds($$.data.targets), {withTransform: false, withTransitionForTransform: false, withTransition: false});
+    $$.updateLegend($$.mapToIds($$.data.targets), { withTransform: false, withTransitionForTransform: false, withTransition: false });
 };
 ChartInternal.prototype.updateSizeForLegend = function (legendHeight, legendWidth) {
     var $$ = this, config = $$.config, insetLegendPosition = {
@@ -73,7 +73,7 @@ ChartInternal.prototype.toggleFocusLegend = function (targetIds, focus) {
     $$.legend.selectAll('.' + CLASS.legendItem)
         .filter(function (id) { return targetIds.indexOf(id) >= 0; })
         .classed(CLASS.legendItemFocused, focus)
-      .transition().duration(100)
+        .transition().duration(100)
         .style('opacity', function () {
             var opacity = focus ? $$.opacityForLegend : $$.opacityForUnfocusedLegend;
             return opacity.call($$, $$.d3.select(this));
@@ -124,7 +124,7 @@ ChartInternal.prototype.updateLegend = function (targetIds, options, transitions
     var texts, rects, tiles, background;
 
     // Skip elements when their name is set to null
-    targetIds = targetIds.filter(function(id) {
+    targetIds = targetIds.filter(function (id) {
         return !isDefined(config.data_names[id]) || config.data_names[id] !== null;
     });
 
@@ -309,15 +309,15 @@ ChartInternal.prototype.updateLegend = function (targetIds, options, transitions
         .attr('y', yForLegendRect);
 
     tiles = $$.legend.selectAll('line.' + CLASS.legendItemTile)
-            .data(targetIds);
-        (withTransition ? tiles.transition() : tiles)
-            .style('stroke', $$.levelColor ? function(id) {
-                return $$.levelColor($$.cache[id].values[0].value);
-            } : $$.color)
-            .attr('x1', x1ForLegendTile)
-            .attr('y1', yForLegendTile)
-            .attr('x2', x2ForLegendTile)
-            .attr('y2', yForLegendTile);
+        .data(targetIds);
+    (withTransition ? tiles.transition() : tiles)
+        .style('stroke', $$.levelColor ? function (id) {
+            return $$.levelColor($$.cache[id].values[0].value);
+        } : $$.color)
+        .attr('x1', x1ForLegendTile)
+        .attr('y1', yForLegendTile)
+        .attr('x2', x2ForLegendTile)
+        .attr('y2', yForLegendTile);
 
     if (background) {
         (withTransition ? background.transition() : background)

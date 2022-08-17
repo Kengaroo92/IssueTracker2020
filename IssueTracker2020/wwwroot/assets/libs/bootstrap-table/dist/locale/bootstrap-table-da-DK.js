@@ -33,5 +33,4 @@
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['da-DK']);
-
 })(jQuery);

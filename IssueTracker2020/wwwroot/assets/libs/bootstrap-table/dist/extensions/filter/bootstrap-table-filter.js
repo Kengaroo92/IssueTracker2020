@@ -3,8 +3,7 @@
  * extensions: https://github.com/lukaskral/bootstrap-table-filter
  */
 
-!function($) {
-
+!function ($) {
     'use strict';
 
     $.extend($.fn.bootstrapTable.defaults, {
@@ -63,5 +62,4 @@
     $.fn.bootstrapTable.methods.push('getColumns',
         'registerSearchCallback', 'updateSearch',
         'getServerUrl');
-
 }(jQuery);

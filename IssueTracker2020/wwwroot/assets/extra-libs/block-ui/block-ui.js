@@ -36,7 +36,6 @@ $(function() {
         });
     });
 
-
     // Block page
     $('.block-default').on('click', function() {
         $.blockUI({
@@ -78,7 +77,6 @@ $(function() {
         });
     });
 
-
     // onUnblock callback
     $('.onunblock').on('click', function() {
         $.blockUI({
@@ -100,7 +98,6 @@ $(function() {
             }
         });
     });
-
 
     // Overlay callback
     $('.onoverlay-click').on('click', function() {
@@ -139,7 +136,6 @@ $(function() {
             }
         });
     });
-
 
     // Block without overlay
     $('.without-overlay').on('click', function() {
@@ -206,5 +202,4 @@ $(function() {
             }
         });
     });
-
 });

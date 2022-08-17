@@ -1,7 +1,6 @@
 import CLASS from './class';
 import { ChartInternal } from './core';
 
-
 ChartInternal.prototype.generateTargetClass = function (targetId) {
     return targetId || targetId === 0 ? ('-' + targetId).replace(/\s/g, '-') : '';
 };

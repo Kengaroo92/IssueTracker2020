@@ -7,11 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IssueTracker2020.Models
 
 {
-
     public class BTUser : IdentityUser
 
     {
-
         [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
@@ -22,15 +20,15 @@ namespace IssueTracker2020.Models
 
         [Display(Name = "Full Name")]
         [NotMapped]
-        public string FullName { get { return $"{FirstName} {LastName}"; } }
+        public string FullName
+        { get { return $"{FirstName} {LastName}"; } }
 
         [Display(Name = "Avatar")]
         [MaxFileSize(2 * 1024 * 1024)]
         public string ImagePath { get; set; }
+
         public byte[] ImageData { get; set; }
 
         public List<ProjectUser> ProjectUsers { get; set; }
-
     }
-
 }

@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-
 namespace IssueTracker2020.Models
 
 {
-
     public class Ticket
 
     {
-
         public Ticket()
 
         {
@@ -66,7 +63,5 @@ namespace IssueTracker2020.Models
         public virtual ICollection<Notification> Notifications { get; set; }
 
         public virtual ICollection<TicketHistory> Histories { get; set; }
-
     }
-
 }

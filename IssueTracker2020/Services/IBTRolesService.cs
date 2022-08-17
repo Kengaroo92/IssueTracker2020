@@ -1,8 +1,6 @@
 ﻿using IssueTracker2020.Models;
 using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace IssueTracker2020.Services

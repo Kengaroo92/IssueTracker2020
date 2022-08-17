@@ -52,12 +52,12 @@ Chart.prototype.unload = function (args) {
     var $$ = this.internal;
     args = args || {};
     if (args instanceof Array) {
-        args = {ids: args};
+        args = { ids: args };
     } else if (typeof args === 'string') {
-        args = {ids: [args]};
+        args = { ids: [args] };
     }
     $$.unload($$.mapToTargetIds(args.ids), function () {
-        $$.redraw({withUpdateOrgXDomain: true, withUpdateXDomain: true, withLegend: true});
+        $$.redraw({ withUpdateOrgXDomain: true, withUpdateXDomain: true, withLegend: true });
         if (args.done) { args.done(); }
     });
 };

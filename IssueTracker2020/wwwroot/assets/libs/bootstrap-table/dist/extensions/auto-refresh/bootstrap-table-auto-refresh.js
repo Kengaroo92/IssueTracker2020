@@ -5,7 +5,6 @@
  */
 
 (function ($) {
-
     'use strict';
 
     $.extend($.fn.bootstrapTable.defaults, {
@@ -21,7 +20,7 @@
     });
 
     $.extend($.fn.bootstrapTable.locales, {
-        formatAutoRefresh: function() {
+        formatAutoRefresh: function () {
             return 'Auto Refresh';
         }
     });
@@ -39,12 +38,12 @@
         if (this.options.autoRefresh && this.options.autoRefreshStatus) {
             var that = this;
             this.options.autoRefreshFunction = setInterval(function () {
-                that.refresh({silent: that.options.autoRefreshSilent});
-            }, this.options.autoRefreshInterval*1000);
+                that.refresh({ silent: that.options.autoRefreshSilent });
+            }, this.options.autoRefreshInterval * 1000);
         }
     };
 
-    BootstrapTable.prototype.initToolbar = function() {
+    BootstrapTable.prototype.initToolbar = function () {
         _initToolbar.apply(this, Array.prototype.slice.apply(arguments));
 
         if (this.options.autoRefresh) {
@@ -65,7 +64,7 @@
         }
     };
 
-    BootstrapTable.prototype.toggleAutoRefresh = function() {
+    BootstrapTable.prototype.toggleAutoRefresh = function () {
         if (this.options.autoRefresh) {
             if (this.options.autoRefreshStatus) {
                 clearInterval(this.options.autoRefreshFunction);
@@ -73,12 +72,11 @@
             } else {
                 var that = this;
                 this.options.autoRefreshFunction = setInterval(function () {
-                    that.refresh({silent: that.options.autoRefreshSilent});
-                }, this.options.autoRefreshInterval*1000);
+                    that.refresh({ silent: that.options.autoRefreshSilent });
+                }, this.options.autoRefreshInterval * 1000);
                 this.$toolbar.find('>.btn-group').find('.auto-refresh').addClass('enabled');
             }
             this.options.autoRefreshStatus = !this.options.autoRefreshStatus;
         }
     };
-
 })(jQuery);

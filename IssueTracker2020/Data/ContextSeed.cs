@@ -1,10 +1,7 @@
 ﻿using IssueTracker2020.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Composition;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,8 +44,8 @@ namespace IssueTracker2020.Data
 
         private static async Task SeedDefaultUsersAsync(UserManager<BTUser> userManager)
         {
-
             #region Seed defaultAdmin
+
             // Seed Default Admin User
             var defaultAdmin = new BTUser
             {
@@ -75,9 +72,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Seed defaultAdmin
 
             #region Seed defaultPM
+
             // Seed Default ProjectManager User
 
             var defaultPM = new BTUser
@@ -105,9 +104,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Seed defaultPM
 
             #region Seed defaultDeveloper
+
             // Seed Default Developer User
 
             var defaultDeveloper = new BTUser
@@ -135,9 +136,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Seed defaultDeveloper
 
             #region Seed defaultSubmitter
+
             // Seed Default Submitter User
 
             var defaultSubmitter = new BTUser
@@ -165,9 +168,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Seed defaultSubmitter
 
             #region Seed defaultNewUser
+
             // Seed Default New User
 
             var defaultNewUser = new BTUser
@@ -195,13 +200,15 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Seed defaultNewUser
 
             // Demo User Are Below
 
             string demoPassword = "Xyz#*@183!!";
 
             #region Demo Seed defaultAdmin
+
             // Seed Default Admin User
             defaultAdmin = new BTUser
             {
@@ -229,9 +236,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Seed defaultAdmin
 
             #region Demo Seed defaultPM
+
             // Seed Default ProjectManager User
 
             defaultPM = new BTUser
@@ -260,9 +269,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Seed defaultPM
 
             #region Demo Seed defaultDeveloper
+
             // Seed Default Developer User
 
             defaultDeveloper = new BTUser
@@ -291,9 +302,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Seed defaultDeveloper
 
             #region Demo Seed defaultSubmitter
+
             // Seed Default Submitter User
 
             defaultSubmitter = new BTUser
@@ -322,9 +335,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Seed defaultSubmitter
 
             #region Demo Seed defaultNewUser
+
             // Seed Default New User
 
             defaultNewUser = new BTUser
@@ -353,13 +368,14 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
 
+            #endregion Demo Seed defaultNewUser
         }
 
         private static async Task SeedTicketTypesAsync(ApplicationDbContext context)
         {
             #region Seed defaultSeedGeneral
+
             // Seed General TicketType
             var defaultSeedGeneral = new TicketType
             {
@@ -382,11 +398,12 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
             };
 
-            #endregion
+            #endregion Seed defaultSeedGeneral
 
             #region Seed defaultSeedUI
+
             // Seed UI TicketType
-            // Setting a new variable named defaultSeedUI that calls the TicketType model. 
+            // Setting a new variable named defaultSeedUI that calls the TicketType model.
             var defaultSeedUI = new TicketType
             {
                 // Setting the TicketType Property Name to UI.
@@ -418,9 +435,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine(ex.Message);
                 Debug.WriteLine("*********************************");
             };
-            #endregion
+
+            #endregion Seed defaultSeedUI
 
             #region Seed defaultSeedRuntime
+
             // Seed Runtime TicketType
             var defaultSeedRuntime = new TicketType
             {
@@ -443,9 +462,10 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
             };
 
-            #endregion
+            #endregion Seed defaultSeedRuntime
 
             #region Seed defaultSeedBackEnd
+
             // Seed BackEnd TicketType
             var defaultSeedBackEnd = new TicketType
             {
@@ -467,8 +487,8 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine(ex.Message);
                 Debug.WriteLine("*********************************");
             };
-            #endregion
 
+            #endregion Seed defaultSeedBackEnd
         }
 
         private static async Task SeedTicketPrioritiesAsync(ApplicationDbContext context)
@@ -476,7 +496,7 @@ namespace IssueTracker2020.Data
             try
             {
                 // This line of code does the following.
-                // Looks into the database of the TicketPriorities Model. 
+                // Looks into the database of the TicketPriorities Model.
                 // The lambda expression will then check the tp table and compare it to tp.Name to see if it has the name Low.
                 // If it doesn't, it will go to the next step.
                 // If it does have a name of Low, it will change Low as a priority in the database.
@@ -547,6 +567,7 @@ namespace IssueTracker2020.Data
         private static async Task SeedProjectAsync(ApplicationDbContext context)
         {
             #region Portfolio Project Seed
+
             Project seedProject1 = new Project
             {
                 Name = "Portfolio Project"
@@ -567,11 +588,12 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine(ex.Message);
                 Debug.WriteLine("*********************************");
                 throw;
-
             }
-            #endregion
+
+            #endregion Portfolio Project Seed
 
             #region Blog Project Seed
+
             Project seedProject2 = new Project
             {
                 Name = "Blog Project"
@@ -593,9 +615,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Blog Project Seed
 
             #region Bug Tracker Project Seed
+
             Project seedProject3 = new Project
             {
                 Name = "Bug Tracker Project"
@@ -616,11 +640,12 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine(ex.Message);
                 Debug.WriteLine("*********************************");
                 throw;
-
             }
-            #endregion
+
+            #endregion Bug Tracker Project Seed
 
             #region Financial Portfolio Project Seed
+
             Project seedProject4 = new Project
             {
                 Name = "Get A Job"
@@ -641,11 +666,9 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine(ex.Message);
                 Debug.WriteLine("*********************************");
                 throw;
-
             }
-            #endregion
 
-
+            #endregion Financial Portfolio Project Seed
         }
 
         private static async Task SeedProjectUsersAsync(ApplicationDbContext context, UserManager<BTUser> userManager)
@@ -661,6 +684,7 @@ namespace IssueTracker2020.Data
             int project4Id = (await context.Projects.FirstOrDefaultAsync(p => p.Name == "Get A Job")).Id;
 
             #region Admin Project 1 Seed
+
             ProjectUser projectUser = new ProjectUser
             {
                 UserId = adminId,
@@ -683,9 +707,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Admin Project 1 Seed
 
             #region Admin Project 2 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = adminId,
@@ -708,9 +734,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Admin Project 2 Seed
 
             #region Admin Project 3 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = adminId,
@@ -733,9 +761,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Admin Project 3 Seed
 
             #region Admin Project 4 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = adminId,
@@ -758,9 +788,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Admin Project 4 Seed
 
             #region Project Manager Project 1 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = projectManagerId,
@@ -783,9 +815,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Project Manager Project 1 Seed
 
             #region Project Manager Project 2 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = projectManagerId,
@@ -808,9 +842,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Project Manager Project 2 Seed
 
             #region Project Manager Project 3 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = projectManagerId,
@@ -833,9 +869,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Project Manager Project 3 Seed
 
             #region Project Manager Project 4 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = projectManagerId,
@@ -858,9 +896,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Project Manager Project 4 Seed
 
             #region Developer Project 1 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = developerId,
@@ -883,9 +923,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Developer Project 1 Seed
 
             #region Developer Project 2 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = developerId,
@@ -908,9 +950,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Developer Project 2 Seed
 
             #region Developer Project 3 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = developerId,
@@ -933,9 +977,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Developer Project 3 Seed
 
             #region Developer Project 4 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = developerId,
@@ -958,9 +1004,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Developer Project 4 Seed
 
             #region Submitter Project 1 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = submitterId,
@@ -983,9 +1031,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Submitter Project 1 Seed
 
             #region Submitter Project 2 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = submitterId,
@@ -1008,9 +1058,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Submitter Project 2 Seed
 
             #region Submitter Project 3 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = submitterId,
@@ -1033,9 +1085,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Submitter Project 3 Seed
 
             #region Submitter Project 4 Seed
+
             projectUser = new ProjectUser
             {
                 UserId = submitterId,
@@ -1058,7 +1112,8 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Submitter Project 4 Seed
         }
 
         private static async Task SeedTicketsAsync(ApplicationDbContext context, UserManager<BTUser> userManager)
@@ -1088,6 +1143,7 @@ namespace IssueTracker2020.Data
             int priorityId4 = (await context.TicketPriorities.FirstOrDefaultAsync(tp => tp.Name == "Critical")).Id;
 
             #region Demo Ticket 1 Project 1
+
             Ticket ticket = new Ticket
             {
                 Title = "Create Links for Completed Projects",
@@ -1118,9 +1174,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 1 Project 1
 
             #region Demo Ticket 2 Project 1
+
             ticket = new Ticket
             {
                 Title = "Carve in a new template for my Portfolio",
@@ -1151,9 +1209,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 2 Project 1
 
             #region Demo Ticket 3 Project 1
+
             ticket = new Ticket
             {
                 Title = "Share my Portfolio on Social Media",
@@ -1184,9 +1244,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 3 Project 1
 
             #region Demo Ticket 1 Project 2
+
             ticket = new Ticket
             {
                 Title = "Complete the functionality of my Spare Code Blog",
@@ -1217,9 +1279,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 1 Project 2
 
             #region Demo Ticket 2 Project 2
+
             ticket = new Ticket
             {
                 Title = "Template my Spare Code Blog to look like my Portfolio",
@@ -1250,9 +1314,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 2 Project 2
 
             #region Demo Ticket 3 Project 2
+
             ticket = new Ticket
             {
                 Title = "Complete Writing my Blog Posts",
@@ -1283,9 +1349,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 3 Project 2
 
             #region Demo Ticket 1 Project 3
+
             ticket = new Ticket
             {
                 Title = "Block Certain Role Access",
@@ -1316,9 +1384,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 1 Project 3
 
             #region Demo Ticket 2 Project 3
+
             ticket = new Ticket
             {
                 Title = "Finish styling my template",
@@ -1349,9 +1419,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 2 Project 3
 
             #region Demo Ticket 3 Project 3
+
             ticket = new Ticket
             {
                 Title = "Finish adding in charts to the dashboard",
@@ -1382,9 +1454,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 3 Project 3
 
             #region Demo Ticket 1 Project 4
+
             ticket = new Ticket
             {
                 Title = "Finish all Projects to Get A Job",
@@ -1415,9 +1489,11 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 1 Project 4
 
             #region Demo Ticket 2 Project 4
+
             ticket = new Ticket
             {
                 Title = "I Am Excited To Go Down This Career Path",
@@ -1448,9 +1524,8 @@ namespace IssueTracker2020.Data
                 Debug.WriteLine("*********************************");
                 throw;
             }
-            #endregion
+
+            #endregion Demo Ticket 2 Project 4
         }
     }
 }
-
-

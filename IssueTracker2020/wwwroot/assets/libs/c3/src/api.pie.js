@@ -1,6 +1,6 @@
 import { Chart } from './core';
 
-Chart.prototype.pie = function() {};
+Chart.prototype.pie = function () { };
 
 Chart.prototype.pie.padAngle = function (padAngle) {
     if (padAngle === undefined) {

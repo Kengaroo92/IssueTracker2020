@@ -337,11 +337,11 @@
                             $helpBlock.html($helpBlock.data("original-contents"));
                         }
                         if (e.type === "blur") {
-                            if (settings.options.removeSuccess) {}
+                            if (settings.options.removeSuccess) { }
                         }
                     });
                     $this.bind("validationLostFocus.validation", function () {
-                        if (settings.options.removeSuccess) {}
+                        if (settings.options.removeSuccess) { }
                     });
                 });
             }

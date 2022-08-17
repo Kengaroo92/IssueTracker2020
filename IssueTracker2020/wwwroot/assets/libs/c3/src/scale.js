@@ -15,32 +15,32 @@ function c3LogScale(d3, linearScale, logScale) {
     }
 
     // copied from https://github.com/compute-io/logspace
-    function logspace( a, b, len ) {
+    function logspace(a, b, len) {
         var arr,
             end,
             tmp,
             d;
 
-        if ( arguments.length < 3 ) {
+        if (arguments.length < 3) {
             len = 10;
         } else {
-            if ( len === 0 ) {
+            if (len === 0) {
                 return [];
             }
         }
         // Calculate the increment:
         end = len - 1;
-        d = ( b-a ) / end;
+        d = (b - a) / end;
 
         // Build the output array...
-        arr = new Array( len );
+        arr = new Array(len);
         tmp = a;
-        arr[ 0 ] = Math.pow( 10, tmp );
-        for ( var i = 1; i < end; i++ ) {
+        arr[0] = Math.pow(10, tmp);
+        for (var i = 1; i < end; i++) {
             tmp += d;
-            arr[ i ] = Math.pow( 10, tmp );
+            arr[i] = Math.pow(10, tmp);
         }
-        arr[ end ] = Math.pow( 10, b );
+        arr[end] = Math.pow(10, b);
         return arr;
     }
 
@@ -48,7 +48,7 @@ function c3LogScale(d3, linearScale, logScale) {
         return logScale(linearScale(x));
     }
 
-    scale.domain = function(x) {
+    scale.domain = function (x) {
         if (!arguments.length) {
             return linearScale.domain();
         }
@@ -56,7 +56,7 @@ function c3LogScale(d3, linearScale, logScale) {
         return scale;
     };
 
-    scale.range = function(x) {
+    scale.range = function (x) {
         if (!arguments.length) {
             return logScale.range();
         }
@@ -64,19 +64,18 @@ function c3LogScale(d3, linearScale, logScale) {
         return scale;
     };
 
-    scale.ticks = function(m) {
+    scale.ticks = function (m) {
         return logspace(-2, 1, m || 10).map(function (v) {
             return linearScale.invert(v);
         });
     };
 
-    scale.copy = function() {
+    scale.copy = function () {
         return c3LogScale(d3, linearScale.copy(), logScale.copy());
     };
 
     return scale;
 }
-
 
 ChartInternal.prototype.getScale = function (min, max, forTimeseries) {
     return (forTimeseries ? this.d3.scaleTime() : this.d3.scaleLinear()).range([min, max]);
@@ -172,11 +171,11 @@ ChartInternal.prototype.updateScales = function () {
     $$.subYMax = config.axis_rotated ? $$.width2 : 1;
     // update scales
     $$.x = $$.getX($$.xMin, $$.xMax, forInit ? undefined : $$.x.orgDomain(), function () { return $$.xAxis.tickOffset(); });
-    $$.y = $$.getY(config.axis_y_type, forInit ? config.axis_y_default : $$.y.domain(), [ $$.yMin, $$.yMax ]);
-    $$.y2 = $$.getY(config.axis_y2_type, forInit ? config.axis_y2_default : $$.y2.domain(), [ $$.yMin, $$.yMax ]);
+    $$.y = $$.getY(config.axis_y_type, forInit ? config.axis_y_default : $$.y.domain(), [$$.yMin, $$.yMax]);
+    $$.y2 = $$.getY(config.axis_y2_type, forInit ? config.axis_y2_default : $$.y2.domain(), [$$.yMin, $$.yMax]);
     $$.subX = $$.getX($$.xMin, $$.xMax, $$.orgXDomain, function (d) { return d % 1 ? 0 : $$.subXAxis.tickOffset(); });
-    $$.subY = $$.getY(config.axis_y_type, forInit ? config.axis_y_default : $$.subY.domain(), [ $$.subYMin, $$.subYMax ]);
-    $$.subY2 = $$.getY(config.axis_y2_type, forInit ? config.axis_y2_default : $$.subY2.domain(), [ $$.subYMin, $$.subYMax ]);
+    $$.subY = $$.getY(config.axis_y_type, forInit ? config.axis_y_default : $$.subY.domain(), [$$.subYMin, $$.subYMax]);
+    $$.subY2 = $$.getY(config.axis_y2_type, forInit ? config.axis_y2_default : $$.subY2.domain(), [$$.subYMin, $$.subYMax]);
     // update axes
     $$.xAxisTickFormat = $$.axis.getXAxisTickFormat();
     $$.xAxisTickValues = $$.axis.getXAxisTickValues();

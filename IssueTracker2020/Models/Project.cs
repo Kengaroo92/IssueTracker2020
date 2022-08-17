@@ -4,11 +4,9 @@ using System.ComponentModel.DataAnnotations;
 namespace IssueTracker2020.Models
 
 {
-
     public class Project
 
     {
-
         public Project()
         {
             Tickets = new HashSet<Ticket>();
@@ -28,7 +26,5 @@ namespace IssueTracker2020.Models
         public List<ProjectUser> ProjectUsers { get; set; }
 
         public virtual ICollection<Ticket> Tickets { get; set; }
-
     }
-
 }

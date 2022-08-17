@@ -1282,47 +1282,47 @@
 
             Source.prototype._pathSegTypeFromChar = function (lookahead) {
                 switch (lookahead) {
-                case "Z":
-                case "z":
-                    return window.SVGPathSeg.PATHSEG_CLOSEPATH;
-                case "M":
-                    return window.SVGPathSeg.PATHSEG_MOVETO_ABS;
-                case "m":
-                    return window.SVGPathSeg.PATHSEG_MOVETO_REL;
-                case "L":
-                    return window.SVGPathSeg.PATHSEG_LINETO_ABS;
-                case "l":
-                    return window.SVGPathSeg.PATHSEG_LINETO_REL;
-                case "C":
-                    return window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS;
-                case "c":
-                    return window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL;
-                case "Q":
-                    return window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS;
-                case "q":
-                    return window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL;
-                case "A":
-                    return window.SVGPathSeg.PATHSEG_ARC_ABS;
-                case "a":
-                    return window.SVGPathSeg.PATHSEG_ARC_REL;
-                case "H":
-                    return window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS;
-                case "h":
-                    return window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL;
-                case "V":
-                    return window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS;
-                case "v":
-                    return window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL;
-                case "S":
-                    return window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS;
-                case "s":
-                    return window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL;
-                case "T":
-                    return window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS;
-                case "t":
-                    return window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL;
-                default:
-                    return window.SVGPathSeg.PATHSEG_UNKNOWN;
+                    case "Z":
+                    case "z":
+                        return window.SVGPathSeg.PATHSEG_CLOSEPATH;
+                    case "M":
+                        return window.SVGPathSeg.PATHSEG_MOVETO_ABS;
+                    case "m":
+                        return window.SVGPathSeg.PATHSEG_MOVETO_REL;
+                    case "L":
+                        return window.SVGPathSeg.PATHSEG_LINETO_ABS;
+                    case "l":
+                        return window.SVGPathSeg.PATHSEG_LINETO_REL;
+                    case "C":
+                        return window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS;
+                    case "c":
+                        return window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL;
+                    case "Q":
+                        return window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS;
+                    case "q":
+                        return window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL;
+                    case "A":
+                        return window.SVGPathSeg.PATHSEG_ARC_ABS;
+                    case "a":
+                        return window.SVGPathSeg.PATHSEG_ARC_REL;
+                    case "H":
+                        return window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS;
+                    case "h":
+                        return window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL;
+                    case "V":
+                        return window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS;
+                    case "v":
+                        return window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL;
+                    case "S":
+                        return window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS;
+                    case "s":
+                        return window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL;
+                    case "T":
+                        return window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS;
+                    case "t":
+                        return window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL;
+                    default:
+                        return window.SVGPathSeg.PATHSEG_UNKNOWN;
                 }
             }
 
@@ -1370,7 +1370,7 @@
                 }
 
                 if (this._currentIndex == this._endIndex || ((this._string.charAt(this._currentIndex) < "0" || this._string.charAt(this._currentIndex) > "9") && this._string.charAt(this._currentIndex) !=
-                        "."))
+                    "."))
                     // The first character of a number must be one of [0-9+-.].
                     return undefined;
 
@@ -1404,7 +1404,7 @@
 
                 // Read the exponent part.
                 if (this._currentIndex != startIndex && this._currentIndex + 1 < this._endIndex && (this._string.charAt(this._currentIndex) == "e" || this._string.charAt(this._currentIndex) ==
-                        "E") && (this._string.charAt(this._currentIndex + 1) != "x" && this._string.charAt(this._currentIndex + 1) != "m")) {
+                    "E") && (this._string.charAt(this._currentIndex + 1) != "x" && this._string.charAt(this._currentIndex + 1) != "m")) {
                     this._currentIndex++;
 
                     // Read the sign of the exponent.
@@ -1473,105 +1473,105 @@
                 this._previousCommand = command;
 
                 switch (command) {
-                case window.SVGPathSeg.PATHSEG_MOVETO_REL:
-                    return new window.SVGPathSegMovetoRel(owningPathSegList, this._parseNumber(), this._parseNumber());
-                case window.SVGPathSeg.PATHSEG_MOVETO_ABS:
-                    return new window.SVGPathSegMovetoAbs(owningPathSegList, this._parseNumber(), this._parseNumber());
-                case window.SVGPathSeg.PATHSEG_LINETO_REL:
-                    return new window.SVGPathSegLinetoRel(owningPathSegList, this._parseNumber(), this._parseNumber());
-                case window.SVGPathSeg.PATHSEG_LINETO_ABS:
-                    return new window.SVGPathSegLinetoAbs(owningPathSegList, this._parseNumber(), this._parseNumber());
-                case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
-                    return new window.SVGPathSegLinetoHorizontalRel(owningPathSegList, this._parseNumber());
-                case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
-                    return new window.SVGPathSegLinetoHorizontalAbs(owningPathSegList, this._parseNumber());
-                case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
-                    return new window.SVGPathSegLinetoVerticalRel(owningPathSegList, this._parseNumber());
-                case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
-                    return new window.SVGPathSegLinetoVerticalAbs(owningPathSegList, this._parseNumber());
-                case window.SVGPathSeg.PATHSEG_CLOSEPATH:
-                    this._skipOptionalSpaces();
-                    return new window.SVGPathSegClosePath(owningPathSegList);
-                case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:
-                    var points = {
-                        x1: this._parseNumber(),
-                        y1: this._parseNumber(),
-                        x2: this._parseNumber(),
-                        y2: this._parseNumber(),
-                        x: this._parseNumber(),
-                        y: this._parseNumber()
-                    };
-                    return new window.SVGPathSegCurvetoCubicRel(owningPathSegList, points.x, points.y, points.x1, points.y1, points.x2, points.y2);
-                case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
-                    var points = {
-                        x1: this._parseNumber(),
-                        y1: this._parseNumber(),
-                        x2: this._parseNumber(),
-                        y2: this._parseNumber(),
-                        x: this._parseNumber(),
-                        y: this._parseNumber()
-                    };
-                    return new window.SVGPathSegCurvetoCubicAbs(owningPathSegList, points.x, points.y, points.x1, points.y1, points.x2, points.y2);
-                case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
-                    var points = {
-                        x2: this._parseNumber(),
-                        y2: this._parseNumber(),
-                        x: this._parseNumber(),
-                        y: this._parseNumber()
-                    };
-                    return new window.SVGPathSegCurvetoCubicSmoothRel(owningPathSegList, points.x, points.y, points.x2, points.y2);
-                case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
-                    var points = {
-                        x2: this._parseNumber(),
-                        y2: this._parseNumber(),
-                        x: this._parseNumber(),
-                        y: this._parseNumber()
-                    };
-                    return new window.SVGPathSegCurvetoCubicSmoothAbs(owningPathSegList, points.x, points.y, points.x2, points.y2);
-                case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
-                    var points = {
-                        x1: this._parseNumber(),
-                        y1: this._parseNumber(),
-                        x: this._parseNumber(),
-                        y: this._parseNumber()
-                    };
-                    return new window.SVGPathSegCurvetoQuadraticRel(owningPathSegList, points.x, points.y, points.x1, points.y1);
-                case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
-                    var points = {
-                        x1: this._parseNumber(),
-                        y1: this._parseNumber(),
-                        x: this._parseNumber(),
-                        y: this._parseNumber()
-                    };
-                    return new window.SVGPathSegCurvetoQuadraticAbs(owningPathSegList, points.x, points.y, points.x1, points.y1);
-                case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
-                    return new window.SVGPathSegCurvetoQuadraticSmoothRel(owningPathSegList, this._parseNumber(), this._parseNumber());
-                case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
-                    return new window.SVGPathSegCurvetoQuadraticSmoothAbs(owningPathSegList, this._parseNumber(), this._parseNumber());
-                case window.SVGPathSeg.PATHSEG_ARC_REL:
-                    var points = {
-                        x1: this._parseNumber(),
-                        y1: this._parseNumber(),
-                        arcAngle: this._parseNumber(),
-                        arcLarge: this._parseArcFlag(),
-                        arcSweep: this._parseArcFlag(),
-                        x: this._parseNumber(),
-                        y: this._parseNumber()
-                    };
-                    return new window.SVGPathSegArcRel(owningPathSegList, points.x, points.y, points.x1, points.y1, points.arcAngle, points.arcLarge, points.arcSweep);
-                case window.SVGPathSeg.PATHSEG_ARC_ABS:
-                    var points = {
-                        x1: this._parseNumber(),
-                        y1: this._parseNumber(),
-                        arcAngle: this._parseNumber(),
-                        arcLarge: this._parseArcFlag(),
-                        arcSweep: this._parseArcFlag(),
-                        x: this._parseNumber(),
-                        y: this._parseNumber()
-                    };
-                    return new window.SVGPathSegArcAbs(owningPathSegList, points.x, points.y, points.x1, points.y1, points.arcAngle, points.arcLarge, points.arcSweep);
-                default:
-                    throw "Unknown path seg type."
+                    case window.SVGPathSeg.PATHSEG_MOVETO_REL:
+                        return new window.SVGPathSegMovetoRel(owningPathSegList, this._parseNumber(), this._parseNumber());
+                    case window.SVGPathSeg.PATHSEG_MOVETO_ABS:
+                        return new window.SVGPathSegMovetoAbs(owningPathSegList, this._parseNumber(), this._parseNumber());
+                    case window.SVGPathSeg.PATHSEG_LINETO_REL:
+                        return new window.SVGPathSegLinetoRel(owningPathSegList, this._parseNumber(), this._parseNumber());
+                    case window.SVGPathSeg.PATHSEG_LINETO_ABS:
+                        return new window.SVGPathSegLinetoAbs(owningPathSegList, this._parseNumber(), this._parseNumber());
+                    case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
+                        return new window.SVGPathSegLinetoHorizontalRel(owningPathSegList, this._parseNumber());
+                    case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
+                        return new window.SVGPathSegLinetoHorizontalAbs(owningPathSegList, this._parseNumber());
+                    case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
+                        return new window.SVGPathSegLinetoVerticalRel(owningPathSegList, this._parseNumber());
+                    case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
+                        return new window.SVGPathSegLinetoVerticalAbs(owningPathSegList, this._parseNumber());
+                    case window.SVGPathSeg.PATHSEG_CLOSEPATH:
+                        this._skipOptionalSpaces();
+                        return new window.SVGPathSegClosePath(owningPathSegList);
+                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:
+                        var points = {
+                            x1: this._parseNumber(),
+                            y1: this._parseNumber(),
+                            x2: this._parseNumber(),
+                            y2: this._parseNumber(),
+                            x: this._parseNumber(),
+                            y: this._parseNumber()
+                        };
+                        return new window.SVGPathSegCurvetoCubicRel(owningPathSegList, points.x, points.y, points.x1, points.y1, points.x2, points.y2);
+                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
+                        var points = {
+                            x1: this._parseNumber(),
+                            y1: this._parseNumber(),
+                            x2: this._parseNumber(),
+                            y2: this._parseNumber(),
+                            x: this._parseNumber(),
+                            y: this._parseNumber()
+                        };
+                        return new window.SVGPathSegCurvetoCubicAbs(owningPathSegList, points.x, points.y, points.x1, points.y1, points.x2, points.y2);
+                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
+                        var points = {
+                            x2: this._parseNumber(),
+                            y2: this._parseNumber(),
+                            x: this._parseNumber(),
+                            y: this._parseNumber()
+                        };
+                        return new window.SVGPathSegCurvetoCubicSmoothRel(owningPathSegList, points.x, points.y, points.x2, points.y2);
+                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
+                        var points = {
+                            x2: this._parseNumber(),
+                            y2: this._parseNumber(),
+                            x: this._parseNumber(),
+                            y: this._parseNumber()
+                        };
+                        return new window.SVGPathSegCurvetoCubicSmoothAbs(owningPathSegList, points.x, points.y, points.x2, points.y2);
+                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
+                        var points = {
+                            x1: this._parseNumber(),
+                            y1: this._parseNumber(),
+                            x: this._parseNumber(),
+                            y: this._parseNumber()
+                        };
+                        return new window.SVGPathSegCurvetoQuadraticRel(owningPathSegList, points.x, points.y, points.x1, points.y1);
+                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
+                        var points = {
+                            x1: this._parseNumber(),
+                            y1: this._parseNumber(),
+                            x: this._parseNumber(),
+                            y: this._parseNumber()
+                        };
+                        return new window.SVGPathSegCurvetoQuadraticAbs(owningPathSegList, points.x, points.y, points.x1, points.y1);
+                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
+                        return new window.SVGPathSegCurvetoQuadraticSmoothRel(owningPathSegList, this._parseNumber(), this._parseNumber());
+                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
+                        return new window.SVGPathSegCurvetoQuadraticSmoothAbs(owningPathSegList, this._parseNumber(), this._parseNumber());
+                    case window.SVGPathSeg.PATHSEG_ARC_REL:
+                        var points = {
+                            x1: this._parseNumber(),
+                            y1: this._parseNumber(),
+                            arcAngle: this._parseNumber(),
+                            arcLarge: this._parseArcFlag(),
+                            arcSweep: this._parseArcFlag(),
+                            x: this._parseNumber(),
+                            y: this._parseNumber()
+                        };
+                        return new window.SVGPathSegArcRel(owningPathSegList, points.x, points.y, points.x1, points.y1, points.arcAngle, points.arcLarge, points.arcSweep);
+                    case window.SVGPathSeg.PATHSEG_ARC_ABS:
+                        var points = {
+                            x1: this._parseNumber(),
+                            y1: this._parseNumber(),
+                            arcAngle: this._parseNumber(),
+                            arcLarge: this._parseArcFlag(),
+                            arcSweep: this._parseArcFlag(),
+                            x: this._parseNumber(),
+                            y: this._parseNumber()
+                        };
+                        return new window.SVGPathSegArcAbs(owningPathSegList, points.x, points.y, points.x1, points.y1, points.arcAngle, points.arcLarge, points.arcSweep);
+                    default:
+                        throw "Unknown path seg type."
                 }
             }
 

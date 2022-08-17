@@ -1,12 +1,10 @@
-
 !function ($) {
     "use strict";
 
     var SweetAlert = function () { };
 
-    //examples 
+    //examples
     SweetAlert.prototype.init = function () {
-
         //Basic
         $('#sa-basic').click(function () {
             Swal.fire("Here's a message!");
@@ -373,7 +371,7 @@
         $.SweetAlert = new SweetAlert, $.SweetAlert.Constructor = SweetAlert
 }(window.jQuery),
 
-    //initializing 
+    //initializing
     function ($) {
         "use strict";
         $.SweetAlert.init()

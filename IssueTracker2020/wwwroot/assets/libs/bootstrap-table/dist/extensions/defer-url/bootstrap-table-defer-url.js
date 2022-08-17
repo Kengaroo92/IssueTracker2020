@@ -13,16 +13,16 @@
  * @version: v1.0.0
  */
 
-(function($) {
+(function ($) {
     'use strict';
 
     $.extend($.fn.bootstrapTable.defaults, {
-        deferUrl : undefined
+        deferUrl: undefined
     });
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor, _init = BootstrapTable.prototype.init;
 
-    BootstrapTable.prototype.init = function() {
+    BootstrapTable.prototype.init = function () {
         _init.apply(this, Array.prototype.slice.apply(arguments));
 
         if (this.options.deferUrl) {

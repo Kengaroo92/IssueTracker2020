@@ -5,7 +5,6 @@
  */
 
 ! function ($) {
-
     'use strict';
 
     $.extend($.fn.bootstrapTable.defaults, {
@@ -110,7 +109,6 @@
         }
     };
 
-
     BootstrapTable.prototype.initRow = function (item, idx, data, parentDom) {
         var that = this;
         if (that.treeEnable) {
@@ -122,9 +120,7 @@
                 return true;
             }
             return false;
-
         }
         return _initRow.apply(that, Array.prototype.slice.apply(arguments));
     };
-
-} (jQuery);
+}(jQuery);

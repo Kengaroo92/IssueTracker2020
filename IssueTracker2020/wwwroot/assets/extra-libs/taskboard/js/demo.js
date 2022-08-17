@@ -72,7 +72,7 @@ $(function () {
                 ]
             }
         ],
-        afterListAdd: function(lobilist, list){
+        afterListAdd: function (lobilist, list) {
             var $dueDateInput = list.$el.find('form [name=dueDate]');
             $dueDateInput.datepicker();
         }
@@ -181,16 +181,16 @@ $(function () {
                             msg: 'afterMarkAsUndone'
                         });
                     },
-                    styleChange: function(list, oldStyle, newStyle){
+                    styleChange: function (list, oldStyle, newStyle) {
                         console.log(arguments);
                         Lobibox.notify('default', {
-                            msg: 'styleChange: Old style - "'+oldStyle+'". New style - "'+ newStyle +'"'
+                            msg: 'styleChange: Old style - "' + oldStyle + '". New style - "' + newStyle + '"'
                         });
                     },
-                    titleChange: function(list, oldTitle, newTitle){
+                    titleChange: function (list, oldTitle, newTitle) {
                         console.log(arguments);
                         Lobibox.notify('default', {
-                            msg: 'titleChange: Old title - "'+oldTitle+'". New title - "'+ newTitle + '"'
+                            msg: 'titleChange: Old title - "' + oldTitle + '". New title - "' + newTitle + '"'
                         });
                     },
                     lists: [
@@ -211,12 +211,12 @@ $(function () {
                                 {
                                     title: 'Flags better burns pigeon',
                                     description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank ' +
-                                    'treacherously darkling.'
+                                        'treacherously darkling.'
                                 },
                                 {
                                     title: 'Accepted was mollis',
                                     description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank ' +
-                                    'treacherously darkling.',
+                                        'treacherously darkling.',
                                     dueDate: '2015-02-02'
                                 }
                             ]
@@ -265,8 +265,8 @@ $(function () {
                     {
                         title: 'Composed trays',
                         description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. ' +
-                        'Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage ' +
-                        'celerities gales beams.'
+                            'Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage ' +
+                            'celerities gales beams.'
                     }
                 ]
             },
@@ -278,8 +278,8 @@ $(function () {
                     {
                         title: 'Composed trays',
                         description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. ' +
-                        'Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage ' +
-                        'celerities gales beams.'
+                            'Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage ' +
+                            'celerities gales beams.'
                     }
                 ]
             }
@@ -321,7 +321,7 @@ $(function () {
             delete: 'demo/example1/delete.php',
             update: 'demo/example1/update.php'
         },
-        afterItemAdd: function(){
+        afterItemAdd: function () {
             console.log(arguments);
         }
     });

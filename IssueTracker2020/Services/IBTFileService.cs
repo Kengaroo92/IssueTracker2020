@@ -12,6 +12,5 @@ namespace IssueTracker2020.Services
         public string GetFileIcon(string file);
 
         public string FormatFileSize(long bytes);
-
     }
 }
